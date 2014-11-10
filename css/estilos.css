@@ -5,6 +5,9 @@
 	display:block;
 	margin:0 auto;
 }
+#cont_inicial {
+	display:none;
+}
 #footer-menu {
 	display:none;
 }

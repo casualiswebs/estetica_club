@@ -6,6 +6,8 @@
 <meta name="apple-mobile-web-app-capable" content="yes" /> 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link href="js/jquery/jquery.mobile-1.4.5.min.css" rel="stylesheet" type="text/css"/>
+  <link rel="stylesheet" href="js/jquery/esteticaclub.min.css" />
+  <link rel="stylesheet" href="js/jquery/jquery.mobile.icons.min.css" />
 <link href="css/estilos.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
@@ -16,14 +18,11 @@
   <div data-role="main" class="ui-content">
 <div id="cont_inicial">
 <!-- Formulario para seleccionar centro: -->
-<form>
-<div class="ui-field-contain">
-    <select name="id_centro" id="id_centro" class="select_centros">
-    </select>
+<div class="ui-field-contain" id="sel_ini_centro">
+    <select id="id_centro"></select>
 </div>
-</form>
 <!-- Fin Formulario para seleccionar centro: -->
-<a href="index.html#inicio" data-role="button" data-icon="alert" data-iconshadow="false" data-theme="b" data-transition="slideup" id="bot_conectar" style="display:none;">2.- Conectarme a Estética Club</a>
+<a href="index.html#inicio" data-role="button" data-icon="alert" data-iconshadow="false" data-theme="b" data-transition="slideup" id="bot_conectar">2.- Conectarme a Estética Club</a>
 </div>
   </div>
 	 <div data-role="footer" style="overflow:hidden;" id="footer-menu">
@@ -31,7 +30,7 @@
             <ul>
                 <li><a href="#menu" data-icon="home" class="ui-btn-active">Inicio</a></li>
                 <li><a href="#reservas" data-icon="grid">Reservas</a></li>
-                <li><a href="datos_user.html" data-icon="lock">Mis Datos</a></li>
+                <li><a href="#config_user" data-icon="lock">Mis Datos</a></li>
             </ul>
         </div><!-- /navbar -->
 	</div><!-- /footer -->
@@ -124,9 +123,15 @@
         </label>
     <input type="text" id="apellidos" autocomplete="off">
     <label for="tel">
-        <b>Teléfono</b>
+        <b>* Teléfono</b>
         </label>
     <input type="text" id="tel" autocomplete="off">
+    
+    <label for="Prov">
+        <b>Provincia</b>
+        </label>
+<select id="prov_sel" onChange="sel_pob(this.value);"></select>
+    <div id="poblacion_sel"></div>
     <label for="cp">
         <b>Código Postal</b>
     </label>
@@ -143,14 +148,80 @@
         <b>* Confirmar Contraseña</b>
     </label>
     <input type="password" id="pass_conf" autocomplete="off">
-    <div class="ui-field-contain">
-        <select name="id_centro" id="id_centro_reg" class="select_centros"></select>
-    </div>
-    <input type="button" id="bot_enviar" value="Guardar">
+    <label for="pass_conf">
+        <b>* Centro</b>
+    </label>
+	<select id="id_centro"></select>
+    <input type="button" id="bot_enviar" value="Guardar" data-theme="b">
 </div>
 	</div>
 </div>
 <!-- /Crear Usuario -->
+
+
+<div data-role="page" id="config_user">
+	<div data-role="header">
+  <a href="index.html#menu" data-icon="arrow-l" data-theme="c">Volver</a>
+    <img src="images/logo.png" width="200" />
+	</div>
+	<div data-role="content">
+<table>
+<tr>
+<td><img src="images/perfil_peq.png" /></td>
+<td><h1>Modificar mi perfil</h1></td>
+</tr>
+</table>
+<div id="form_datos">
+    <label for="nombre">
+        <b>* Nombre</b>
+    </label>
+    <input type="text" id="nombre" autocomplete="off">
+    <label for="apellidos">
+        <b>* Apellidos</b>
+        </label>
+    <input type="text" id="apellidos" autocomplete="off">
+    <label for="tel">
+        <b>Teléfono</b>
+        </label>
+    <input type="text" id="tel" autocomplete="off">
+    <label for="cp">
+        <b>Código Postal</b>
+    </label>
+    <input type="text" id="cp" autocomplete="off">
+    <label for="email">
+        <b>* Email</b>
+    </label>
+    <input type="text" id="email" autocomplete="off">
+    <div id="pass_ocul">
+    <label for="pass">
+        <b>Nueva Contraseña (Dejar en blanco si no se quiere cambiar)</b>
+    </label>
+    <input type="password" id="pass" autocomplete="off">
+    <label for="pass_conf">
+        <b>Confirmar nueva Contraseña (Solo si se indica nueva contraseña)</b>
+    </label>
+    <input type="password" id="pass_conf" autocomplete="off">
+    </div>
+    <label for="email">
+        <b>* Centro seleccionado:</b>
+    </label>
+	<select id="id_centro"></select>
+    <input type="button" value="Actualizar datos" id="bot_enviar" data-theme="b">
+</div>
+<p>&nbsp;</p>
+<a data-role="button" data-theme="b" id="descon">Cerrar sesión</a>
+	</div>
+	 <div data-role="footer" style="overflow:hidden;">
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#menu" data-icon="home">Inicio</a></li>
+                <li><a href="#reservas" data-icon="grid">Reservas</a></li>
+                <li><a href="#config_user" data-icon="lock" class="ui-btn-active">Mis Datos</a></li>
+            </ul>
+        </div><!-- /navbar -->
+	</div><!-- /footer -->
+</div>
+<!--FIN Modificar mi perfil: config_user-->
 
 
 <!--Fin inicio-->

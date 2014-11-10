@@ -7,17 +7,20 @@ document.addEventListener('deviceready', onDeviceReady, true);*/
 
 document.addEventListener('deviceready', function() {
 	navigator.splashscreen.hide();
-	$.mobile.loading( 'show', { theme: "b", text: "Cargando", textonly: false, textVisible: true});
-	//Listado de centros:
-	getListCentros(false, 'select_centros');
-	//-- FIN Listado de centros --
+});
+
+/*---- MOSTRADO DE PÁGINAS ----*/
+//Menú:
+$('#menu').on('pageshow', function(event) {
 	//Si el usuario está conectado, recupero sus datos:
 	recuperar_datos_inicio();
 	//--
 	if (comprueba_datos_user () == false) {
-		$('#bot_conectar').show("slow");
+		$.mobile.loading( 'show', { theme: "b", text: "Cargando", textonly: false, textVisible: true});
+		getListCentros(false, '#sel_ini_centro #id_centro');
+		$('#cont_inicial').show("slow");
 	} else {
-		$('#bot_conectar').hide("slow");
+		$("#cont_inicial").hide("slow");
 		//Activo el footer:
 		$("#footer-menu").show("slow");
 	}
@@ -25,14 +28,6 @@ document.addEventListener('deviceready', function() {
 	if (donde_volver != '') {
 		localStorage.setItem("donde_volver", '');
 	}
-});
-
-/*---- MOSTRADO DE PÁGINAS ----*/
-//Menú:
-$('#menu').on('pageshow', function(event) {
-});
-//Menú:
-$('#menu').on('pageshow', function(event) {
 });
 //Inicio:
 $('#inicio').on('pageshow', function(event) {
@@ -50,6 +45,7 @@ $('#login_user').on('pageshow', function(event) {
 
 function comprueba_usercon () {
 	var existen_datos_anteriores = comprueba_datos_user();
+	console.log ('comprueba_usercon: ' + existen_datos_anteriores);
 	var con_face = localStorage.getItem("id_facebook") || '';
 	if ((existen_datos_anteriores == false) && (con_face == '') ) {
 		$.mobile.changePage( "index.html#inicio", { transition: "slideup"}, true, true );
@@ -91,17 +87,17 @@ if ((pass!='') && (ok_email==true)){
 				}
 		}
 	$.mobile.loading( 'hide');
-	//alert(data.respuesta);
-	navigator.notification.alert (data.respuesta, null, '¡Conectado!', 'Aceptar');
+	alert(data.respuesta);
+	//comentario navigator.notification.alert (data.respuesta, null, '¡Conectado!', 'Aceptar');
 	});
 } else if (ok_email == false) {
 	$.mobile.loading( 'hide');
-	//alert("La dirección de email no es correcta");
-	navigator.notification.alert ("La dirección de email no es correcta", null, '¡Alerta!', 'Aceptar');
+	alert("La dirección de email no es correcta");
+	//comentario navigator.notification.alert ("La dirección de email no es correcta", null, '¡Alerta!', 'Aceptar');
 } else {
 	$.mobile.loading( 'hide');
-	//alert("Revisa tus datos");
-	navigator.notification.alert ("Revisa tus datos", null, '¡Alerta!', 'Aceptar');
+	alert("Revisa tus datos");
+	//comentario navigator.notification.alert ("Revisa tus datos", null, '¡Alerta!', 'Aceptar');
 }
 }
 
@@ -122,31 +118,31 @@ if (ok_email==true){
 			$.mobile.changePage( "#menu", { transition: "slideup"} );
 		}
 	$.mobile.loading( 'hide');
-	//alert(data.respuesta);
-	navigator.notification.alert (data.respuesta, null, 'Estetica Club', 'Aceptar');
+	alert(data.respuesta);
+	//comentario navigator.notification.alert (data.respuesta, null, 'Estetica Club', 'Aceptar');
 	});
 } else if (ok_email == false) {
 	$.mobile.loading( 'hide');
-	//alert("La dirección de email no es correcta");
-	navigator.notification.alert ("La dirección de email no es correcta", null, '¡Alerta!', 'Aceptar');
+	alert("La dirección de email no es correcta");
+	//comentario navigator.notification.alert ("La dirección de email no es correcta", null, '¡Alerta!', 'Aceptar');
 } else {
 	$.mobile.loading( 'hide');
-	//alert("Indica tu dirección de email");
-	navigator.notification.alert ("Indica tu dirección de email", null, '¡Alerta!', 'Aceptar');
+	alert("Indica tu dirección de email");
+	//comentario navigator.notification.alert ("Indica tu dirección de email", null, '¡Alerta!', 'Aceptar');
 }
 }
 
 function logout () {
 	localStorage.clear();
 	$.mobile.changePage( "index.html#inicio" );
-	//alert("¡Te has desconectado!");
-	navigator.notification.alert ("¡Te has desconectado!", null, 'Estetica Club', 'Aceptar');
+	alert("¡Te has desconectado!");
+	//comentario navigator.notification.alert ("¡Te has desconectado!", null, 'Estetica Club', 'Aceptar');
 }
 
 
 function comprueba_datos_user() {
 	var comp_datos = localStorage.getItem('id_user_app_movil') || '';
-	//console.log('comprueba_datos_user: Usuario activo: '+ comp_datos);
+	console.log('comprueba_datos_user: Usuario activo: '+ comp_datos);
 	if (comp_datos!='') {
 		return true;
 	} else {
@@ -157,42 +153,123 @@ function comprueba_datos_user() {
 function recuperar_datos_inicio() {
 	var id_user_app = localStorage.getItem("id_user_app_movil") || false;
 	$.getJSON(serviceURL + "login.php?callback=?", { id_user_app:id_user_app }, function(data){
-		if (data.resultado==true) {
+		console.log('recuperar_datos_inicio(): ' + data.resultado);
+		if (data.resultado == true) {
 			localStorage.setItem("nombre", data.nombre);
 			localStorage.setItem("apellidos", data.apellidos);
 			localStorage.setItem("tel", data.telefono);
 			localStorage.setItem("email", data.email);
 			localStorage.setItem("cp", data.cp);
+			localStorage.setItem("provincia", data.provincia);
+			localStorage.setItem("poblacion", data.poblacion);
+			localStorage.setItem("id_centro", data.id_tienda);
 		}
 	});
 }
 
 //Listado Centros:
-function getListCentros(id, id_act) {
+function getListCentros(id, id_sel, marcar_sel) {
 	ur = 'sel_centros.php?callback=?';
-	$('.' + id_act).empty();
-	//ajax = $.getJSON(serviceURL + ur, function(data) {
-	$('.'+ id_act).append($('<option>', { 
+	var sel = $(id_sel);
+	//Comienzo de nuevo el select:
+	sel.empty();
+	if (id_sel == '#sel_ini_centro #id_centro') {
+		texto_sel = '1.- Selecciona un centro';
+	} else {
+		texto_sel = 'Selecciona un centro';
+	}
+	sel.append($('<option>', { 
 				value: 0,
-				text : '1.- Selecciona un centro' 
+				text : texto_sel
 			}));
+//FIN cargando:
+$.mobile.loading('hide');
 $.getJSON(serviceURL + ur, { id_centro:id }, function(data){
 	if (data.resultado === true) {
 		$.each(data.datos , function( key, value ) {
-				/*console.log(key);
-				console.log(value.id_cliente);*/
-			$('.' + id_act).append($('<option>', { 
+			sel.append($('<option>', { 
 				value: value.id,
 				text : value.nombre 
 			}));
 		});
 	} else {
-		navigator.notification.alert (data.respuesta, null, '¡Alerta!', 'Aceptar');
+		alert (data.respuesta);
+		//comentario navigator.notification.alert (data.respuesta, null, '¡Alerta!', 'Aceptar');
 	}
-	$('.'+ id_act).selectmenu('refresh');
-	$.mobile.loading( 'hide');
+	if (marcar_sel > 0) {
+		$('#datos_reg_user #id_centro option[value=' + marcar_sel + ']').attr('selected','selected').prop('selected', true);
+	}
+	//Refresco el select:
+	sel.selectmenu('refresh');
 }).fail(function() {
-	$.mobile.loading( 'hide');
-	navigator.notification.alert ("No hay conexión, inténtalo de nuevo más tarde", null, '¡Alerta!', 'Aceptar');
+	alert ("No hay conexión, inténtalo de nuevo más tarde");
+	//comentario navigator.notification.alert ("No hay conexión, inténtalo de nuevo más tarde", null, '¡Alerta!', 'Aceptar');
+});
+}
+
+//Listado Provincias:
+function getListProvincias(id, id_sel) {
+	ur = 'sel_provincias.php?callback=?';
+	var sel = $('#' + id_sel);
+	//Comienzo de nuevo el select:
+	sel.empty();
+	sel.append($('<option>', { 
+				value: 0,
+				text : 'Provincia' 
+			}));
+$.getJSON(serviceURL + ur, { id_bus:id }, function(data){
+	if (data.resultado === true) {
+		$.each(data.datos , function( key, value ) {
+			sel.append($('<option>', { 
+				value: value.id,
+				text : value.nombre 
+			}));
+		});
+	} else {
+		alert (data.respuesta);
+		//comentario navigator.notification.alert (data.respuesta, null, '¡Alerta!', 'Aceptar');
+	}
+	//Refresco el select:
+	sel.selectmenu('refresh');
+}).fail(function() {
+	alert ("No hay conexión, inténtalo de nuevo más tarde");
+	//comentario navigator.notification.alert ("No hay conexión, inténtalo de nuevo más tarde", null, '¡Alerta!', 'Aceptar');
+});
+}
+
+//////------ SELECCIONAR POBLACIÓN -----//////
+function sel_pob(id_prov) {
+	ur = 'consulta-pob.php?callback=?';
+var venvio = {
+id_prov: id_prov,
+};
+
+$.getJSON(serviceURL + ur, venvio, function (data) {
+	if (data.resultado === true) {
+	$('#poblacion_sel').html('<label for="Pob"><b>Población</b></label>' +
+	'<select id="pob_sel">');
+    $('#pob_sel').append($('<option>', {
+        value: 0,
+        text : 'Selecciona la población'
+    }));
+$.each(data.datos , function( key, value ) {
+        /*console.log(key);
+        console.log(value.id_cliente);*/
+    $('#pob_sel').append($('<option>', {
+        value: value.id,
+        text : value.nombre
+    }));
+});
+//----- Refresco la apariencia del select con un nuevo tema: -----
+$( "#pob_sel" ).selectmenu({ theme: "a" });
+	} else {
+		$('#poblacion_sel').html('');
+		alert (data.respuesta);
+		//comentario
+	}
+}).fail(function(data) {
+		$('#poblacion_sel').html('');
+		alert ("Error en la conexión");
+		//comentario
 });
 }
