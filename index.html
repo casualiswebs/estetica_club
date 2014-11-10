@@ -23,22 +23,42 @@
 </div>
 </form>
 <!-- Fin Formulario para seleccionar centro: -->
+<a href="index.html#inicio" data-role="button" data-icon="arrow-u" data-iconshadow="false" data-theme="b" data-transition="slideup" id="bot_conectar" style="display:none;">Conéctate a UrbisClub</a>
   </div>
 	 <div data-role="footer">
         <div data-role="navbar">
             <ul>
                 <li><a href="#menu" data-icon="grid" class="ui-btn-active">Inicio</a></li>
                 <li><a href="#reservas" data-icon="star">Reservas</a></li>
-                <li><a href="#config_user" data-icon="gear">Mis Datos</a></li>
+                <li><a href="datos_user.html" data-icon="gear">Mis Datos</a></li>
             </ul>
         </div><!-- /navbar -->
 </div><!-- /footer -->
 </div><!-- Fin menu -->
 
 
+<div data-role="page" id="inicio">
+	<div data-role="header">
+    <img src="images/logo.png" width="200" />
+	</div>
+  <div data-role="content" style="text-align:center;">
+  
+<!--<a onClick="login_face()" data-role="button" data-theme="b" id="but_log_face">Login con Facebook</a>
+<p>&nbsp;</p>-->
+<a href="#login_user" data-role="button" id="but_log_urbis" data-transition="slide">Ya tengo cuenta en Estética Club</a>
+<p>&nbsp;</p>
+<a href="#reg_user" data-role="button" data-transition="slide">Crear nueva cuenta en Estética Club</a>
+<p>&nbsp;</p>
+<a data-role="button" data-icon="arrow-d" data-iconshadow="false" data-theme="b" data-transition="slidedown" id="bot_volver">Volver Atrás</a>
+
+<img src="images/banner.png" width="100%" style="max-width:600px; display:block; clear:both; margin:40px auto 0;">
+  </div>
+</div>
+<!--Fin inicio-->
+
 <div data-role="page" id="login_user">
 	<div data-role="header">
-  <a href="#inicio" data-icon="arrow-l" data-theme="c">Volver</a>
+  <a href="#menu" data-icon="arrow-l" data-theme="c">Volver</a>
     <img src="images/logo.png" width="200" />
 	</div>
 	<div data-role="content">
@@ -131,5 +151,6 @@
 <script type="text/javascript" src="js/jquery/jquery.min.js"></script>
 <script type="text/javascript" src="js/jquery/jquery.mobile-1.4.5.min.js"></script>
 <script type="text/javascript" src="js/inicio.js"></script>
+<script type="text/javascript" src="js/datos_user.js"></script>
 </body>
 </html>

@@ -19,6 +19,18 @@ document.addEventListener('deviceready', function() {
 
 /*---- MOSTRADO DE PÁGINAS ----*/
 //Menú:
+$('#menu').live('pageshow', function(event) {
+	if (comprueba_datos_user () == false) {
+		$('#bot_conectar').show("slow");
+	} else {
+		$('#bot_conectar').hide("slow");
+	}
+	var donde_volver = localStorage.getItem ('donde_volver') || '';
+	if (donde_volver != '') {
+		localStorage.setItem("donde_volver", '');
+	}
+});
+//Menú:
 $('#menu').on('pageshow', function(event) {
 	getListCentros(false, 'id_centro');
 	if (comprueba_datos_user() == false) {
@@ -28,12 +40,29 @@ $('#menu').on('pageshow', function(event) {
 	}
 });
 //Inicio:
-$('#inicio').on('pageshow', function(event) {
+$('#inicio').live('pageshow', function(event) {
+	var donde_volver = localStorage.getItem ('donde_volver') || '';
+	if (donde_volver != '') {
+		$('#bot_volver').attr ('href', donde_volver);
+	} else {
+		$('#bot_volver').attr ('href', '#menu');
+	}
 });
 //Login:
 $('#login_user').on('pageshow', function(event) {
 });
 /*---- FIN DEL MOSTRADO DE PÁGINAS ----*/
+
+function comprueba_usercon () {
+	var existen_datos_anteriores = comprueba_datos_user();
+	var con_face = localStorage.getItem("id_facebook") || '';
+	if ((existen_datos_anteriores == false) && (con_face == '') ) {
+		$.mobile.changePage( "index.html#inicio", { transition: "slideup"}, true, true );
+	} else {
+		return true;
+	}
+}
+
 
 function login_user () {
 	$.mobile.loading ( 'show', { theme: "b", text: "Cargando", textonly: false, textVisible: true});
