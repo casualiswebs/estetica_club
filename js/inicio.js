@@ -1,25 +1,27 @@
 var serviceURL = "http://www.esteticaclub.com/app_centros/";
-var employees;
 
-
-function onDeviceReady() {
+/*function onDeviceReady() {
 	
 }
-document.addEventListener('deviceready', onDeviceReady, true);
+document.addEventListener('deviceready', onDeviceReady, true);*/
 
 document.addEventListener('deviceready', function() {
 	navigator.splashscreen.hide();
+});
+
+/*---- MOSTRADO DE PÁGINAS ----*/
+//Menú:
+$('#menu').on('pageshow', function(event) {
 	//Cambiar a carga inicial cuando esté lista la aplicación:
 	$.mobile.loading( 'show', { theme: "b", text: "Cargando", textonly: false, textVisible: true});
 	//getListCentros(false, 'id_centro');
 	//Si el usuario está conectado, recupero sus datos:
 	recuperar_datos_inicio();
 	//--
-});
-
-/*---- MOSTRADO DE PÁGINAS ----*/
-//Menú:
-$('#menu').on('pageshow', function(event) {
+	
+	
+	
+	
 	if (comprueba_datos_user () == false) {
 		$('#bot_conectar').show("slow");
 	} else {
