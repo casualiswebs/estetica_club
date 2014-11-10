@@ -1,4 +1,4 @@
-$('#config_user').live('pageshow', function(event) {
+$('#config_user').on('pageshow', function(event) {
 	//Comprueba si el usuario se ha conectado desde cuenta Urbis o Facebook:
 	if (comprueba_usercon () == true) {
 	$.mobile.loading ( 'show', { theme: "b", text: "Cargando", textonly: false, textVisible: true});
@@ -18,7 +18,7 @@ $('#config_user').live('pageshow', function(event) {
 	$.mobile.loading( 'hide');
 	}
 });
-$('#reg_user').live('pageshow', function(event) {
+$('#reg_user').on('pageshow', function(event) {
 	clic_guardar_datos(false, true);
 });
 

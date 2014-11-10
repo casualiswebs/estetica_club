@@ -19,7 +19,7 @@ document.addEventListener('deviceready', function() {
 
 /*---- MOSTRADO DE PÁGINAS ----*/
 //Menú:
-$('#menu').live('pageshow', function(event) {
+$('#menu').on('pageshow', function(event) {
 	if (comprueba_datos_user () == false) {
 		$('#bot_conectar').show("slow");
 	} else {
@@ -40,7 +40,7 @@ $('#menu').on('pageshow', function(event) {
 	}
 });
 //Inicio:
-$('#inicio').live('pageshow', function(event) {
+$('#inicio').on('pageshow', function(event) {
 	var donde_volver = localStorage.getItem ('donde_volver') || '';
 	if (donde_volver != '') {
 		$('#bot_volver').attr ('href', donde_volver);
