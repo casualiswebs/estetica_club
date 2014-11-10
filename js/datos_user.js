@@ -21,7 +21,6 @@ $('#config_user').on('pageshow', function(event) {
 $('#reg_user').on('pageshow', function(event) {
 	clic_guardar_datos(false, true);
 	
-	getListCentros(false, 'id_centro_reg');
 	if ($("#id_centro").val() > 0) {
 		$('#id_centro_reg option[value=' + $("#id_centro").val() + ']').attr('selected','selected').prop('selected', true);
 	}
@@ -60,7 +59,7 @@ if (pag_registro_user == true) {
 	var cp = $('#form_datos #cp').val();
 	var pass = $('#form_datos #pass').val();
 	var pass_conf = $('#form_datos #pass_conf').val();
-	var id_centro = $('#id_centro').val();
+	var id_centro = $('#id_centro_reg').val();
 }
 	// Guardar datos en el teléfono
 //Compruebo si la dirección de email es correcta:

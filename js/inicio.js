@@ -7,41 +7,32 @@ document.addEventListener('deviceready', onDeviceReady, true);*/
 
 document.addEventListener('deviceready', function() {
 	navigator.splashscreen.hide();
-});
-
-/*---- MOSTRADO DE PÁGINAS ----*/
-//Menú:
-$('#menu').on('pageshow', function(event) {
-	//Cambiar a carga inicial cuando esté lista la aplicación:
 	$.mobile.loading( 'show', { theme: "b", text: "Cargando", textonly: false, textVisible: true});
-	//getListCentros(false, 'id_centro');
+	//Listado de centros:
+	getListCentros(false, 'select_centros');
+	//-- FIN Listado de centros --
 	//Si el usuario está conectado, recupero sus datos:
 	recuperar_datos_inicio();
 	//--
-	
-	
-	
-	
 	if (comprueba_datos_user () == false) {
-		$('#bot_conectar').show("slow");
-	} else {
-		$('#bot_conectar').hide("slow");
-	}
-	var donde_volver = localStorage.getItem ('donde_volver') || '';
-	if (donde_volver != '') {
-		localStorage.setItem("donde_volver", '');
-	}
-});
-//Menú:
-$('#menu').on('pageshow', function(event) {
-	getListCentros(false, 'id_centro');
-	if (comprueba_datos_user() == false) {
 		$('#bot_conectar').show("slow");
 	} else {
 		$('#bot_conectar').hide("slow");
 		//Activo el footer:
 		$("#footer-menu").show("slow");
 	}
+	var donde_volver = localStorage.getItem ('donde_volver') || '';
+	if (donde_volver != '') {
+		localStorage.setItem("donde_volver", '');
+	}
+});
+
+/*---- MOSTRADO DE PÁGINAS ----*/
+//Menú:
+$('#menu').on('pageshow', function(event) {
+});
+//Menú:
+$('#menu').on('pageshow', function(event) {
 });
 //Inicio:
 $('#inicio').on('pageshow', function(event) {
@@ -179,9 +170,9 @@ function recuperar_datos_inicio() {
 //Listado Centros:
 function getListCentros(id, id_act) {
 	ur = 'sel_centros.php?callback=?';
-	$('#' + id_act).empty();
+	$('.' + id_act).empty();
 	//ajax = $.getJSON(serviceURL + ur, function(data) {
-	$('#'+ id_act).append($('<option>', { 
+	$('.'+ id_act).append($('<option>', { 
 				value: 0,
 				text : '1.- Selecciona un centro' 
 			}));
@@ -190,7 +181,7 @@ $.getJSON(serviceURL + ur, { id_centro:id }, function(data){
 		$.each(data.datos , function( key, value ) {
 				/*console.log(key);
 				console.log(value.id_cliente);*/
-			$('#' + id_act).append($('<option>', { 
+			$('.' + id_act).append($('<option>', { 
 				value: value.id,
 				text : value.nombre 
 			}));
@@ -198,7 +189,7 @@ $.getJSON(serviceURL + ur, { id_centro:id }, function(data){
 	} else {
 		navigator.notification.alert (data.respuesta, null, '¡Alerta!', 'Aceptar');
 	}
-	$('#'+ id_act).selectmenu('refresh');
+	$('.'+ id_act).selectmenu('refresh');
 	$.mobile.loading( 'hide');
 }).fail(function() {
 	$.mobile.loading( 'hide');
