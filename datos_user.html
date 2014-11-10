@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Configura tu perfil</title>
+</head>
+<body>
+<div data-role="page" id="config_user">
+	<div data-role="header">
+  <a href="index.html#menu" data-icon="arrow-l" data-theme="c">Volver</a>
+    <img src="images/logo.png" width="200" />
+	</div>
+	<div data-role="content">
+<table>
+<tr>
+<td><img src="images/perfil_peq.png" /></td>
+<td><h1>Configura tu perfil</h1></td>
+</tr>
+</table>
+<div id="form_datos">
+    <label for="nombre">
+        <b>* Nombre</b>
+    </label>
+    <input type="text" id="nombre" autocomplete="off">
+    <label for="apellidos">
+        <b>* Apellidos</b>
+        </label>
+    <input type="text" id="apellidos" autocomplete="off">
+    <label for="tel">
+        <b>Teléfono</b>
+        </label>
+    <input type="text" id="tel" autocomplete="off">
+    <label for="cp">
+        <b>Código Postal</b>
+    </label>
+    <input type="text" id="cp" autocomplete="off">
+    <label for="email">
+        <b>* Email</b>
+    </label>
+    <input type="text" id="email" autocomplete="off">
+    <div id="pass_ocul">
+    <label for="pass">
+        <b>Nueva Contraseña (Dejar en blanco si no se quiere cambiar)</b>
+    </label>
+    <input type="password" id="pass" autocomplete="off">
+    <label for="pass_conf">
+        <b>Confirmar nueva Contraseña (Solo si se indica nueva contraseña)</b>
+    </label>
+    <input type="password" id="pass_conf" autocomplete="off">
+    </div>
+    <input type="button" value="Actualizar datos" id="bot_enviar">
+</div>
+<p>&nbsp;</p>
+<a data-role="button" data-theme="e" id="descon">Cerrar sesión</a>
+	</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html> 
+<html>
+<head>
+<title>Estética Clientes</title>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<meta name="apple-mobile-web-app-capable" content="yes" /> 
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link href="js/jquery/jquery.mobile-1.4.5.min.css" rel="stylesheet" type="text/css"/>
+<link href="css/estilos.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div data-role="page" id="menu">
+	<div data-role="header">
+    <img src="images/logo.png" width="200" />
+	</div>
+  <div data-role="main" class="ui-content">
+<!-- Formulario para seleccionar centro: -->
+<form>
+<div class="ui-field-contain">
+    <select name="id_centro" id="id_centro">
+        <option value="0">Selecciona un centro</option>
+    </select>
+</div>
+</form>
+<!-- Fin Formulario para seleccionar centro: -->
+  </div>
+	 <div data-role="footer">
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#menu" data-icon="grid" class="ui-btn-active">Inicio</a></li>
+                <li><a href="#reservas" data-icon="star">Reservas</a></li>
+                <li><a href="#config_user" data-icon="gear">Mis Datos</a></li>
+            </ul>
+        </div><!-- /navbar -->
+</div><!-- /footer -->
+</div><!-- Fin menu -->
+
+
+<div data-role="page" id="login_user">
+	<div data-role="header">
+  <a href="#inicio" data-icon="arrow-l" data-theme="c">Volver</a>
+    <img src="images/logo.png" width="200" />
+	</div>
+	<div data-role="content">
+<table>
+<tr>
+<td><img src="images/perfil_peq.png" /></td>
+<td><h1>Conectarme</h1></td>
+</tr>
+</table>
+    <label for="email">
+        <b>* Email</b>
+    </label>
+    <input type="text" id="email" autocomplete="off">
+    <label for="pass">
+        <b>* Contraseña</b>
+    </label>
+    <input type="password" id="pass" autocomplete="off">
+    <input type="button" value="Conectarme" onClick="login_user()" id="Con_Re">
+    <p>&nbsp;</p>
+<a href="#recuperar" data-role="button" data-icon="edit" data-iconshadow="false" data-theme="e" data-transition="slideup">Recuperar contraseña</a>
+	</div>
+</div><!-- /Login Usuario -->
+<div data-role="page" id="recuperar">
+	<div data-role="header">
+  <a href="#login_user" data-icon="arrow-l" data-theme="c">Volver</a>
+    <img src="images/logo.png" width="200" />
+	</div>
+	<div data-role="content">
+<table>
+<tr>
+<td><img src="images/perfil_peq.png" /></td>
+<td><h1>Recuperar mi contraseña</h1></td>
+</tr>
+</table>
+    <label for="email">
+        <b>* Indica el Email con el que te registraste en Urbisclub</b>
+    </label>
+    <input type="text" id="email_rec" autocomplete="off">
+    <input type="button" value="Recuperar" onClick="recuperar_pass()">
+	</div>
+</div><!-- /Recuperar Usuario -->
+<div data-role="page" id="reg_user">
+	<div data-role="header">
+  <a data-rel="back" data-icon="arrow-l" data-theme="c">Volver</a>
+    <img src="images/logo.png" width="200" />
+	</div>
+	<div data-role="content">
+<table>
+<tr>
+<td><img src="images/perfil_peq.png" /></td>
+<td><h1>Crear perfil</h1></td>
+</tr>
+</table>
+<div id="datos_reg_user">
+    <label for="nombre">
+        <b>* Nombre</b>
+    </label>
+    <input type="text" id="nombre" autocomplete="off">
+    <label for="apellidos">
+        <b>* Apellidos</b>
+        </label>
+    <input type="text" id="apellidos" autocomplete="off">
+    <label for="tel">
+        <b>Teléfono</b>
+        </label>
+    <input type="text" id="tel" autocomplete="off">
+    <label for="cp">
+        <b>Código Postal</b>
+    </label>
+    <input type="text" id="cp" autocomplete="off">
+    <label for="email">
+        <b>* Email</b>
+    </label>
+    <input type="text" id="email" autocomplete="off">
+    <label for="pass">
+        <b>* Contraseña</b>
+    </label>
+    <input type="password" id="pass" autocomplete="off">
+    <label for="pass_conf">
+        <b>* Confirmar Contraseña</b>
+    </label>
+    <input type="password" id="pass_conf" autocomplete="off">
+    <input type="button" id="bot_enviar" value="Guardar">
+</div>
+	</div>
+</div><!-- /Crear Usuario -->
+
+<!--Fin inicio-->
+<script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
+<script type="text/javascript" src="js/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery/jquery.mobile-1.4.5.min.js"></script>
+<script type="text/javascript" src="js/inicio.js"></script>
+</body>
+</html>
