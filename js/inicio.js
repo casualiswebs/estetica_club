@@ -39,6 +39,8 @@ $('#menu').on('pageshow', function(event) {
 		$('#bot_conectar').show("slow");
 	} else {
 		$('#bot_conectar').hide("slow");
+		//Activo el footer:
+		$("#footer-menu").show("slow");
 	}
 });
 //Inicio:
@@ -177,15 +179,18 @@ function recuperar_datos_inicio() {
 //Listado Centros:
 function getListCentros(id, id_act) {
 	ur = 'sel_centros.php?callback=?';
-	//$('.'+id_act+' li').remove();
-	$('#'+id_act+' li').empty();
+	$('#' + id_act).empty();
 	//ajax = $.getJSON(serviceURL + ur, function(data) {
+	$('#'+ id_act).append($('<option>', { 
+				value: 0,
+				text : '1.- Selecciona un centro' 
+			}));
 $.getJSON(serviceURL + ur, { id_centro:id }, function(data){
 	if (data.resultado === true) {
 		$.each(data.datos , function( key, value ) {
 				/*console.log(key);
 				console.log(value.id_cliente);*/
-			$('#'+ id_act).append($('<option>', { 
+			$('#' + id_act).append($('<option>', { 
 				value: value.id,
 				text : value.nombre 
 			}));
@@ -193,6 +198,7 @@ $.getJSON(serviceURL + ur, { id_centro:id }, function(data){
 	} else {
 		navigator.notification.alert (data.respuesta, null, '¡Alerta!', 'Aceptar');
 	}
+	$('#'+ id_act).selectmenu('refresh');
 	$.mobile.loading( 'hide');
 }).fail(function() {
 	$.mobile.loading( 'hide');

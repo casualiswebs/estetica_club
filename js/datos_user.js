@@ -20,6 +20,11 @@ $('#config_user').on('pageshow', function(event) {
 });
 $('#reg_user').on('pageshow', function(event) {
 	clic_guardar_datos(false, true);
+	
+	getListCentros(false, 'id_centro_reg');
+	if ($("#id_centro").val() > 0) {
+		$('#id_centro_reg option[value=' + $("#id_centro").val() + ']').attr('selected','selected').prop('selected', true);
+	}
 });
 
 //Registro de usuario o editar datos del perfil:
@@ -55,6 +60,7 @@ if (pag_registro_user == true) {
 	var cp = $('#form_datos #cp').val();
 	var pass = $('#form_datos #pass').val();
 	var pass_conf = $('#form_datos #pass_conf').val();
+	var id_centro = $('#id_centro').val();
 }
 	// Guardar datos en el teléfono
 //Compruebo si la dirección de email es correcta:
@@ -70,14 +76,14 @@ if ((nombre!='') && (apellidos!='') && (ok_email==true) && (ok_pass==true)){
 		} else {
 			var id_user_app_movil = false;
 		}
-		/*var id_user_face = localStorage.getItem("id_facebook") || '';
+		var id_user_face = localStorage.getItem("id_facebook") || '';
 		if (id_user_face != '') {
 			var user_facebook = id_user_face;
 		} else {
 			var user_facebook = false;
-		}*/
+		}
 	
-	$.getJSON(serviceURL + "guardar_usuario.php?callback=?", { nombre:nombre, apellidos:apellidos, tel:tel, email:email, cp:cp, id_user_app_movil:id_user_app_movil, pass:pass, user_facebook:user_facebook }, function(data){
+	$.getJSON(serviceURL + "guardar_usuario.php?callback=?", { nombre:nombre, apellidos:apellidos, tel:tel, email:email, cp:cp, id_user_app_movil:id_user_app_movil, pass:pass, user_facebook:user_facebook, id_centro:id_centro }, function(data){
 	//console.log('Apuntarse: '+data.resultado);
 		if (data.resultado==true) {
 		localStorage.setItem("nombre", nombre);
@@ -85,6 +91,7 @@ if ((nombre!='') && (apellidos!='') && (ok_email==true) && (ok_pass==true)){
 		localStorage.setItem("tel", tel);
 		localStorage.setItem("email", email);
 		localStorage.setItem("cp", cp);
+		localStorage.setItem("id_centro", id_centro);
 			if (existen_datos_anteriores == false) {
 				localStorage.setItem("id_user_app_movil", data.id_user_app_movil);
 				existen_datos_anteriores = true;
@@ -98,6 +105,9 @@ if ((nombre!='') && (apellidos!='') && (ok_email==true) && (ok_pass==true)){
 			if (pag_registro_user == true) {
 				$.mobile.changePage( "#menu", { transition: "slideup"} );
 			}
+			
+			//Retiro la pantalla inicial donde se pregunta el centro y el registro de usuario:
+			$("#cont_inicial").hide();
 		}
 	navigator.notification.vibrate(2000);
 	$.mobile.loading( 'hide');

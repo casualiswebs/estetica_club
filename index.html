@@ -14,28 +14,28 @@
     <img src="images/logo.png" width="200" />
 	</div>
   <div data-role="main" class="ui-content">
+<div id="cont_inicial">
 <!-- Formulario para seleccionar centro: -->
 <form>
 <div class="ui-field-contain">
     <select name="id_centro" id="id_centro">
-        <option value="0">Selecciona un centro</option>
     </select>
 </div>
 </form>
 <!-- Fin Formulario para seleccionar centro: -->
-<a href="index.html#inicio" data-role="button" data-icon="arrow-u" data-iconshadow="false" data-theme="b" data-transition="slideup" id="bot_conectar" style="display:none;">Conéctate a UrbisClub</a>
+<a href="index.html#inicio" data-role="button" data-icon="alert" data-iconshadow="false" data-theme="b" data-transition="slideup" id="bot_conectar" style="display:none;">2.- Conectarme a Estética Club</a>
+</div>
   </div>
-	 <div data-role="footer">
+	 <div data-role="footer" style="overflow:hidden;" id="footer-menu">
         <div data-role="navbar">
             <ul>
-                <li><a href="#menu" data-icon="grid" class="ui-btn-active">Inicio</a></li>
-                <li><a href="#reservas" data-icon="star">Reservas</a></li>
-                <li><a href="datos_user.html" data-icon="gear">Mis Datos</a></li>
+                <li><a href="#menu" data-icon="home" class="ui-btn-active">Inicio</a></li>
+                <li><a href="#reservas" data-icon="grid">Reservas</a></li>
+                <li><a href="datos_user.html" data-icon="lock">Mis Datos</a></li>
             </ul>
         </div><!-- /navbar -->
-</div><!-- /footer -->
+	</div><!-- /footer -->
 </div><!-- Fin menu -->
-
 
 <div data-role="page" id="inicio">
 	<div data-role="header">
@@ -45,13 +45,11 @@
   
 <!--<a onClick="login_face()" data-role="button" data-theme="b" id="but_log_face">Login con Facebook</a>
 <p>&nbsp;</p>-->
-<a href="#login_user" data-role="button" id="but_log_urbis" data-transition="slide">Ya tengo cuenta en Estética Club</a>
+<a href="#login_user" data-role="button" id="but_log_urbis" data-transition="slide">Ya tengo cuenta</a>
 <p>&nbsp;</p>
-<a href="#reg_user" data-role="button" data-transition="slide">Crear nueva cuenta en Estética Club</a>
+<a href="#reg_user" data-role="button" data-transition="slide">Crear nueva cuenta</a>
 <p>&nbsp;</p>
 <a data-role="button" data-icon="arrow-d" data-iconshadow="false" data-theme="b" data-transition="slidedown" id="bot_volver">Volver Atrás</a>
-
-<img src="images/banner.png" width="100%" style="max-width:600px; display:block; clear:both; margin:40px auto 0;">
   </div>
 </div>
 <!--Fin inicio-->
@@ -80,7 +78,9 @@
     <p>&nbsp;</p>
 <a href="#recuperar" data-role="button" data-icon="edit" data-iconshadow="false" data-theme="e" data-transition="slideup">Recuperar contraseña</a>
 	</div>
-</div><!-- /Login Usuario -->
+</div>
+<!-- /Login Usuario -->
+
 <div data-role="page" id="recuperar">
 	<div data-role="header">
   <a href="#login_user" data-icon="arrow-l" data-theme="c">Volver</a>
@@ -94,12 +94,14 @@
 </tr>
 </table>
     <label for="email">
-        <b>* Indica el Email con el que te registraste en Urbisclub</b>
+        <b>* Indica el Email con el que te registraste en Estética Club</b>
     </label>
     <input type="text" id="email_rec" autocomplete="off">
     <input type="button" value="Recuperar" onClick="recuperar_pass()">
 	</div>
-</div><!-- /Recuperar Usuario -->
+</div>
+<!-- /Recuperar Usuario -->
+
 <div data-role="page" id="reg_user">
 	<div data-role="header">
   <a data-rel="back" data-icon="arrow-l" data-theme="c">Volver</a>
@@ -141,10 +143,15 @@
         <b>* Confirmar Contraseña</b>
     </label>
     <input type="password" id="pass_conf" autocomplete="off">
+    <div class="ui-field-contain">
+        <select name="id_centro" id="id_centro_reg"></select>
+    </div>
     <input type="button" id="bot_enviar" value="Guardar">
 </div>
 	</div>
-</div><!-- /Crear Usuario -->
+</div>
+<!-- /Crear Usuario -->
+
 
 <!--Fin inicio-->
 <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
