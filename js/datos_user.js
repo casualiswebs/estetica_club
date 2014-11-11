@@ -6,30 +6,33 @@ $('#config_user').on('pageshow', function(event) {
 	getListProvincias(false, '#form_datos #prov_sel');
 	sel_pob(localStorage.getItem("provincia"), '#form_datos');
 	//Preparo la función para guardar los datos cuando el usuario haga clic en "Guardar":
-	clic_guardar_datos(comprueba_datos_user());
+	clic_guardar_datos();
 	
 	recuperar_datos_usuario();
 	
-		if (localStorage.getItem("id_facebook") == '') {
+		if ((localStorage.getItem("id_facebook") == '') || (localStorage.getItem("id_facebook") == null)) {
 			$('#descon').attr('onClick', 'logout()');
 		} else {
 			$('#pass_ocul').hide();
 			$('#descon').attr('onClick', 'logout_face()');
 		}
 	$.mobile.loading( 'hide');
+	} else {
+		//*****----- No hay usuario conectado: ------******
+		$.mobile.changePage( "index.html#inicio", { transition: "slideup"}, true, true );
 	}
 });
 
 $('#reg_user').on('pageshow', function(event) {
 	$.mobile.loading ( 'show', { theme: "b", text: "Cargando", textonly: false, textVisible: true});
-	clic_guardar_datos(false, true);
+	clic_guardar_datos(true);
 	
 	getListCentros(false, '#datos_reg_user #id_centro', $("#id_centro").val());
 	getListProvincias(false, '#datos_reg_user #prov_sel');
 });
 
 //Registro de usuario o editar datos del perfil:
-function clic_guardar_datos(existen_datos_anteriores, pag_registro_user) {
+function clic_guardar_datos(pag_registro_user) {
 if (pag_registro_user == true) {
 	var form = '#datos_reg_user';
 } else {
@@ -63,22 +66,13 @@ if (filtro.test(email)) {
    ok_email = false;
 }
 //Compruebo si faltan datos:
-if ((nombre!='') && (apellidos!='') && (tel!='') && (id_centro > 0) && (ok_email==true) && (ok_pass==true)){
-		if (existen_datos_anteriores == true) {
-			var id_user_app_movil = localStorage.getItem('id_user_app_movil') || '';
-		} else {
-			var id_user_app_movil = false;
-		}
-		var id_user_face = localStorage.getItem("id_facebook") || '';
-		if (id_user_face != '') {
-			var user_facebook = id_user_face;
-		} else {
-			var user_facebook = false;
-		}
+if ((nombre!='') && (apellidos!='') && (tel!='') && (id_centro > 0) && (ok_email==true) && (ok_pass==true)) {
+		var id_user_app_movil = localStorage.getItem('id_user_app_movil') || false;
+		var user_facebook = localStorage.getItem("id_facebook") || false;
 	
 	$.getJSON(serviceURL + "guardar_usuario.php?callback=?", { nombre:nombre, apellidos:apellidos, tel:tel, email:email, cp:cp, id_user_app_movil:id_user_app_movil, pass:pass, user_facebook:user_facebook, id_centro:id_centro, provincia:provincia, poblacion:poblacion }, function(data){
 	//console.log('Apuntarse: '+data.resultado);
-		if (data.resultado==true) {
+		if (data.resultado == true) {
 		localStorage.setItem("nombre", nombre);
 		localStorage.setItem("apellidos", apellidos);
 		localStorage.setItem("tel", tel);
@@ -87,9 +81,8 @@ if ((nombre!='') && (apellidos!='') && (tel!='') && (id_centro > 0) && (ok_email
 		localStorage.setItem("provincia", provincia);
 		localStorage.setItem("poblacion", poblacion);
 		localStorage.setItem("id_centro", id_centro);
-			if (existen_datos_anteriores == false) {
+			if (id_user_app_movil == false) {
 				localStorage.setItem("id_user_app_movil", data.id_user_app_movil);
-				existen_datos_anteriores = true;
 			}
 			if (pag_registro_user == true) {
 				$.mobile.changePage( "#menu", { transition: "slideup"} );
@@ -98,6 +91,8 @@ if ((nombre!='') && (apellidos!='') && (tel!='') && (id_centro > 0) && (ok_email
 			}
 			//Retiro la pantalla inicial donde se pregunta el centro y el registro de usuario:
 			$("#cont_inicial").hide();
+			$(form + ' #pass').val('');
+			$(form + ' #pass_conf').val('');
 		}
 	alert(data.respuesta);
 	//comentario navigator.notification.vibrate(2000);

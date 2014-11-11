@@ -168,14 +168,25 @@
 </div>
 <!-- /Crear Usuario (reg_user) -->
 
-
 <div data-role="page" id="calendario">
 	<div data-role="header">
-  <a href="#login_user" data-icon="arrow-l" data-theme="c">Volver</a>
+  <a data-rel="back" data-icon="arrow-l" data-theme="c">Volver</a>
     <img src="images/logo.png" width="200" />
 	</div>
 	<div data-role="content">
-    	
+    	<div id="servicios">
+<h3>1.- Selecciona el tratamiento:</h3>
+<div id="list_tratamientos"></div>
+</div>
+<div id="mostrar_cal" style="display:none;">
+<h3>2.- Selecciona día y hora:</h3>
+            	<div id="calendario"></div>
+                <div class="cargando">
+                	<div id="loading" style="display:none;"><img src="images/ajax.gif" /></div>
+                	<div id="content_ajax"></div>
+                </div>
+</div>
+<!--FIN CALENDARIO CITA-->
   	</div>
 	 <div data-role="footer" style="overflow:hidden;" id="footer-menu">
         <div data-role="navbar">
@@ -186,8 +197,8 @@
             </ul>
         </div><!-- /navbar -->
 	</div><!-- /footer -->
-</div><!-- Fin Calendario (calendario) -->
-
+</div>
+<!-- Fin Calendario (calendario) -->
 
 <div data-role="page" id="config_user">
 	<div data-role="header">
@@ -257,9 +268,6 @@
 	</div><!-- /footer -->
 </div>
 <!--FIN Modificar mi perfil: (config_user)-->
-
-
-<!--Fin inicio-->
 <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
 <script type="text/javascript" src="js/jquery/jquery.min.js"></script>
 <script type="text/javascript" src="js/jquery/jquery.mobile-1.4.5.min.js"></script>
