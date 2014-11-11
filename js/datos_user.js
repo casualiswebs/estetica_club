@@ -3,28 +3,29 @@ $('#config_user').on('pageshow', function(event) {
 	if (comprueba_usercon () == true) {
 	$.mobile.loading ( 'show', { theme: "b", text: "Cargando", textonly: false, textVisible: true});
 	getListCentros(false, '#form_datos #id_centro', localStorage.getItem("id_centro"));
-	console.log('Centro: ' + localStorage.getItem("id_centro"));
-	var existen_datos_anteriores = comprueba_datos_user();
-	clic_guardar_datos(existen_datos_anteriores);
+	getListProvincias(false, '#form_datos #prov_sel');
+	sel_pob(localStorage.getItem("provincia"), '#form_datos');
+	//Preparo la función para guardar los datos cuando el usuario haga clic en "Guardar":
+	clic_guardar_datos(comprueba_datos_user());
 	
 	recuperar_datos_usuario();
 	
-	var con_face = localStorage.getItem("id_facebook") || '';
-	if (con_face == '') {
-		$('#descon').attr('onClick', 'logout()');
-	} else {
-		$('#pass_ocul').hide();
-		$('#descon').attr('onClick', 'logout_face()');
-	}
+		if (localStorage.getItem("id_facebook") == '') {
+			$('#descon').attr('onClick', 'logout()');
+		} else {
+			$('#pass_ocul').hide();
+			$('#descon').attr('onClick', 'logout_face()');
+		}
 	$.mobile.loading( 'hide');
 	}
 });
+
 $('#reg_user').on('pageshow', function(event) {
 	$.mobile.loading ( 'show', { theme: "b", text: "Cargando", textonly: false, textVisible: true});
 	clic_guardar_datos(false, true);
 	
 	getListCentros(false, '#datos_reg_user #id_centro', $("#id_centro").val());
-	getListProvincias(false, 'prov_sel');
+	getListProvincias(false, '#datos_reg_user #prov_sel');
 });
 
 //Registro de usuario o editar datos del perfil:
@@ -36,35 +37,23 @@ if (pag_registro_user == true) {
 }
 $(form +' #bot_enviar').click(function() {
 	$.mobile.loading ( 'show', { theme: "b", text: "Cargando", textonly: false, textVisible: true});
-if (pag_registro_user == true) {
+	
 	//Recojo todos los datos del formulario:
-	var nombre = $('#datos_reg_user #nombre').val();
-	var apellidos = $('#datos_reg_user #apellidos').val();
-	var tel = $('#datos_reg_user #tel').val();
-	var email = $('#datos_reg_user #email').val();
-	var cp = $('#datos_reg_user #cp').val();
-	var provincia = $('#datos_reg_user #prov_sel').val();
-	var poblacion = $('#datos_reg_user #pob_sel').val();
-	var pass = $('#datos_reg_user #pass').val();
-	var pass_conf = $('#datos_reg_user #pass_conf').val();
-	var id_centro = $('#datos_reg_user #id_centro').val();
-	if (pass == pass_conf) {
+	var nombre = $(form + ' #nombre').val();
+	var apellidos = $(form + ' #apellidos').val();
+	var tel = $(form + ' #tel').val();
+	var email = $(form + ' #email').val();
+	var cp = $(form + ' #cp').val();
+	var provincia = $(form + ' #prov_sel').val();
+	var poblacion = $(form + ' #pob_sel').val();
+	var pass = $(form + ' #pass').val();
+	var pass_conf = $(form + ' #pass_conf').val();
+	var id_centro = $(form + ' #id_centro').val();
+	if ((pass == pass_conf) || (pag_registro_user == true)) {
 		ok_pass = true;
 	} else {
 		ok_pass = false;
 	}
-} else {
-	ok_pass = true;
-	//Recojo todos los datos del formulario:
-	var nombre = $('#form_datos #nombre').val();
-	var apellidos = $('#form_datos #apellidos').val();
-	var tel = $('#form_datos #tel').val();
-	var email = $('#form_datos #email').val();
-	var cp = $('#form_datos #cp').val();
-	var pass = $('#form_datos #pass').val();
-	var pass_conf = $('#form_datos #pass_conf').val();
-	var id_centro = $('#form_datos #id_centro').val();
-}
 	// Guardar datos en el teléfono
 //Compruebo si la dirección de email es correcta:
 var filtro = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
@@ -101,39 +90,30 @@ if ((nombre!='') && (apellidos!='') && (tel!='') && (id_centro > 0) && (ok_email
 			if (existen_datos_anteriores == false) {
 				localStorage.setItem("id_user_app_movil", data.id_user_app_movil);
 				existen_datos_anteriores = true;
-				if (form=='#form_datos') {
-					$('#bot_config_datos').hide("slow");
-					$('#apuntarme').show("slow");
-					$('#reserva_promocion').show("slow");
-					$('#bot_config_datos_act').show("slow");
-				}
 			}
 			if (pag_registro_user == true) {
 				$.mobile.changePage( "#menu", { transition: "slideup"} );
+				//Dejo el fomulario de registro en blanco:
+				$(form)[0].reset();
 			}
-			
 			//Retiro la pantalla inicial donde se pregunta el centro y el registro de usuario:
 			$("#cont_inicial").hide();
 		}
-	//comentario navigator.notification.vibrate(2000);
-	
-	$.mobile.loading( 'hide');
 	alert(data.respuesta);
+	//comentario navigator.notification.vibrate(2000);
 	//comentario navigator.notification.alert (data.respuesta, null, 'Estética Club', 'Aceptar');
 	});
 } else if (ok_email == false) {
-	$.mobile.loading( 'hide');
-	//alert("La dirección de email no es correcta");
-	navigator.notification.alert ("La dirección de email no es correcta", null, '¡Alerta!', 'Aceptar');
+	alert("La dirección de email no es correcta");
+	//comentario navigator.notification.alert ("La dirección de email no es correcta", null, '¡Alerta!', 'Aceptar');
 } else if (ok_pass == false) {
-	$.mobile.loading( 'hide');
 	alert("Las contraseñas no coinciden");
 	//comentario navigator.notification.alert ("Las contraseñas no coinciden", null, '¡Alerta!', 'Aceptar');
 } else {
-	$.mobile.loading( 'hide');
 	alert("Faltan datos");
 	//comentario navigator.notification.alert ("Revisa tus datos", null, '¡Alerta!', 'Aceptar');
 }
+	$.mobile.loading( 'hide');
 });
 }
 

@@ -23,6 +23,8 @@ $('#menu').on('pageshow', function(event) {
 		$("#cont_inicial").hide("slow");
 		//Activo el footer:
 		$("#footer-menu").show("slow");
+		//Ficha centro:
+		ficha_centro ();
 	}
 	var donde_volver = localStorage.getItem ('donde_volver') || '';
 	if (donde_volver != '') {
@@ -54,7 +56,7 @@ function comprueba_usercon () {
 	}
 }
 
-
+//Login:
 function login_user () {
 	$.mobile.loading ( 'show', { theme: "b", text: "Cargando", textonly: false, textVisible: true});
 	//Recojo todos los datos del formulario:
@@ -63,44 +65,72 @@ function login_user () {
 	// Guardar datos en el teléfono
 //Compruebo si la dirección de email es correcta:
 var filtro = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-if (filtro.test(email)) {
-   ok_email = true;
-} else {
-   ok_email = false;
-}
-if ((pass!='') && (ok_email==true)){
-	$.getJSON(serviceURL + "login.php?callback=?", { email:email, pass:pass }, function(data){
-	//console.log('Apuntarse: '+data.resultado);
-		if (data.resultado==true) {
-			localStorage.setItem("id_user_app_movil", data.id_user_app_movil);
-			localStorage.setItem("nombre", data.nombre);
-			localStorage.setItem("apellidos", data.apellidos);
-			localStorage.setItem("tel", data.telefono);
-			localStorage.setItem("email", data.email);
-			localStorage.setItem("cp", data.cp);
-				existen_datos_anteriores = true;
-				var donde_volver = localStorage.getItem ('donde_volver') || '';
-				if (donde_volver != '') {
-					$.mobile.changePage( donde_volver, { transition: "slideup"} );
-				} else {
-					$.mobile.changePage( '#menu', { transition: "slideup"} );
-				}
-		}
-	$.mobile.loading( 'hide');
-	alert(data.respuesta);
-	//comentario navigator.notification.alert (data.respuesta, null, '¡Conectado!', 'Aceptar');
-	});
-} else if (ok_email == false) {
-	$.mobile.loading( 'hide');
-	alert("La dirección de email no es correcta");
-	//comentario navigator.notification.alert ("La dirección de email no es correcta", null, '¡Alerta!', 'Aceptar');
-} else {
-	$.mobile.loading( 'hide');
-	alert("Revisa tus datos");
-	//comentario navigator.notification.alert ("Revisa tus datos", null, '¡Alerta!', 'Aceptar');
-}
+	if (filtro.test(email)) {
+	   ok_email = true;
+	} else {
+	   ok_email = false;
+	}
+	if ((pass!='') && (ok_email==true)){
+		$.getJSON(serviceURL + "login.php?callback=?", { email:email, pass:pass }, function(data){
+		//console.log('Apuntarse: '+data.resultado);
+			if (data.resultado==true) {
+				localStorage.setItem("id_user_app_movil", data.id_user_app_movil);
+				localStorage.setItem("nombre", data.nombre);
+				localStorage.setItem("apellidos", data.apellidos);
+				localStorage.setItem("tel", data.telefono);
+				localStorage.setItem("email", data.email);
+				localStorage.setItem("cp", data.cp);
+				localStorage.setItem("id_centro", data.id_centro);
+					existen_datos_anteriores = true;
+					var donde_volver = localStorage.getItem ('donde_volver') || '';
+					if (donde_volver != '') {
+						$.mobile.changePage( donde_volver, { transition: "slideup"} );
+					} else {
+						$.mobile.changePage( '#menu', { transition: "slideup"} );
+					}
+			}
+		$.mobile.loading( 'hide');
+		alert(data.respuesta);
+		//comentario navigator.notification.alert (data.respuesta, null, '¡Conectado!', 'Aceptar');
+		});
+	} else if (ok_email == false) {
+		$.mobile.loading( 'hide');
+		alert("La dirección de email no es correcta");
+		//comentario navigator.notification.alert ("La dirección de email no es correcta", null, '¡Alerta!', 'Aceptar');
+	} else {
+		$.mobile.loading( 'hide');
+		alert("Revisa tus datos");
+		//comentario navigator.notification.alert ("Revisa tus datos", null, '¡Alerta!', 'Aceptar');
+	}
 }
 
+//Centro:
+function ficha_centro () {
+	var id_centro = localStorage.getItem ('id_centro');
+	if (id_centro > 0){
+		$.getJSON(serviceURL + "sel_centros.php?callback=?", { id_centro:id_centro }, function(data){
+			if (data.resultado==true) {
+				$.each(data.datos , function( key, value ) {
+					localStorage.setItem("id_centro", value.id);
+					localStorage.setItem("nombre_centro", data.nombre);
+					localStorage.setItem("subtitulo_centro", data.subtitulo);
+					localStorage.setItem("foto_centro", data.foto);
+					localStorage.setItem("descripcion_centro", data.descripcion);
+					localStorage.setItem("direccion_centro", data.direccion);
+					localStorage.setItem("provincia_centro", data.provincia);
+					localStorage.setItem("poblacion_centro", data.poblacion);
+					localStorage.setItem("telefono_centro", data.telefono);
+					localStorage.setItem("web_centro", data.web);
+					localStorage.setItem("email_centro", data.email);
+					localStorage.setItem("facebook_centro", data.facebook);
+				});
+			}
+		$.mobile.loading( 'hide');
+		});
+	}
+}
+
+//Recuperar Pasword:
 function recuperar_pass () {
 	$.mobile.loading ( 'show', { theme: "b", text: "Cargando", textonly: false, textVisible: true});
 	//Recojo todos los datos del formulario:
@@ -132,6 +162,7 @@ if (ok_email==true){
 }
 }
 
+//Logout:
 function logout () {
 	localStorage.clear();
 	$.mobile.changePage( "index.html#inicio" );
@@ -139,7 +170,7 @@ function logout () {
 	//comentario navigator.notification.alert ("¡Te has desconectado!", null, 'Estetica Club', 'Aceptar');
 }
 
-
+//Comprueba datos usuario:
 function comprueba_datos_user() {
 	var comp_datos = localStorage.getItem('id_user_app_movil') || '';
 	console.log('comprueba_datos_user: Usuario activo: '+ comp_datos);
@@ -197,7 +228,7 @@ $.getJSON(serviceURL + ur, { id_centro:id }, function(data){
 		//comentario navigator.notification.alert (data.respuesta, null, '¡Alerta!', 'Aceptar');
 	}
 	if (marcar_sel > 0) {
-		$('#datos_reg_user #id_centro option[value=' + marcar_sel + ']').attr('selected','selected').prop('selected', true);
+		$(id_sel + ' option[value=' + marcar_sel + ']').attr('selected','selected').prop('selected', true);
 	}
 	//Refresco el select:
 	sel.selectmenu('refresh');
@@ -210,7 +241,7 @@ $.getJSON(serviceURL + ur, { id_centro:id }, function(data){
 //Listado Provincias:
 function getListProvincias(id, id_sel) {
 	ur = 'sel_provincias.php?callback=?';
-	var sel = $('#' + id_sel);
+	var sel = $(id_sel);
 	//Comienzo de nuevo el select:
 	sel.empty();
 	sel.append($('<option>', { 
@@ -225,6 +256,9 @@ $.getJSON(serviceURL + ur, { id_bus:id }, function(data){
 				text : value.nombre 
 			}));
 		});
+		if (localStorage.getItem("provincia") > 0) {
+			$(id_sel + ' option[value=' + localStorage.getItem("provincia") + ']').attr('selected','selected').prop('selected', true);
+		}
 	} else {
 		alert (data.respuesta);
 		//comentario navigator.notification.alert (data.respuesta, null, '¡Alerta!', 'Aceptar');
@@ -238,7 +272,7 @@ $.getJSON(serviceURL + ur, { id_bus:id }, function(data){
 }
 
 //////------ SELECCIONAR POBLACIÓN -----//////
-function sel_pob(id_prov) {
+function sel_pob(id_prov, form_sel) {
 	ur = 'consulta-pob.php?callback=?';
 var venvio = {
 id_prov: id_prov,
@@ -246,29 +280,30 @@ id_prov: id_prov,
 
 $.getJSON(serviceURL + ur, venvio, function (data) {
 	if (data.resultado === true) {
-	$('#poblacion_sel').html('<label for="Pob"><b>Población</b></label>' +
+	$(form_sel + ' #poblacion_sel').html('<label for="Pob"><b>Población</b></label>' +
 	'<select id="pob_sel">');
-    $('#pob_sel').append($('<option>', {
+    $(form_sel + ' #pob_sel').append($('<option>', {
         value: 0,
         text : 'Selecciona la población'
     }));
 $.each(data.datos , function( key, value ) {
-        /*console.log(key);
-        console.log(value.id_cliente);*/
-    $('#pob_sel').append($('<option>', {
+    $(form_sel + ' #pob_sel').append($('<option>', {
         value: value.id,
         text : value.nombre
     }));
 });
+		if (localStorage.getItem("poblacion") > 0) {
+			$(form_sel + ' #pob_sel option[value=' + localStorage.getItem("poblacion") + ']').attr('selected','selected').prop('selected', true);
+		}
 //----- Refresco la apariencia del select con un nuevo tema: -----
-$( "#pob_sel" ).selectmenu({ theme: "a" });
+$(form_sel + " #pob_sel").selectmenu({ theme: "a" });
 	} else {
-		$('#poblacion_sel').html('');
+		$(form_sel + ' #poblacion_sel').html('');
 		alert (data.respuesta);
 		//comentario
 	}
 }).fail(function(data) {
-		$('#poblacion_sel').html('');
+		$(form_sel + ' #poblacion_sel').html('');
 		alert ("Error en la conexión");
 		//comentario
 });

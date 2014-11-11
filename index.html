@@ -23,18 +23,29 @@
 </div>
 <!-- Fin Formulario para seleccionar centro: -->
 <a href="index.html#inicio" data-role="button" data-icon="alert" data-iconshadow="false" data-theme="b" data-transition="slideup" id="bot_conectar">2.- Conectarme a Estética Club</a>
-</div>
+</div> <!-- Fin contenido inicial (cont_inicial) -->
+<div id="menu_princ">
+<table width="100%">
+<tr>
+<td align="center" valign="middle">
+<a href="#calendario" data-role="button" data-inline="true" data-transition="slide" data-prefetch class="icon_ini"><img src="images/calendar.png" /><br />Reservar Cita</a>
+<a href="#reservas" data-role="button" data-inline="true" data-transition="slide" data-prefetch class="icon_ini"><img src="images/citas.png" /><br />Mis Reservas</a>
+<a href="#config_user" data-role="button" data-inline="true" data-transition="slide" data-prefetch class="icon_ini"><img src="images/perfil_peq.png" /><br />Mi Perfil</a>
+</td>
+</tr>
+</table>
+</div> <!-- Fin Menú prinicpal (menu_princ) -->
   </div>
 	 <div data-role="footer" style="overflow:hidden;" id="footer-menu">
         <div data-role="navbar">
             <ul>
                 <li><a href="#menu" data-icon="home" class="ui-btn-active">Inicio</a></li>
                 <li><a href="#reservas" data-icon="grid">Reservas</a></li>
-                <li><a href="#config_user" data-icon="lock">Mis Datos</a></li>
+                <li><a href="#config_user" data-icon="lock">Mi Perfil</a></li>
             </ul>
         </div><!-- /navbar -->
 	</div><!-- /footer -->
-</div><!-- Fin menu -->
+</div><!-- Fin menu (menu) -->
 
 <div data-role="page" id="inicio">
 	<div data-role="header">
@@ -51,7 +62,7 @@
 <a data-role="button" data-icon="arrow-d" data-iconshadow="false" data-theme="b" data-transition="slidedown" id="bot_volver">Volver Atrás</a>
   </div>
 </div>
-<!--Fin inicio-->
+<!-- Fin inicio (inicio) -->
 
 <div data-role="page" id="login_user">
 	<div data-role="header">
@@ -78,7 +89,7 @@
 <a href="#recuperar" data-role="button" data-icon="edit" data-iconshadow="false" data-theme="e" data-transition="slideup">Recuperar contraseña</a>
 	</div>
 </div>
-<!-- /Login Usuario -->
+<!-- /Login Usuario (login_user) -->
 
 <div data-role="page" id="recuperar">
 	<div data-role="header">
@@ -99,7 +110,7 @@
     <input type="button" value="Recuperar" onClick="recuperar_pass()">
 	</div>
 </div>
-<!-- /Recuperar Usuario -->
+<!-- /Recuperar Usuario (recuperar) -->
 
 <div data-role="page" id="reg_user">
 	<div data-role="header">
@@ -113,7 +124,7 @@
 <td><h1>Crear perfil</h1></td>
 </tr>
 </table>
-<div id="datos_reg_user">
+<form id="datos_reg_user">
     <label for="nombre">
         <b>* Nombre</b>
     </label>
@@ -126,11 +137,10 @@
         <b>* Teléfono</b>
         </label>
     <input type="text" id="tel" autocomplete="off">
-    
     <label for="Prov">
         <b>Provincia</b>
         </label>
-<select id="prov_sel" onChange="sel_pob(this.value);"></select>
+<select id="prov_sel" onChange="sel_pob(this.value, 'datos_reg_user');"></select>
     <div id="poblacion_sel"></div>
     <label for="cp">
         <b>Código Postal</b>
@@ -153,10 +163,30 @@
     </label>
 	<select id="id_centro"></select>
     <input type="button" id="bot_enviar" value="Guardar" data-theme="b">
-</div>
+</form>
 	</div>
 </div>
-<!-- /Crear Usuario -->
+<!-- /Crear Usuario (reg_user) -->
+
+
+<div data-role="page" id="calendario">
+	<div data-role="header">
+  <a href="#login_user" data-icon="arrow-l" data-theme="c">Volver</a>
+    <img src="images/logo.png" width="200" />
+	</div>
+	<div data-role="content">
+    	
+  	</div>
+	 <div data-role="footer" style="overflow:hidden;" id="footer-menu">
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#menu" data-icon="home">Inicio</a></li>
+                <li><a href="#reservas" data-icon="grid" class="ui-btn-active">Mis Reservas</a></li>
+                <li><a href="#config_user" data-icon="lock">Mi Perfil</a></li>
+            </ul>
+        </div><!-- /navbar -->
+	</div><!-- /footer -->
+</div><!-- Fin Calendario (calendario) -->
 
 
 <div data-role="page" id="config_user">
@@ -171,7 +201,7 @@
 <td><h1>Modificar mi perfil</h1></td>
 </tr>
 </table>
-<div id="form_datos">
+<form id="form_datos">
     <label for="nombre">
         <b>* Nombre</b>
     </label>
@@ -184,6 +214,11 @@
         <b>Teléfono</b>
         </label>
     <input type="text" id="tel" autocomplete="off">
+    <label for="Prov">
+        <b>Provincia</b>
+        </label>
+<select id="prov_sel" onChange="sel_pob(this.value, 'form_datos');"></select>
+    <div id="poblacion_sel"></div>
     <label for="cp">
         <b>Código Postal</b>
     </label>
@@ -207,7 +242,7 @@
     </label>
 	<select id="id_centro"></select>
     <input type="button" value="Actualizar datos" id="bot_enviar" data-theme="b">
-</div>
+</form>
 <p>&nbsp;</p>
 <a data-role="button" data-theme="b" id="descon">Cerrar sesión</a>
 	</div>
@@ -216,12 +251,12 @@
             <ul>
                 <li><a href="#menu" data-icon="home">Inicio</a></li>
                 <li><a href="#reservas" data-icon="grid">Reservas</a></li>
-                <li><a href="#config_user" data-icon="lock" class="ui-btn-active">Mis Datos</a></li>
+                <li><a href="#config_user" data-icon="lock" class="ui-btn-active">Mi Perfil</a></li>
             </ul>
         </div><!-- /navbar -->
 	</div><!-- /footer -->
 </div>
-<!--FIN Modificar mi perfil: config_user-->
+<!--FIN Modificar mi perfil: (config_user)-->
 
 
 <!--Fin inicio-->
