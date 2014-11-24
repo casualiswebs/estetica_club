@@ -30,41 +30,64 @@ jQuery(document).ready(function($) {
 	  	dateFormat: 'yy-mm-dd',
         onSelect: function (dateText, inst) {
 			$(".cargando").fadeIn();
-			var id_servicio = $("tr.sel > td > a").attr("id");
-			var id_tienda = $("#id_tienda").attr("value");
-			var id_profesional = $("#profesional option:selected").attr("value");
-            $.ajax({
-                url: "horas.php",
-                type: 'post',
-                data: {
+			var id_servicio = $("li.sel_serv > a").attr("id");
+			var id_tienda = localStorage.getItem("id_centro");
+            $.getJSON(serviceURL + "horas.php?callback=?", {
                     fecha: dateText,
 					id_tienda: id_tienda,
-					id_servicio: id_servicio,
-					id_profesional: id_profesional
-                },
-                beforeSend: function () {
-                    $("#loading").fadeIn();
-                },
-                success: function (response) {
-                    $("#content_ajax").html(response);
-                },
-                complete: function () {
-                    $("#loading").fadeOut();
-                }
-            })
+					id_servicio: id_servicio
+            }, function(data){
+	if (data.resultado === true) {
+		$("#content_ajax").html(data.datos).text();
+	} else {
+		alert (data.respuesta);
+		//comentario navigator.notification.alert (data.respuesta, null, '¡Alerta!', 'Aceptar');
+	}
+	//Refresco el listado y le asigno un tema:
+	$('#lista_trats').listview({ theme:'a' });
+}).fail(function() {
+	alert ("No hay conexión, inténtalo de nuevo más tarde");
+	//comentario navigator.notification.alert ("No hay conexión, inténtalo de nuevo más tarde", null, '¡Alerta!', 'Aceptar');
+});
         }
 	 });//Fin Datepicker
 });//close
 
+$('#sec_calendar').on('pageshow', function(event) {
+	getListTratamientos('#list_tratamientos');
+});
+
+
+//Listado Servicios tratamientos:
+function getListTratamientos(div_id) {
+	ur = 'sel_tratamientos.php?callback=?';
+	console.log(localStorage.getItem("id_centro"));
+	//Comienzo de nuevo listado:
+	$(div_id).html('<ul id="lista_trats">');
+	$(div_id + ' ul').append('<li data-role="list-divider">Selecciona un tratamiento</li>');
+//FIN cargando:
+$.mobile.loading('hide');
+$.getJSON(serviceURL + ur, { id_centro:localStorage.getItem("id_centro") }, function(data){
+	if (data.resultado === true) {
+		$.each(data.datos , function( key, value ) {
+			$(div_id + ' ul').append('<li><a id="serv' + value.id + '" onClick="sel_servicio(\'serv' + value.id + '\');">' + value.tratamiento + ' (' + value.duracion + ' min)</a></li>');
+		});
+	} else {
+		alert (data.respuesta);
+		//comentario navigator.notification.alert (data.respuesta, null, '¡Alerta!', 'Aceptar');
+	}
+	//Refresco el listado y le asigno un tema:
+	$('#lista_trats').listview({ theme:'a' });
+}).fail(function() {
+	alert ("No hay conexión, inténtalo de nuevo más tarde");
+	//comentario navigator.notification.alert ("No hay conexión, inténtalo de nuevo más tarde", null, '¡Alerta!', 'Aceptar');
+});
+}
 
 //Reserva:
-	function mos_servicios () {
-			$("#servicios").fadeIn();
-			$(".cargando").fadeOut();
-	}
 	 function sel_servicio(idsel) {
-		 $('.sel').removeClass('sel');
-		 $('#'+idsel).parent().parent().addClass('sel');
+		 $('.sel_serv').removeClass('sel_serv');
+		 $('#'+idsel).parent().addClass('sel_serv');
 			$("#mostrar_cal").fadeIn();
 			$(".cargando").fadeOut();
 	 };
@@ -81,105 +104,12 @@ jQuery(document).ready(function($) {
 		$("#form_registro_con").show('slow');
    }
    
-   function desconectarse () {
-	$.getJSON("logout.php?callback=?", { }, function(data){
-	//console.log('Apuntarse: '+data.resultado);
-		if (data.resultado==true) {
-			$('#but_logout').hide("slow");
-			$('#forms-reservas').hide("slow");
-			$('#ico_user_perf').hide("slow");
-			$('#perfil').hide("slow");
-			
-			$('#forms-users').show("slow");
-			//Vuelvo a activar el formulario por si se desconecta el usuario:
-			$('#us_con').show("slow");
-			$('#us_reg').show("slow");
-		} else {
-			alert ('No se ha podido cerrar la sesión');
-		}
-	});
-   }
-   
-   function us_conectarse () {
-       c = document.getElementById('resultado_con');
-	   
-       email_ajax=document.us_con.email.value;
-       pwd_ajax=document.us_con.pwd.value;
-	   
-			$('#us_con').hide();
-		c.innerHTML = '<p style="text-align:center;"><img src="images/ajax.gif" id="ajax_gif"/></p>';
-	$.getJSON("conectarse.php?callback=?", { email_ajax:email_ajax, pwd_ajax:pwd_ajax }, function(data){
-	//console.log('Apuntarse: '+data.resultado);
-		if (data.resultado==true) {
-				//Limpio el formulario:
-				$("#us_con")[0].reset();
-			$('#ajax_gif').hide();
-			$('#msg_json').append(data.respuesta);
-			$('#msg_json').show("slow");
-			//Activo icono mi perfil:
-			$('#ico_user_perf').show("slow");
-			if($(window).width() <= 469){
-				$('#perfil').show("slow");
-			}
-			//--
-			$('#forms-users').hide("slow");
-			$('#forms-reservas').show("slow");
-			$('#but_logout').show("slow");
-		} else {
-			$('#ajax_gif').hide();
-			$('#resultado_con').append(data.respuesta);
-			$('#resultado_con').show("slow");
-			$('#us_con').show();
-		}
-	});
-   }
-   
-   function us_registrarse () {
-       c = document.getElementById('resultado_reg');
-	   
-       id_tienda=document.us_reg.id_tienda.value;
-       nombre_ajax=document.us_reg.nombre.value;
-       apellidos_ajax=document.us_reg.apellidos.value;
-       tel_ajax=document.us_reg.tel.value;
-       email_ajax=document.us_reg.email.value;
-       pwd_ajax=document.us_reg.pwd.value;
-       genero_ajax=$("#genero_reg option:selected").attr("value");
-       provincia_ajax=document.us_reg.provincia.value;
-       poblacion_ajax=document.us_reg.poblacion.value;
-       cp_ajax=document.us_reg.cp.value;
-	   
-			$('#us_reg').hide();
-		c.innerHTML = '<p style="text-align:center;"><img src="images/ajax.gif" id="ajax_gif"/></p>';
-	$.getJSON("registrarse.php?callback=?", { id_tienda:id_tienda, nombre_ajax:nombre_ajax, apellidos_ajax:apellidos_ajax, tel_ajax:tel_ajax, email_ajax:email_ajax, pwd_ajax:pwd_ajax, genero_ajax:genero_ajax, provincia_ajax:provincia_ajax, poblacion_ajax:poblacion_ajax, cp_ajax:cp_ajax }, function(data){
-	//console.log('Apuntarse: '+data.resultado);
-		if (data.resultado==true) {
-				//Limpio el formulario:
-				$("#us_con")[0].reset();
-			$('#ajax_gif').hide();
-			$('#msg_json').append(data.respuesta);
-			$('#msg_json').show("slow");
-			//Activo icono mi perfil:
-			$('#ico_user_perf').show("slow");
-			$('#perfil').show("slow");
-			//--
-			$('#forms-users').hide();
-			$('#forms-reservas').show("slow");
-			$('#but_logout').show("slow");
-		} else {
-			$('#ajax_gif').hide();
-			$('#resultado_reg').append(data.respuesta);
-			$('#resultado_reg').show("slow");
-			$('#us_reg').show();
-		}
-	});
-   }
-   
    function mis_reservas (id_tienda) {
 	   $('#mis-reservas-act').empty();
 		$('#mis-reservas-act').append('<p style="text-align:center;"><img src="images/ajax.gif" id="ajax_gif"/></p>');
 		$('#mis-reservas-act').show("slow");
 			
-	$.getJSON("mis_reservas.php?callback=?", { id_tienda:id_tienda }, function(data){
+	$.getJSON(serviceURL + "mis_reservas.php?callback=?", { id_tienda:id_tienda }, function(data){
 	//console.log('Apuntarse: '+data.resultado);
 			$('#ajax_gif').hide();
 			$('#mis-reservas-act').append(data.respuesta);

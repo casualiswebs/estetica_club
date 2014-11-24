@@ -41,9 +41,6 @@ $('#inicio').on('pageshow', function(event) {
 	}
 });
 
-$('#calendario').on('pageshow', function(event) {
-	getListTratamientos('#list_tratamientos');
-});
 /*---- FIN DEL MOSTRADO DE PÁGINAS ----*/
 
 function mostrar_inicio () {
@@ -246,31 +243,6 @@ $.getJSON(serviceURL + ur, { id_centro:id }, function(data){
 });
 }
 
-//Listado Tratamientos:
-function getListTratamientos(div_id) {
-	ur = 'sel_tratamientos.php?callback=?';
-	console.log(localStorage.getItem("id_centro"));
-	//Comienzo de nuevo listado:
-	$(div_id).html('<ul id="lista_trats">');
-	$(div_id + ' ul').append('<li data-role="list-divider">Selecciona un tratamiento</li>');
-//FIN cargando:
-$.mobile.loading('hide');
-$.getJSON(serviceURL + ur, { id_centro:localStorage.getItem("id_centro") }, function(data){
-	if (data.resultado === true) {
-		$.each(data.datos , function( key, value ) {
-			$(div_id + ' ul').append('<li><a id="serv' + value.id + '" class="sel_servicio" onClick="sel_servicio("serv' + value.id + '");">' + value.tratamiento + ' (' + value.duracion + ' min)</a></li>');
-		});
-	} else {
-		alert (data.respuesta);
-		//comentario navigator.notification.alert (data.respuesta, null, '¡Alerta!', 'Aceptar');
-	}
-	//Refresco el listado y le asigno un tema:
-	$('#lista_trats').listview({ theme:'a' });
-}).fail(function() {
-	alert ("No hay conexión, inténtalo de nuevo más tarde");
-	//comentario navigator.notification.alert ("No hay conexión, inténtalo de nuevo más tarde", null, '¡Alerta!', 'Aceptar');
-});
-}
 
 //Listado Provincias:
 function getListProvincias(id, id_sel) {
