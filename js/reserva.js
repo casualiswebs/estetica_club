@@ -120,8 +120,8 @@ postID : $('#form_env_res').find('input[name="postID"]').val()
   var title = "Cita en " + localStorage.getItem("nombre_centro");
   var location = localStorage.getItem("direccion_centro") + ' ' + localStorage.getItem("poblacion_centro") + ' (' + localStorage.getItem("provincia_centro") + ')';
   var notes = "Tel. " + localStorage.getItem("telefono_centro") + ' | Web: ' + localStorage.getItem("web_centro") + ' | Email: ' + localStorage.getItem("email_centro");
-  var success = function(message) { alert("Cita guardada en el calendario: " + JSON.stringify(message)); };
-  var error = function(message) { alert("Error al guardar la cita en el calendario: " + message); };
+  var success = function(message) { alert("Cita guardada en el calendario"); };
+  var error = function(message) { alert("Error al guardar la cita en el calendario. " + message); };
 
   // create a calendar (iOS only for now)
   //window.plugins.calendar.createCalendar(calendarName,success,error);
@@ -130,9 +130,8 @@ postID : $('#form_env_res').find('input[name="postID"]').val()
   //createCalOptions.calendarName = "Cita en " + localStorage.getItem("nombre_centro");
   //createCalOptions.calendarColor = "#f7931e"; // an optional hex color (with the # char), default is null, so the OS picks a color
   //window.plugins.calendar.createCalendar(createCalOptions,success,error);
-alert ('Calendario: ' + location);
   // create an event silently (on Android < 4 an interactive dialog is shown)
-  window.plugins.calendar.createEvent(title,location,notes,startDate,endDate,success,error);
+  //window.plugins.calendar.createEvent(title,location,notes,startDate,endDate,success,error);
 
   // create an event silently (on Android < 4 an interactive dialog is shown which doesn't use this options) with options:
   //var calOptions = window.plugins.calendar.getCalendarOptions(); // grab the defaults
@@ -142,9 +141,10 @@ alert ('Calendario: ' + location);
   // Added these options in version 4.2.4:
   //calOptions.recurrence = "monthly"; // supported are: daily, weekly, monthly, yearly
   //calOptions.recurrenceEndDate = new Date(2015,6,1,0,0,0,0,0); // leave null to add events into infinity and beyond
-  //calOptions.calendarName = "MyCreatedCalendar"; // iOS only
-  //calOptions.calendarColor = "#f7931e"; // an optional hex color (with the # char), default is null, so the OS picks a color
-  //window.plugins.calendar.createEventWithOptions(title,location,notes,startDate,endDate,calOptions,success,error);
+  var calOptions = window.plugins.calendar.getCalendarOptions();
+  calOptions.calendarName = "Estética Club"; // iOS only
+  calOptions.calendarColor = "#f7931e"; // an optional hex color (with the # char), default is null, so the OS picks a color
+  window.plugins.calendar.createEventWithOptions(title,location,notes,startDate,endDate,calOptions,success,error);
 
   // create an event interactively (only supported on Android)
   //window.plugins.calendar.createEventInteractively(title,location,notes,startDate,endDate,success,error);
