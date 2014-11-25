@@ -123,34 +123,16 @@ postID : $('#form_env_res').find('input[name="postID"]').val()
   var success = function(message) { alert("Cita guardada en el calendario"); };
   var error = function(message) { alert("Error al guardar la cita en el calendario. " + message); };
 
-  // create a calendar (iOS only for now)
-  //window.plugins.calendar.createCalendar(calendarName,success,error);
-  // if you want to create a calendar with a specific color, pass in a JS object like this:
-  //var createCalOptions = window.plugins.calendar.getCreateCalendarOptions();
-  //createCalOptions.calendarName = "Cita en " + localStorage.getItem("nombre_centro");
-  //createCalOptions.calendarColor = "#f7931e"; // an optional hex color (with the # char), default is null, so the OS picks a color
-  //window.plugins.calendar.createCalendar(createCalOptions,success,error);
-  // create an event silently (on Android < 4 an interactive dialog is shown)
-  //window.plugins.calendar.createEvent(title,location,notes,startDate,endDate,success,error);
-
-  // create an event silently (on Android < 4 an interactive dialog is shown which doesn't use this options) with options:
-  //var calOptions = window.plugins.calendar.getCalendarOptions(); // grab the defaults
-  //calOptions.firstReminderMinutes = 120; // default is 60, pass in null for no reminder (alarm)
+  var calOptions = window.plugins.calendar.getCalendarOptions();
+  calOptions.firstReminderMinutes = 120; // default is 60, pass in null for no reminder (alarm)
   //calOptions.secondReminderMinutes = 5;
 
   // Added these options in version 4.2.4:
   //calOptions.recurrence = "monthly"; // supported are: daily, weekly, monthly, yearly
   //calOptions.recurrenceEndDate = new Date(2015,6,1,0,0,0,0,0); // leave null to add events into infinity and beyond
-  var calOptions = window.plugins.calendar.getCalendarOptions();
-  calOptions.calendarName = "Estética Club"; // iOS only
+  //calOptions.calendarName = "Estética Club"; // iOS only
   calOptions.calendarColor = "#f7931e"; // an optional hex color (with the # char), default is null, so the OS picks a color
   window.plugins.calendar.createEventWithOptions(title,location,notes,startDate,endDate,calOptions,success,error);
-
-  // create an event interactively (only supported on Android)
-  //window.plugins.calendar.createEventInteractively(title,location,notes,startDate,endDate,success,error);
-
-  // create an event in a named calendar (iOS only for now)
-  //window.plugins.calendar.createEventInNamedCalendar(title,location,notes,startDate,endDate,calendarName,success,error);
 //*****----- FIN DE GUARDAR EL EVENTO EN EL CALENDARIO DEL DISPOSITIVO -----*****//
 	} else {
 		alert (data.respuesta);
