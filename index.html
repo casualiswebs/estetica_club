@@ -29,9 +29,9 @@
 <table width="100%">
 <tr>
 <td align="center" valign="middle">
-<a href="#sec_calendar" data-role="button" data-inline="true" data-transition="slide" data-prefetch class="icon_ini"><img src="images/calendar.png" /><br />Reservar Cita</a>
-<a href="#reservas" data-role="button" data-inline="true" data-transition="slide" data-prefetch class="icon_ini"><img src="images/citas.png" /><br />Mis Reservas</a>
-<a href="#config_user" data-role="button" data-inline="true" data-transition="slide" data-prefetch class="icon_ini"><img src="images/perfil_peq.png" /><br />Mi Perfil</a>
+<a href="#calendar_ap" data-role="button" data-inline="true" data-transition="slide" data-prefetch class="icon_ini"><img src="images/calendar.png" /><br />Reservar Cita</a>
+<a href="#reservas_ap" data-role="button" data-inline="true" data-transition="slide" data-prefetch class="icon_ini"><img src="images/citas.png" /><br />Mis Reservas</a>
+<a href="#mi_perfil_ap" data-role="button" data-inline="true" data-transition="slide" data-prefetch class="icon_ini"><img src="images/perfil_peq.png" /><br />Mi Perfil</a>
 </td>
 </tr>
 </table>
@@ -41,8 +41,8 @@
         <div data-role="navbar">
             <ul>
                 <li><a href="#menu" data-icon="home" class="ui-btn-active">Inicio</a></li>
-                <li><a href="#reservas" data-icon="grid">Reservas</a></li>
-                <li><a href="#config_user" data-icon="lock">Mi Perfil</a></li>
+                <li><a href="#reservas_ap" data-icon="grid">Reservas</a></li>
+                <li><a href="#mi_perfil_ap" data-icon="lock">Mi Perfil</a></li>
             </ul>
         </div><!-- /navbar -->
 	</div><!-- /footer -->
@@ -169,16 +169,17 @@
 </div>
 <!-- /Crear Usuario (reg_user) -->
 
-<div data-role="page" id="sec_calendar">
+<div data-role="page" id="calendar_ap">
 	<div data-role="header">
   <a data-rel="back" data-icon="arrow-l" data-theme="c">Volver</a>
     <img src="images/logo.png" width="200" />
 	</div>
 	<div data-role="content">
-    	<div id="servicios">
+<div id="contenido_reserva">
+	<div id="servicios">
 <h3>1.- Selecciona el tratamiento:</h3>
-<div id="list_tratamientos"></div>
-</div>
+	<div id="list_tratamientos"></div>
+	</div>
 <!--FIN SERVICIOS-->
 <div id="mostrar_cal" style="display:none;">
 <h3>2.- Selecciona día y hora:</h3>
@@ -189,20 +190,43 @@
                 </div>
 </div>
 <!--FIN CALENDARIO CITA-->
+</div>
+<div id="res_reserva"></div>
   	</div>
 	 <div data-role="footer" style="overflow:hidden;" id="footer-menu">
         <div data-role="navbar">
             <ul>
                 <li><a href="#menu" data-icon="home">Inicio</a></li>
-                <li><a href="#reservas" data-icon="grid" class="ui-btn-active">Mis Reservas</a></li>
-                <li><a href="#config_user" data-icon="lock">Mi Perfil</a></li>
+                <li><a href="#reservas_ap" data-icon="grid" class="ui-btn-active">Mis Reservas</a></li>
+                <li><a href="#mi_perfil_ap" data-icon="lock">Mi Perfil</a></li>
             </ul>
         </div><!-- /navbar -->
 	</div><!-- /footer -->
 </div>
-<!-- Fin Calendario (sec_calendar) -->
+<!-- Fin Calendario (calendar_ap) -->
 
-<div data-role="page" id="config_user">
+<div data-role="page" id="reservas_ap">
+	<div data-role="header">
+  <a data-rel="back" data-icon="arrow-l" data-theme="c">Volver</a>
+    <img src="images/logo.png" width="200" />
+	</div>
+	<div data-role="content">
+<h1>Reservas Activas</h1>
+<div id="mis-reservas-act"></div>
+  	</div>
+	 <div data-role="footer" style="overflow:hidden;" id="footer-menu">
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#menu" data-icon="home">Inicio</a></li>
+                <li><a href="#reservas_ap" data-icon="grid" class="ui-btn-active">Mis Reservas</a></li>
+                <li><a href="#mi_perfil_ap" data-icon="lock">Mi Perfil</a></li>
+            </ul>
+        </div><!-- /navbar -->
+	</div><!-- /footer -->
+</div>
+<!-- Fin Calendario (reservas_ap) -->
+
+<div data-role="page" id="mi_perfil_ap">
 	<div data-role="header">
   <a href="index.html#menu" data-icon="arrow-l" data-theme="c">Volver</a>
     <img src="images/logo.png" width="200" />
@@ -250,7 +274,7 @@
     </label>
     <input type="password" id="pass_conf" autocomplete="off">
     </div>
-    <label for="email">
+    <label for="centro">
         <b>* Centro seleccionado:</b>
     </label>
 	<select id="id_centro"></select>
@@ -263,14 +287,15 @@
         <div data-role="navbar">
             <ul>
                 <li><a href="#menu" data-icon="home">Inicio</a></li>
-                <li><a href="#reservas" data-icon="grid">Reservas</a></li>
-                <li><a href="#config_user" data-icon="lock" class="ui-btn-active">Mi Perfil</a></li>
+                <li><a href="#reservas_ap" data-icon="grid">Reservas</a></li>
+                <li><a href="#mi_perfil_ap" data-icon="lock" class="ui-btn-active">Mi Perfil</a></li>
             </ul>
         </div><!-- /navbar -->
 	</div><!-- /footer -->
 </div>
-<!--FIN Modificar mi perfil: (config_user)-->
+<!--FIN Modificar mi perfil: (mi_perfil_ap)-->
 <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
+<script type="text/javascript" src="js/Calendar.js"></script>
 <script type="text/javascript" src="js/jquery/jquery.min.js"></script>
 <script type="text/javascript" src="js/jquery/jquery.mobile-1.4.5.min.js"></script>
 <script src="js/jquery-ui-1.10.3.custom.min.js"></script>

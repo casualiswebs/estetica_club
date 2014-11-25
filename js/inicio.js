@@ -128,18 +128,17 @@ function ficha_centro () {
 		$.getJSON(serviceURL + "sel_centros.php?callback=?", { id_centro:id_centro }, function(data){
 			if (data.resultado==true) {
 				$.each(data.datos , function( key, value ) {
-					localStorage.setItem("id_centro", value.id);
-					localStorage.setItem("nombre_centro", data.nombre);
-					localStorage.setItem("subtitulo_centro", data.subtitulo);
-					localStorage.setItem("foto_centro", data.foto);
-					localStorage.setItem("descripcion_centro", data.descripcion);
-					localStorage.setItem("direccion_centro", data.direccion);
-					localStorage.setItem("provincia_centro", data.provincia);
-					localStorage.setItem("poblacion_centro", data.poblacion);
-					localStorage.setItem("telefono_centro", data.telefono);
-					localStorage.setItem("web_centro", data.web);
-					localStorage.setItem("email_centro", data.email);
-					localStorage.setItem("facebook_centro", data.facebook);
+					localStorage.setItem("nombre_centro", value.nombre);
+					localStorage.setItem("subtitulo_centro", value.subtitulo);
+					localStorage.setItem("foto_centro", value.foto);
+					localStorage.setItem("descripcion_centro", value.descripcion);
+					localStorage.setItem("direccion_centro", value.direccion);
+					localStorage.setItem("provincia_centro", value.provincia);
+					localStorage.setItem("poblacion_centro", value.poblacion);
+					localStorage.setItem("telefono_centro", value.telefono);
+					localStorage.setItem("web_centro", value.web);
+					localStorage.setItem("email_centro", value.email);
+					localStorage.setItem("facebook_centro", value.facebook);
 				});
 			}
 		$.mobile.loading( 'hide');
@@ -198,7 +197,7 @@ function recuperar_datos_inicio() {
 			localStorage.setItem("cp", data.cp);
 			localStorage.setItem("provincia", data.provincia);
 			localStorage.setItem("poblacion", data.poblacion);
-			localStorage.setItem("id_centro", data.id_tienda);
+			localStorage.setItem("id_centro", data.id_centro);
 		}
 	});
 }

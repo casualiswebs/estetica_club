@@ -1,4 +1,4 @@
-$('#config_user').on('pageshow', function(event) {
+$('#mi_perfil_ap').on('pageshow', function(event) {
 	//Comprueba si el usuario se ha conectado desde cuenta Urbis o Facebook:
 	if (comprueba_usercon () == true) {
 	$.mobile.loading ( 'show', { theme: "b", text: "Cargando", textonly: false, textVisible: true});
@@ -10,11 +10,11 @@ $('#config_user').on('pageshow', function(event) {
 	
 	recuperar_datos_usuario();
 	
-		if ((localStorage.getItem("id_facebook") == '') || (localStorage.getItem("id_facebook") == null)) {
-			$('#descon').attr('onClick', 'logout()');
-		} else {
+		if (localStorage.getItem("id_facebook") != null) {
 			$('#pass_ocul').hide();
 			$('#descon').attr('onClick', 'logout_face()');
+		} else {
+			$('#descon').attr('onClick', 'logout()');
 		}
 	$.mobile.loading( 'hide');
 	} else {

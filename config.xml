@@ -84,4 +84,15 @@ Casualis Webs
 		<access origin="*.gstatic.com" />
 		<access origin="*.twitter.com" />
 		<access origin="*.twitter.es" />
+<!--CALENDARIO-->
+		<gap:plugin name="nl.x-services.plugins.calendar" />
+<!--Permisos Android-->	
+<uses-permission android:name="android.permission.READ_CALENDAR"/>
+<uses-permission android:name="android.permission.WRITE_CALENDAR"/>
+<feature name="Calendar">
+	<!-- for iOS -->
+	<param name="ios-package" value="Calendar" />
+	<!-- for Android -->
+	<param name="android-package" value="nl.xservices.plugins.Calendar" />
+</feature>
 	</widget>
