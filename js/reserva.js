@@ -118,7 +118,7 @@ postID : $('#form_env_res').find('input[name="postID"]').val()
   var startDate = new Date(2014,10,26,18,30,0,0,0); // beware: month 0 = january, 11 = december
   var endDate = new Date(2014,10,26,19,30,0,0,0);
   var title = "Cita en " + localStorage.getItem("nombre_centro");
-  var location = localStorage.getItem("direccion_centro") + ' ' + localStorage.getItem("poblacion_centro") + ' (' + localStorage.getItem("provincia_centro") + ')';
+  var location = localStorage.getItem("direccion_centro") + ', ' + localStorage.getItem("poblacion_centro") + ', ' + localStorage.getItem("provincia_centro");
   var notes = "Tel. " + localStorage.getItem("telefono_centro") + ' | Web: ' + localStorage.getItem("web_centro") + ' | Email: ' + localStorage.getItem("email_centro");
   var success = function(message) { alert("Cita guardada en el calendario"); };
   var error = function(message) { alert("Error al guardar la cita en el calendario. " + message); };
@@ -130,7 +130,6 @@ postID : $('#form_env_res').find('input[name="postID"]').val()
   // Added these options in version 4.2.4:
   //calOptions.recurrence = "monthly"; // supported are: daily, weekly, monthly, yearly
   //calOptions.recurrenceEndDate = new Date(2015,6,1,0,0,0,0,0); // leave null to add events into infinity and beyond
-  //calOptions.calendarName = "Estética Club"; // iOS only
   calOptions.calendarColor = "#f7931e"; // an optional hex color (with the # char), default is null, so the OS picks a color
   window.plugins.calendar.createEventWithOptions(title,location,notes,startDate,endDate,calOptions,success,error);
 //*****----- FIN DE GUARDAR EL EVENTO EN EL CALENDARIO DEL DISPOSITIVO -----*****//
