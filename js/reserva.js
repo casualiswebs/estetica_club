@@ -96,16 +96,31 @@ function guardar_reserva() {
 	ur = 'reservas/guarda_reserva.php?callback=?';
 //**-- CARGANDO --**//
 $.mobile.loading( 'show', { theme: "b", text: "Cargando", textonly: false, textVisible: true});
+var dia_entrada = $('#form_env_res').find('input[name="dia_entrada_env"]').val();
+var hora_entrada = $('#form_env_res').find('input[name="hora_env"]').val();
+var duracion_entr = $('#form_env_res').find('input[name="duracion_env"]').val();
+
+var dia_entr_calendario = dia_entrada.split("-");
+var hora_entr_calendario = hora_entrada.split(":");
+
+fecha_prov = new Date(dia_entr_calendario[0] , dia_entr_calendario[1]-1 , dia_entr_calendario[2], hora_entr_calendario[0], hora_entr_calendario[1], 00);
+fecha2 = new Date(fecha_prov.getTime() + duracion_entr * 60000);
+Ano_ac = fecha2.getFullYear();
+Mes_ac = fecha2.getMonth() + 1;
+Dia_ac = fecha2.getDate();
+Hora_ac = fecha2.getHours();
+Min_ac = fecha2.getMinutes();
+alert ('Acaba: ' + fecha2);
 
 $.getJSON(serviceURL + ur, {
 //Variables:
 id_cliente_env : localStorage.getItem("id_user_app_movil") || false,
 dia_reserva_env : $('#form_env_res').find('input[name="dia_reserva_env"]').val(),
-dia_entrada_env : $('#form_env_res').find('input[name="dia_entrada_env"]').val(),
-hora_env : $('#form_env_res').find('input[name="hora_env"]').val(),
+dia_entrada_env : dia_entrada,
+hora_env : hora_entrada,
 id_tienda_env : $('#form_env_res').find('input[name="id_tienda_env"]').val(),
 id_servicio_env : $('#form_env_res').find('input[name="id_servicio_env"]').val(),
-duracion_env : $('#form_env_res').find('input[name="duracion_env"]').val(),
+duracion_env : duracion_entr,
 precio_env : $('#form_env_res').find('input[name="precio_env"]').val(),
 postID : $('#form_env_res').find('input[name="postID"]').val()
 	}, function(data){
@@ -114,14 +129,14 @@ postID : $('#form_env_res').find('input[name="postID"]').val()
 		$('#res_reserva').show("fast");
 		$('#contenido_reserva').hide("slow");
 		$('#res_reserva').html(deco_dat);
-/*****----- GUARDAR EL EVENTO EN EL CALENDARIO DEL DISPOSITIVO -----*****/// prep some variables
-  var startDate = new Date(2014,10,26,18,30,0,0,0); // beware: month 0 = january, 11 = december
-  var endDate = new Date(2014,10,26,19,30,0,0,0);
+/*****----- GUARDAR EL EVENTO EN EL CALENDARIO DEL DISPOSITIVO -----*****///
+  var startDate = new Date(dia_entr_calendario[0],dia_entr_calendario[1]-1,dia_entr_calendario[2],hora_entr_calendario[0],hora_entr_calendario[1],0,0,0); // beware: month 0 = january, 11 = december
+  var endDate = new Date(Ano_ac,Mes_ac-1,Dia_ac,Hora_ac,Min_ac,0,0,0);
   var title = "Cita en " + localStorage.getItem("nombre_centro");
   var location = localStorage.getItem("direccion_centro") + ', ' + localStorage.getItem("poblacion_centro") + ', ' + localStorage.getItem("provincia_centro");
   var notes = "Tel. " + localStorage.getItem("telefono_centro") + ' | Web: ' + localStorage.getItem("web_centro") + ' | Email: ' + localStorage.getItem("email_centro");
-  var success = function(message) { alert("Cita guardada en el calendario"); };
-  var error = function(message) { alert("Error al guardar la cita en el calendario. " + message); };
+  var success = function(message) { alert("Cita guardada en el calendario del teléfono"); };
+  var error = function(message) { alert("Error al guardar la cita en el calendario del teléfono. " + message); };
 
   var calOptions = window.plugins.calendar.getCalendarOptions();
   calOptions.firstReminderMinutes = 120; // default is 60, pass in null for no reminder (alarm)
