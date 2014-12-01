@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="js/jquery/jquery.mobile.icons.min.css" />
 <link href="css/estilos.css" rel="stylesheet" type="text/css"/>
 <link rel="stylesheet" href="css/jquery-ui-1.10.3.custom.min.css">
+<link rel="stylesheet" href="js/jquery/jqm-datebox.css">
 </head>
 <body>
 <div data-role="page" id="menu">
@@ -183,6 +184,15 @@
 <!--FIN SERVICIOS-->
 <div id="mostrar_cal" style="display:none;">
 <h3>2.- Selecciona día y hora:</h3>
+<input type="text" data-role="datebox" id="sel_fecha_j" data-options='{
+"mode":"flipbox",
+"useInlineBlind":true,
+"afterToday":true,
+"useClearButton":true,
+"closeCallback":"formatter"
+}'>
+
+
             	<div id="calendario"></div>
                 <div class="cargando">
                 	<div id="loading" style="display:none;"><img src="images/ajax.gif" /></div>
@@ -298,6 +308,8 @@
 <script type="text/javascript" src="js/Calendar.js"></script>
 <script type="text/javascript" src="js/jquery/jquery.min.js"></script>
 <script type="text/javascript" src="js/jquery/jquery.mobile-1.4.5.min.js"></script>
+<script type="text/javascript" src="js/jquery/jqm-datebox-core.js"></script>
+<script type="text/javascript" src="js/jquery/jqm-datebox.js"></script>
 <script src="js/jquery-ui-1.10.3.custom.min.js"></script>
 <script type="text/javascript" src="js/inicio.js"></script>
 <script type="text/javascript" src="js/datos_user.js"></script>

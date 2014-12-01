@@ -1,4 +1,15 @@
 jQuery(document).ready(function($) {
+	
+	$('#sel_fecha_j').bind('datebox', function (e, passed) { 
+    if ( passed.method === 'close' ) { 
+        var date = $('#sel_fecha_j').val();
+		
+		console.log ('valor: ' + date.getYear() + "/" + date.getDate() + "/" + date.getMonth());
+    }
+});
+
+
+
 	//Datepicker:
 	$.datepicker.regional['es'] = {
 	  closeText: 'Cerrar',
@@ -64,6 +75,11 @@ $('#reservas_ap').on('pageshow', function(event) {
 	mis_reservas(localStorage.getItem("id_centro"));
 });
 
+function formatter(obby) {
+  var date = obby.date;
+	console.log(date);
+	alert ('prueba');
+}
 
 //Listado Servicios tratamientos:
 function getListTratamientos(div_id) {
