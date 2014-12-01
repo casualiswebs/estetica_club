@@ -110,7 +110,7 @@ Mes_ac = fecha2.getMonth() + 1;
 Dia_ac = fecha2.getDate();
 Hora_ac = fecha2.getHours();
 Min_ac = fecha2.getMinutes();
-alert ('Acaba: ' + fecha2);
+console.log ('Acaba: ' + fecha2);
 
 $.getJSON(serviceURL + ur, {
 //Variables:
@@ -135,8 +135,14 @@ postID : $('#form_env_res').find('input[name="postID"]').val()
   var title = "Cita en " + localStorage.getItem("nombre_centro");
   var location = localStorage.getItem("direccion_centro") + ', ' + localStorage.getItem("poblacion_centro") + ', ' + localStorage.getItem("provincia_centro");
   var notes = "Tel. " + localStorage.getItem("telefono_centro") + ' | Web: ' + localStorage.getItem("web_centro") + ' | Email: ' + localStorage.getItem("email_centro");
-  var success = function(message) { alert("Cita guardada en el calendario del teléfono"); };
-  var error = function(message) { alert("Error al guardar la cita en el calendario del teléfono. " + message); };
+  var success = function(message) {
+	  //alert("Cita guardada en el calendario del teléfono");
+	  navigator.notification.alert ("Cita guardada en el calendario del teléfono", null, '¡Alerta!', 'Aceptar');
+	  };
+  var error = function(message) {
+	  //alert("Error al guardar la cita en el calendario del teléfono. " + message);
+	  navigator.notification.alert ("Error al guardar la cita en el calendario del teléfono. " + message, null, '¡Alerta!', 'Aceptar');
+	  };
 
   var calOptions = window.plugins.calendar.getCalendarOptions();
   calOptions.firstReminderMinutes = 120; // default is 60, pass in null for no reminder (alarm)
@@ -149,14 +155,12 @@ postID : $('#form_env_res').find('input[name="postID"]').val()
   window.plugins.calendar.createEventWithOptions(title,location,notes,startDate,endDate,calOptions,success,error);
 //*****----- FIN DE GUARDAR EL EVENTO EN EL CALENDARIO DEL DISPOSITIVO -----*****//
 	} else {
-		alert (data.respuesta);
-		//comentario navigator.notification.alert (data.respuesta, null, '¡Alerta!', 'Aceptar');
+		navigator.notification.alert (data.respuesta, null, '¡Alerta!', 'Aceptar');
 	}
 	//Refresco el listado y le asigno un tema:
 	$('#lista_trats').listview({ theme:'a' });
 }).fail(function() {
-	alert ("No hay conexión, inténtalo de nuevo más tarde");
-	//comentario navigator.notification.alert ("No hay conexión a Internet", null, '¡Alerta!', 'Aceptar');
+	navigator.notification.alert ("No hay conexión a Internet", null, '¡Alerta!', 'Aceptar');
 });
 //**-- FIN CARGANDO: --**//
 $.mobile.loading('hide');
