@@ -1,15 +1,10 @@
 jQuery(document).ready(function($) {
-	
-	$('#sel_fecha_j').bind('datebox', function (e, passed) { 
-    if ( passed.method === 'close' ) { 
-        var date = $('#sel_fecha_j').val();
-		
-		console.log ('valor: ' + date.getYear() + "/" + date.getDate() + "/" + date.getMonth());
-    }
+/*Función para hacer alguna acción cuando el usuario seleccione una fecha desde jqm-datebox:	
+$('#sel_fecha_j').bind('datebox', function (e, passed) { 
+    if ( passed.method === 'close' ) {}
 });
-
-
-
+*/
+/*
 	//Datepicker:
 	$.datepicker.regional['es'] = {
 	  closeText: 'Cerrar',
@@ -62,7 +57,7 @@ jQuery(document).ready(function($) {
 	//comentario navigator.notification.alert ("No hay conexión a Internet", null, '¡Alerta!', 'Aceptar');
 });
         }
-	 });//Fin Datepicker
+	 });//Fin Datepicker*/
 });//close
 
 $('#calendar_ap').on('pageshow', function(event) {
@@ -75,17 +70,50 @@ $('#reservas_ap').on('pageshow', function(event) {
 	mis_reservas(localStorage.getItem("id_centro"));
 });
 
-function formatter(obby) {
-  var date = obby.date;
-	console.log(date);
-	alert ('prueba');
+function escoger_hora(obby) {
+  var escogida = obby.date;
+	console.log(escogida);
+	
+		if ($('#sel_fecha_j').val() != '') {
+			var array_date = $('#sel_fecha_j').val().split("/");
+			var fecha_mod = array_date[2] + "-" + array_date[1] + "-" + array_date[0];
+			console.log ('valor: ' + fecha_mod);
+			
+				$(".cargando").fadeIn();
+				var id_servicio = $("li.sel_serv > a").attr("id");
+				var id_tienda = localStorage.getItem("id_centro");
+				$.getJSON(serviceURL + "reservas/horas.php?callback=?", {
+						fecha: fecha_mod,
+						id_tienda: id_tienda,
+						id_servicio: id_servicio
+				}, function(data){
+				if (data.resultado === true) {
+					datos_deco = jQuery.parseJSON(data.datos);
+					$("#content_ajax").html(datos_deco);
+				} else {
+					alert (data.respuesta);
+					//comentario navigator.notification.alert (data.respuesta, null, '¡Alerta!', 'Aceptar');
+				}
+				//Refresco el listado y le asigno un tema:
+				$('#lista_trats').listview({ theme:'a' });
+			}).fail(function() {
+				//alert ("No hay conexión, inténtalo de nuevo más tarde");
+				navigator.notification.alert ("No hay conexión a Internet", null, '¡Alerta!', 'Aceptar');
+			});
+        
+		} else {
+			//En caso de borrar la fecha, elimino la selección de horas:
+			$("#content_ajax").html('');
+		}
+    
 }
 
 //Listado Servicios tratamientos:
 function getListTratamientos(div_id) {
 	ur = 'sel_tratamientos.php?callback=?';
 	//Comienzo de nuevo listado:
-	$(div_id).html('<ul id="lista_trats">');
+$(div_id).html('<a onClick="mostrar_todo_listado();" id="mostrar_todos" class="ui-btn ui-btn-inline ui-icon-delete ui-btn-icon-left" style="display:none;">Mostrar todos</a>');
+	$(div_id).append('<ul id="lista_trats">');
 	$(div_id + ' ul').append('<li data-role="list-divider">Selecciona un tratamiento</li>');
 //FIN cargando:
 $.mobile.loading('hide');
@@ -186,10 +214,20 @@ $.mobile.loading('hide');
 //Reserva:
 	 function sel_servicio(idsel) {
 		 $('.sel_serv').removeClass('sel_serv');
+		 $('#lista_trats li').hide('slow');
+		 $('#'+idsel).parent().show('fast');
+		 $('#mostrar_todos').show('slow');
+		 //$('#'+idsel).parent().append('<a onClick="mostrar_todo_listado();" id="mostrar_todos" class="ui-btn ui-btn-inline ui-icon-delete ui-btn-icon-left">Mostrar todos</a>');
+		 //$('#mostrar_todos').button();
 		 $('#'+idsel).parent().addClass('sel_serv');
 			$("#mostrar_cal").fadeIn();
 			$(".cargando").fadeOut();
 	 };
+	 function mostrar_todo_listado() {
+		$('#lista_trats li').show('fast');
+		$('#mostrar_todos').hide();
+		$("#mostrar_cal").fadeOut();
+	 }
 	function muestra_capa (capa, oculta_sig) {
 			$("#"+capa).fadeIn();
 			$("#"+oculta_sig).fadeOut();

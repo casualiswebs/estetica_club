@@ -11,9 +11,10 @@
 <link href="css/estilos.css" rel="stylesheet" type="text/css"/>
 <link rel="stylesheet" href="css/jquery-ui-1.10.3.custom.min.css">
 <link rel="stylesheet" href="js/jquery/jqm-datebox.css">
+<link rel="stylesheet" href="js/jquery/listview.css">
 </head>
 <body>
-<div data-role="page" id="menu">
+<div data-role="page" id="menu" class="my-page">
 	<div data-role="header">
     <img src="images/logo.png" width="200" />
 	</div>
@@ -27,15 +28,30 @@
 <a href="index.html#inicio" data-role="button" data-icon="alert" data-iconshadow="false" data-theme="b" data-transition="slideup" id="bot_conectar">2.- Conectarme a Estética Club</a>
 </div> <!-- Fin contenido inicial (cont_inicial) -->
 <div id="menu_princ">
-<table width="100%">
-<tr>
-<td align="center" valign="middle">
-<a href="#calendar_ap" data-role="button" data-inline="true" data-transition="slide" data-prefetch class="icon_ini"><img src="images/calendar.png" /><br />Reservar Cita</a>
-<a href="#reservas_ap" data-role="button" data-inline="true" data-transition="slide" data-prefetch class="icon_ini"><img src="images/citas.png" /><br />Mis Reservas</a>
-<a href="#mi_perfil_ap" data-role="button" data-inline="true" data-transition="slide" data-prefetch class="icon_ini"><img src="images/perfil_peq.png" /><br />Mi Perfil</a>
-</td>
-</tr>
-</table>
+
+<ul data-role="listview" data-inset="true">
+    <li><a href="#calendar_ap">
+                    <img src="images/calendar.png" class="ui-li-thumb">
+                    <h2>Reservar Cita</h2>
+                    <p>Reservar Cita</p>
+                    <p class="ui-li-aside">Citas</p>
+                </a>
+	</li>
+    <li><a href="#reservas_ap">
+                    <img src="images/citas.png" class="ui-li-thumb">
+                    <h2>Mis Reservas</h2>
+                    <p></p>
+                    <p class="ui-li-aside">Reservas</p>
+                </a>
+	</li>
+    <li><a href="#mi_perfil_ap">
+                    <img src="images/perfil_peq.png" class="ui-li-thumb">
+                    <h2>Mi Perfil</h2>
+                    <p></p>
+                    <p class="ui-li-aside">Usuario</p>
+                </a>
+	</li>
+</ul>
 </div> <!-- Fin Menú prinicpal (menu_princ) -->
   </div>
 	 <div data-role="footer" style="overflow:hidden;" id="footer-menu">
@@ -184,16 +200,16 @@
 <!--FIN SERVICIOS-->
 <div id="mostrar_cal" style="display:none;">
 <h3>2.- Selecciona día y hora:</h3>
-<input type="text" data-role="datebox" id="sel_fecha_j" data-options='{
+<input type="date" data-role="datebox" id="sel_fecha_j" name="sel_fecha_j" readonly data-options='{
 "mode":"flipbox",
 "useInlineBlind":true,
 "afterToday":true,
 "useClearButton":true,
-"closeCallback":"formatter"
+"popupPosition":"window",
+"useInlineBlind":false,
+"closeCallback":"escoger_hora"
 }'>
-
-
-            	<div id="calendario"></div>
+            	<!--<div id="calendario"></div>-->
                 <div class="cargando">
                 	<div id="loading" style="display:none;"><img src="images/ajax.gif" /></div>
                 	<div id="content_ajax"></div>
@@ -308,7 +324,6 @@
 <script type="text/javascript" src="js/Calendar.js"></script>
 <script type="text/javascript" src="js/jquery/jquery.min.js"></script>
 <script type="text/javascript" src="js/jquery/jquery.mobile-1.4.5.min.js"></script>
-<script type="text/javascript" src="js/jquery/jqm-datebox-core.js"></script>
 <script type="text/javascript" src="js/jquery/jqm-datebox.js"></script>
 <script src="js/jquery-ui-1.10.3.custom.min.js"></script>
 <script type="text/javascript" src="js/inicio.js"></script>
