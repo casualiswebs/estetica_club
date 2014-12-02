@@ -1,9 +1,43 @@
 jQuery(document).ready(function($) {
-/*Función para hacer alguna acción cuando el usuario seleccione una fecha desde jqm-datebox:	
 $('#sel_fecha_j').bind('datebox', function (e, passed) { 
-    if ( passed.method === 'close' ) {}
+    if ( passed.method === 'close' ) {
+  /*var escogida = obby.date;
+	console.log(escogida);*/
+		if ($('#sel_fecha_j').val() != '') {
+			var array_date = $('#sel_fecha_j').val().split("/");
+			var fecha_mod = array_date[2] + "-" + array_date[1] + "-" + array_date[0];
+			console.log ('valor: ' + fecha_mod);
+			
+				$(".cargando").fadeIn();
+				var id_servicio = $("li.sel_serv > a").attr("id");
+				var id_tienda = localStorage.getItem("id_centro");
+				$.getJSON(serviceURL + "reservas/horas.php?callback=?", {
+						fecha: fecha_mod,
+						id_tienda: id_tienda,
+						id_servicio: id_servicio
+				}, function(data){
+				if (data.resultado === true) {
+					datos_deco = jQuery.parseJSON(data.datos);
+					$("#content_ajax").html(datos_deco);
+				} else {
+					alert (data.respuesta);
+					//comentario navigator.notification.alert (data.respuesta, null, '¡Alerta!', 'Aceptar');
+				}
+				//Refresco el listado y le asigno un tema:
+				$('#lista_trats').listview({ theme:'a' });
+			}).fail(function() {
+				//alert ("No hay conexión, inténtalo de nuevo más tarde");
+				navigator.notification.alert ("No hay conexión a Internet", null, '¡Alerta!', 'Aceptar');
+			});
+        
+		} else {
+			//En caso de borrar la fecha, elimino la selección de horas:
+			$("#content_ajax").html('');
+		}
+    
+}
 });
-*/
+
 /*
 	//Datepicker:
 	$.datepicker.regional['es'] = {
@@ -71,41 +105,6 @@ $('#reservas_ap').on('pageshow', function(event) {
 });
 
 function escoger_hora(obby) {
-  var escogida = obby.date;
-	console.log(escogida);
-	
-		if ($('#sel_fecha_j').val() != '') {
-			var array_date = $('#sel_fecha_j').val().split("/");
-			var fecha_mod = array_date[2] + "-" + array_date[1] + "-" + array_date[0];
-			console.log ('valor: ' + fecha_mod);
-			
-				$(".cargando").fadeIn();
-				var id_servicio = $("li.sel_serv > a").attr("id");
-				var id_tienda = localStorage.getItem("id_centro");
-				$.getJSON(serviceURL + "reservas/horas.php?callback=?", {
-						fecha: fecha_mod,
-						id_tienda: id_tienda,
-						id_servicio: id_servicio
-				}, function(data){
-				if (data.resultado === true) {
-					datos_deco = jQuery.parseJSON(data.datos);
-					$("#content_ajax").html(datos_deco);
-				} else {
-					alert (data.respuesta);
-					//comentario navigator.notification.alert (data.respuesta, null, '¡Alerta!', 'Aceptar');
-				}
-				//Refresco el listado y le asigno un tema:
-				$('#lista_trats').listview({ theme:'a' });
-			}).fail(function() {
-				//alert ("No hay conexión, inténtalo de nuevo más tarde");
-				navigator.notification.alert ("No hay conexión a Internet", null, '¡Alerta!', 'Aceptar');
-			});
-        
-		} else {
-			//En caso de borrar la fecha, elimino la selección de horas:
-			$("#content_ajax").html('');
-		}
-    
 }
 
 //Listado Servicios tratamientos:
