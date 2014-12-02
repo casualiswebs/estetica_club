@@ -915,7 +915,7 @@
 			button.remove();
 
 			if ( o.lockInput ) {
-				//w.d.input.removeAttr( "readonly" );
+				w.d.input.removeAttr( "readonly" );
 			}
 
 			w.d.input
@@ -1055,7 +1055,7 @@
 				.on( "datebox", w._event );
 
 			if ( o.lockInput ) { 
-				//w.d.input.attr( "readonly", "readonly" ); 
+				w.d.input.attr( "readonly", "readonly" ); 
 			}
 
 			// Check if mousewheel plugin is loaded
