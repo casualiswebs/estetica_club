@@ -5,11 +5,11 @@
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <meta name="apple-mobile-web-app-capable" content="yes" /> 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" href="css/jquery-ui-1.10.3.custom.min.css">
 <link href="js/jquery/jquery.mobile-1.4.5.min.css" rel="stylesheet" type="text/css"/>
   <link rel="stylesheet" href="js/jquery/esteticaclub.min.css" />
   <link rel="stylesheet" href="js/jquery/jquery.mobile.icons.min.css" />
 <link href="css/estilos.css" rel="stylesheet" type="text/css"/>
-<link rel="stylesheet" href="css/jquery-ui-1.10.3.custom.min.css">
 <link rel="stylesheet" href="js/jquery/jqm-datebox.css">
 <link rel="stylesheet" href="js/jquery/listview.css">
 </head>
@@ -199,6 +199,7 @@
 	</div>
 <!--FIN SERVICIOS-->
 <div id="mostrar_cal" style="display:none;">
+<div id="input_fecha">
 <h3>2.- Selecciona día y hora:</h3>
 <input type="text" data-role="datebox" id="sel_fecha_j" name="sel_fecha_j" data-options='{
 "mode":"flipbox",
@@ -209,7 +210,7 @@
 "useInlineBlind":false,
 "closeCallback":"escoger_hora"
 }'>
-            	<!--<div id="calendario"></div>-->
+</div>
                 <div class="cargando">
                 	<div id="loading" style="display:none;"><img src="images/ajax.gif" /></div>
                 	<div id="content_ajax"></div>
