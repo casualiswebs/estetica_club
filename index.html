@@ -200,13 +200,14 @@
 <!--FIN SERVICIOS-->
 <div id="mostrar_cal" style="display:none;">
 <h3>2.- Selecciona día y hora:</h3>
-<input type="date" data-role="datebox" id="sel_fecha_j" name="sel_fecha_j" data-options='{
+<input type="text" data-role="datebox" id="sel_fecha_j" name="sel_fecha_j" data-options='{
 "mode":"flipbox",
 "useInlineBlind":true,
 "afterToday":true,
-"useClearButton":false,
+"useClearButton":true,
 "popupPosition":"window",
-"useInlineBlind":false
+"useInlineBlind":false,
+"closeCallback":"escoger_hora"
 }'>
             	<!--<div id="calendario"></div>-->
                 <div class="cargando">
