@@ -6,7 +6,7 @@ $('#sel_fecha_j').bind('datebox', function (e, passed) {
 		if ($('#sel_fecha_j').val() != '') {
 			var array_date = $('#sel_fecha_j').val().split("/");
 			var fecha_mod = array_date[2] + "-" + array_date[1] + "-" + array_date[0];
-			console.log ('valor: ' + fecha_mod);
+			//console.log ('valor: ' + fecha_mod);
 			
 				$(".cargando").fadeIn();
 				var id_servicio = $("li.sel_serv > a").attr("id");
