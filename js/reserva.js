@@ -18,7 +18,8 @@ $('#sel_fecha_j').bind('datebox', function (e, passed) {
 				}, function(data){
 				if (data.resultado === true) {
 					datos_deco = jQuery.parseJSON(data.datos);
-					$("#content_ajax").html(datos_deco);
+					$("#content_ajax").html('<h3>3.-Selecciona la hora</h3>');
+					$("#content_ajax").append(datos_deco);
 				} else {
 					alert (data.respuesta);
 					//comentario navigator.notification.alert (data.respuesta, null, '¡Alerta!', 'Aceptar');

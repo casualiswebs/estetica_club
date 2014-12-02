@@ -23,7 +23,7 @@
 }
 /*----*/
 /*Horas:*/
-#content_ajax {
+#content_ajax table {
 	text-align:center;
 }
 #content_ajax table {
@@ -74,7 +74,7 @@
 	text-decoration: line-through;
 }
 .cargando {
-	width:20%;
+	width:100%;
 	float:left;
 	position:relative;
 }
