@@ -1,5 +1,7 @@
 .ui-header {
-	background-color:#ff6804!Important;
+	/*background-color:#ff6804!Important;*/
+	background:url(../images/fondo6.jpg) repeat-x center;
+	background-color:#434343!Important
 }
 .ui-header img {
 	display:block;
