@@ -98,6 +98,24 @@
 	margin-left:-16px;
 }
 
+/*****----- FICHA CENTRO -----*****/
+.ficha_res {
+	width:100%;
+}
+.foto_centro img {
+	width:100%;
+	max-width:100%;
+}
+.foto_centro,
+.desc_centro {
+	float:left;
+	width:49%;
+	margin-right:2%;
+	margin-top:40px;
+}
+.desc_centro {
+	margin-right:0;
+}
 
 
 @media only screen and (min-width: 600px) {
@@ -110,5 +128,11 @@
 .cargando {
 	float:left;
 	width:45%;
+}
+}
+@media only screen and (max-width: 750px) {
+.foto_centro,
+.desc_centro {
+	width:100%;
 }
 }

@@ -63,8 +63,8 @@
 		bottom: 0;
 	}
 	/* Semi transparent background and different position if there is a thumb. The button has overflow hidden so we don't need to set border-radius. */
-	.ui-listview .ui-li-has-thumb h2,
-	.ui-listview .ui-li-has-thumb p {
+	.ui-listview.inicio .ui-li-has-thumb h2,
+	.ui-listview.inicio .ui-li-has-thumb p {
 		background: #111;
 		background: rgba(0,0,0,.8);
 	}

@@ -29,7 +29,7 @@
 </div> <!-- Fin contenido inicial (cont_inicial) -->
 <div id="menu_princ">
 
-<ul data-role="listview" data-inset="true">
+<ul data-role="listview" data-inset="true" class="inicio">
     <li><a href="#calendar_ap">
                     <img src="images/menu/cita.jpg" class="ui-li-thumb">
                     <h2>Reservar Cita</h2>
@@ -252,6 +252,26 @@
 	</div><!-- /footer -->
 </div>
 <!-- Fin Calendario (reservas_ap) -->
+
+<div data-role="page" id="ficha_reserva">
+	<div data-role="header">
+  <a data-rel="back" data-icon="arrow-l" data-theme="c">Volver</a>
+    <img src="images/logo.png" width="200" />
+	</div>
+	<div data-role="content">
+<div id="datos_reserva"></div>
+  	</div>
+	 <div data-role="footer" style="overflow:hidden;" id="footer-menu">
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#menu" data-icon="home">Inicio</a></li>
+                <li><a href="#reservas_ap" data-icon="grid" class="ui-btn-active">Mis Reservas</a></li>
+                <li><a href="#mi_perfil_ap" data-icon="lock">Mi Perfil</a></li>
+            </ul>
+        </div><!-- /navbar -->
+	</div><!-- /footer -->
+</div>
+<!-- Fin Calendario (ficha_reserva) -->
 
 <div data-role="page" id="mi_perfil_ap">
 	<div data-role="header">

@@ -101,9 +101,21 @@ $('#calendar_ap').on('pageshow', function(event) {
 	getListTratamientos('#list_tratamientos');
 });
 
-$('#reservas_ap').on('pageshow', function(event) {
+$('#reservas_ap').on('pageshow', function(event, data) {
 	mis_reservas(localStorage.getItem("id_centro"));
 });
+
+$('#ficha_reserva').on('pageshow', function(event, data) {
+});
+
+$( document ).on( "pagebeforechange" , function ( event, data ) {
+	    if ( data.toPage[0].id == "ficha_reserva" ) {
+        var stuff = data.options.id_reserva;
+		ficha_reserva(localStorage.getItem("id_centro"), stuff);
+    }
+});
+
+
 
 function escoger_hora(obby) {
 }
@@ -241,6 +253,8 @@ $.mobile.loading('hide');
 		$("#form_registro_con").show('slow');
    }
    
+   
+   //*****----- RESERVAS -----*****
    function mis_reservas (id_tienda) {
 	ur = 'reservas/mis_reservas.php?callback=?';
 	var user_activo = localStorage.getItem("id_user_app_movil");
@@ -249,10 +263,12 @@ $.mobile.loading('hide');
 			if (data.resultado === true) {
 	var div_id = '#mis-reservas-act';
 	$(div_id).html('<ul id="lista_mis_reservas">');
+					//console.log (data.id_res);
+					var cont = 0;
 				$.each(data.respuesta, function( key, value ) {
-	$(div_id + ' ul').append('<li><a><img src="http://www.esteticaclub.com/web-tienda/images/tiendas/' + foto_centro + '" />' + value + '</a></li>');
+	$(div_id + ' ul').append('<li><a onClick="enviar_url(\'' + data.id_res[cont] + '\');" data-transition="slide"><img src="http://www.esteticaclub.com/web-tienda/images/tiendas/' + foto_centro + '" />' + value + '</a></li>');
+	cont ++;
 				});
-				
 	//Refresco el listado y le asigno un tema:
 	$('#lista_mis_reservas').listview({ theme:'a' });
 			} else {
@@ -260,3 +276,30 @@ $.mobile.loading('hide');
 			}
 		});
    }
+   
+   function enviar_url(id_reserva) {
+	   $.mobile.pageContainer.pagecontainer("change", '#ficha_reserva', { id_reserva: id_reserva });
+   }
+   
+   function ficha_reserva (id_tienda, id_reserva) {
+	ur = 'reservas/mis_reservas.php?callback=?';
+	var user_activo = localStorage.getItem("id_user_app_movil");
+		$.getJSON(serviceURL + ur, { id_tienda:id_tienda, user_activo:user_activo, id_reserva:id_reserva }, function(data){
+			if (data.resultado === true) {
+	var div_id = '#datos_reserva';
+	//console.log (data.respuesta);
+//Inserto el resultado:
+//localStorage.setItem("facebook_centro", value.facebook);
+$(div_id).html('<div class="ficha_res">' + data.respuesta);
+$(div_id).append('<div class="foto_centro"><img src="http://www.esteticaclub.com/web-tienda/images/tiendas/' + localStorage.getItem("foto_centro") + '" /></div>' +
+'<div class="desc_centro">' +
+'<h2>' + localStorage.getItem("nombre_centro") + '</h2><br />' + localStorage.getItem("subtitulo_centro") + '<br />' + localStorage.getItem("descripcion_centro") + '<br /><br /><img src="images/mapa.png" /> ' + localStorage.getItem("direccion_centro") + ' - ' + localStorage.getItem("poblacion_centro") + '(' + localStorage.getItem("provincia_centro") + ')<br /><img src="images/llamar.png" /> ' + localStorage.getItem("telefono_centro") + '<br /><img src="images/web.png" /> ' + localStorage.getItem("web_centro") + '<br /><img src="images/email.png" /> ' + localStorage.getItem("email_centro")
++ '</div>' +
+'</div>');
+//--
+			} else {
+				alert (data.respuesta);
+			}
+		});
+   }
+   //*****----- FIN RESERVAS -----*****
