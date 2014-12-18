@@ -281,6 +281,11 @@ $.mobile.loading('hide');
 	   $.mobile.pageContainer.pagecontainer("change", '#ficha_reserva', { id_reserva: id_reserva });
    }
    
+   function abrir (url) {
+	   window.plugins.ChildBrowser.showWebPage(url,
+                                        { showLocationBar: true });
+   }
+   
    function ficha_reserva (id_tienda, id_reserva) {
 	ur = 'reservas/mis_reservas.php?callback=?';
 	var user_activo = localStorage.getItem("id_user_app_movil");
@@ -293,7 +298,7 @@ $.mobile.loading('hide');
 $(div_id).html('<div class="ficha_res">' + data.respuesta);
 $(div_id).append('<div class="foto_centro"><img src="http://www.esteticaclub.com/web-tienda/images/tiendas/' + localStorage.getItem("foto_centro") + '" /></div>' +
 '<div class="desc_centro">' +
-'<h2>' + localStorage.getItem("nombre_centro") + '</h2><br />' + localStorage.getItem("subtitulo_centro") + '<br />' + localStorage.getItem("descripcion_centro") + '<br /><br /><img src="images/mapa.png" /> ' + localStorage.getItem("direccion_centro") + ' - ' + localStorage.getItem("poblacion_centro") + '(' + localStorage.getItem("provincia_centro") + ')<br /><img src="images/llamar.png" /> ' + localStorage.getItem("telefono_centro") + '<br /><img src="images/web.png" /> ' + localStorage.getItem("web_centro") + '<br /><img src="images/email.png" /> ' + localStorage.getItem("email_centro")
+'<h2>' + localStorage.getItem("nombre_centro") + '</h2><br />' + localStorage.getItem("subtitulo_centro") + '<br />' + localStorage.getItem("descripcion_centro") + '<br /><br /><img src="images/mapa.png" /> ' + localStorage.getItem("direccion_centro") + ' - ' + localStorage.getItem("poblacion_centro") + '(' + localStorage.getItem("provincia_centro") + ')<br /><img src="images/llamar.png" /> ' + localStorage.getItem("telefono_centro") + '<br /><img src="images/web.png" /> <a onClick="abrir(\'' + localStorage.getItem("web_centro") + '\');">' + localStorage.getItem("web_centro") + '</a><br /><img src="images/email.png" /> ' + localStorage.getItem("email_centro")
 + '</div>' +
 '</div>');
 //--

@@ -84,6 +84,8 @@ Casualis Webs
 		<access origin="*.gstatic.com" />
 		<access origin="*.twitter.com" />
 		<access origin="*.twitter.es" />
+		
+		<gap:plugin name="com.phonegap.plugins.childbrowser" />
 <!--CALENDARIO-->
 		<gap:plugin name="nl.x-services.plugins.calendar" />
 <feature name="Calendar">
