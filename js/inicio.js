@@ -287,7 +287,7 @@ id_prov: id_prov,
 $.getJSON(serviceURL + ur, venvio, function (data) {
 	if (data.resultado === true) {
 	$(form_sel + ' #poblacion_sel').html('<label for="Pob"><b>Población</b></label>' +
-	'<select id="pob_sel">');
+	'<select id="pob_sel" class="needsclick">');
     $(form_sel + ' #pob_sel').append($('<option>', {
         value: 0,
         text : 'Selecciona la población'
