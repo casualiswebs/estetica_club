@@ -113,6 +113,10 @@ $( document ).on( "pagebeforechange" , function ( event, data ) {
         var stuff = data.options.id_reserva;
 		ficha_reserva(localStorage.getItem("id_centro"), stuff);
     }
+	    if ( data.toPage[0].id == "mapa" ) {
+        var stuff = data.options.id_centro_sel;
+		abrirGoogleMaps_map(stuff);
+    }
 });
 
 
@@ -280,6 +284,9 @@ $.mobile.loading('hide');
    function enviar_url(id_reserva) {
 	   $.mobile.pageContainer.pagecontainer("change", '#ficha_reserva', { id_reserva: id_reserva });
    }
+   function enviar_mapa(id_centro_sel) {
+	   $.mobile.pageContainer.pagecontainer("change", '#mapa', { id_centro_sel: id_centro_sel });
+   }
    
    function abrir (url) {
 	   window.plugins.ChildBrowser.showWebPage(url,
@@ -298,7 +305,7 @@ $.mobile.loading('hide');
 $(div_id).html('<div class="ficha_res">' + data.respuesta);
 $(div_id).append('<div class="foto_centro"><img src="http://www.esteticaclub.com/web-tienda/images/tiendas/' + localStorage.getItem("foto_centro") + '" /></div>' +
 '<div class="desc_centro">' +
-'<h2>' + localStorage.getItem("nombre_centro") + '</h2><br />' + localStorage.getItem("subtitulo_centro") + '<br />' + localStorage.getItem("descripcion_centro") + '<br /><br /><img src="images/mapa.png" /> ' + localStorage.getItem("direccion_centro") + ' - ' + localStorage.getItem("poblacion_centro") + '(' + localStorage.getItem("provincia_centro") + ')<br /><img src="images/llamar.png" /> <a href="tel:' + localStorage.getItem("telefono_centro") + '">' + localStorage.getItem("telefono_centro") + '</a><br /><img src="images/web.png" /> <a onClick="abrir(\'http://' + localStorage.getItem("web_centro") + '\');">' + localStorage.getItem("web_centro") + '</a><br /><img src="images/email.png" /> <a href="mailto:' + localStorage.getItem("email_centro")
+'<h2>' + localStorage.getItem("nombre_centro") + '</h2><br />' + localStorage.getItem("subtitulo_centro") + '<br />' + localStorage.getItem("descripcion_centro") + '<br /><br /><img src="images/mapa.png" /> <a onClick="enviar_mapa(\'' + id_tienda + '\')">' + localStorage.getItem("direccion_centro") + ' - ' + localStorage.getItem("poblacion_centro") + '(' + localStorage.getItem("provincia_centro") + ')</a><br /><img src="images/llamar.png" /> <a href="tel:' + localStorage.getItem("telefono_centro") + '">' + localStorage.getItem("telefono_centro") + '</a><br /><img src="images/web.png" /> <a onClick="abrir(\'http://' + localStorage.getItem("web_centro") + '\');">' + localStorage.getItem("web_centro") + '</a><br /><img src="images/email.png" /> <a href="mailto:' + localStorage.getItem("email_centro")
 + '">' + localStorage.getItem("email_centro") + '</a></div>' +
 '</div>');
 //--

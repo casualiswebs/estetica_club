@@ -234,10 +234,10 @@
 
 <div data-role="page" id="reservas_ap">
 	<div data-role="header">
-  <a data-rel="back" data-icon="arrow-l" data-theme="c">Volver</a>
     <img src="images/logo.png" width="200" />
 	</div>
 	<div data-role="content">
+  <a data-rel="back" class="ui-btn ui-btn-inline ui-icon-arrow-l ui-btn-icon-left">Volver</a>
 <h1>Reservas Activas</h1>
 <div id="mis-reservas-act"></div>
   	</div>
@@ -258,7 +258,7 @@
     <img src="images/logo.png" width="200" />
 	</div>
 	<div data-role="content">
-  <a data-rel="back" data-icon="arrow-l" data-theme="c">Volver</a>
+  <a data-rel="back" class="ui-btn ui-btn-inline ui-icon-arrow-l ui-btn-icon-left">Volver</a>
 <div id="datos_reserva"></div>
   	</div>
 	 <div data-role="footer" style="overflow:hidden;" id="footer-menu">
@@ -272,6 +272,19 @@
 	</div><!-- /footer -->
 </div>
 <!-- Fin Calendario (ficha_reserva) -->
+
+<div data-role="page" id="mapa">
+  <div data-role="header">
+    <img src="images/logo.png" width="200" />
+  <a data-rel="back" class="ui-btn ui-btn-inline ui-icon-arrow-l ui-btn-icon-left">Volver</a>
+	</div>
+	<div data-role="content">
+<div class="content-primary">
+<div id="map-canvas"></div>
+</div>
+</div>
+</div>
+<!-- /mapa -->
 
 <div data-role="page" id="mi_perfil_ap">
 	<div data-role="header">
@@ -347,8 +360,10 @@
 <script type="text/javascript" src="js/jquery/jquery.mobile-1.4.5.min.js"></script>
 <script type="text/javascript" src="js/jquery/jqm-datebox.js"></script>
 <script src="js/jquery-ui-1.10.3.custom.min.js"></script>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;language=es"></script>
 <script type="text/javascript" src="js/inicio.js"></script>
 <script type="text/javascript" src="js/datos_user.js"></script>
 <script type="text/javascript" src="js/reserva.js"></script>
+<script type="text/javascript" src="js/mapa.js"></script>
 </body>
 </html>
