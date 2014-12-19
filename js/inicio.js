@@ -12,7 +12,6 @@ document.addEventListener('deviceready', function() {
 /*---- MOSTRADO DE PÁGINAS ----*/
 //Menú:
 $('#menu').on('pageshow', function(event) {
-	 new FastClick(document.body);
 	//Si el usuario está conectado, recupero sus datos:
 	recuperar_datos_inicio();
 	//--

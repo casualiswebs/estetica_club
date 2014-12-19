@@ -299,6 +299,10 @@
 </tr>
 </table>
 <form id="form_datos">
+    <label for="centro">
+        <b>* Centro seleccionado:</b>
+    </label>
+	<select id="id_centro"></select>
     <label for="nombre">
         <b>* Nombre</b>
     </label>
@@ -311,11 +315,6 @@
         <b>Teléfono</b>
         </label>
     <input type="text" id="tel" autocomplete="off">
-    <label for="Prov">
-        <b>Provincia</b>
-        </label>
-<select id="prov_sel" onChange="sel_pob(this.value, 'form_datos');"></select>
-    <div id="poblacion_sel"></div>
     <label for="cp">
         <b>Código Postal</b>
     </label>
@@ -334,11 +333,12 @@
     </label>
     <input type="password" id="pass_conf" autocomplete="off">
     </div>
-    <label for="centro">
-        <b>* Centro seleccionado:</b>
-    </label>
-	<select id="id_centro"></select>
-    <input type="button" value="Actualizar datos" id="bot_enviar" data-theme="b">
+    <label for="Prov">
+        <b>Provincia</b>
+        </label>
+<select id="prov_sel" onChange="sel_pob(this.value, 'form_datos');"></select>
+    <div id="poblacion_sel"></div>
+    <input type="button" value="Actualizar datos" id="bot_enviar" data-role="button">
 </form>
 <p>&nbsp;</p>
 <a data-role="button" data-theme="b" id="descon">Cerrar sesión</a>
@@ -358,7 +358,6 @@
 <script type="text/javascript" src="js/Calendar.js"></script>
 <script type="text/javascript" src="js/jquery/jquery.min.js"></script>
 <script type="text/javascript" src="js/jquery/jquery.mobile-1.4.5.min.js"></script>
-<script type='text/javascript' src='js/fastclick.js'></script>
 <script type="text/javascript" src="js/jquery/jqm-datebox.js"></script>
 <script src="js/jquery-ui-1.10.3.custom.min.js"></script>
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;language=es"></script>
