@@ -84,10 +84,10 @@
 
 <div data-role="page" id="login_user">
 	<div data-role="header">
-  <a href="#menu" data-icon="arrow-l" data-theme="c">Volver</a>
     <img src="images/logo.png" width="200" />
 	</div>
 	<div data-role="content">
+  <a data-rel="back" class="ui-btn ui-btn-inline ui-icon-arrow-l ui-btn-icon-left">Volver</a>
 <table>
 <tr>
 <td><img src="images/perfil_peq.png" /></td>
@@ -111,10 +111,10 @@
 
 <div data-role="page" id="recuperar">
 	<div data-role="header">
-  <a href="#login_user" data-icon="arrow-l" data-theme="c">Volver</a>
     <img src="images/logo.png" width="200" />
 	</div>
 	<div data-role="content">
+  <a href="#menu" class="ui-btn ui-btn-inline ui-icon-arrow-l ui-btn-icon-left">Volver</a>
 <table>
 <tr>
 <td><img src="images/perfil_peq.png" /></td>
@@ -132,10 +132,10 @@
 
 <div data-role="page" id="reg_user">
 	<div data-role="header">
-  <a data-rel="back" data-icon="arrow-l" data-theme="c">Volver</a>
     <img src="images/logo.png" width="200" />
 	</div>
 	<div data-role="content">
+  <a data-rel="back" class="ui-btn ui-btn-inline ui-icon-arrow-l ui-btn-icon-left">Volver</a>
 <table>
 <tr>
 <td><img src="images/perfil_peq.png" /></td>
@@ -146,15 +146,15 @@
     <label for="nombre">
         <b>* Nombre</b>
     </label>
-    <input type="text" id="nombre" autocomplete="off">
+    <input type="text" id="nombre" autocomplete="off" class="needsclick">
     <label for="apellidos">
         <b>* Apellidos</b>
         </label>
-    <input type="text" id="apellidos" autocomplete="off">
+    <input type="text" id="apellidos" autocomplete="off" class="needsclick">
     <label for="tel">
         <b>* Teléfono</b>
         </label>
-    <input type="text" id="tel" autocomplete="off">
+    <input type="text" id="tel" autocomplete="off" class="needsclick">
     <label for="Prov">
         <b>Provincia</b>
         </label>
@@ -163,24 +163,24 @@
     <label for="cp">
         <b>Código Postal</b>
     </label>
-    <input type="text" id="cp" autocomplete="off">
+    <input type="text" id="cp" autocomplete="off" class="needsclick">
     <label for="email">
         <b>* Email</b>
     </label>
-    <input type="text" id="email" autocomplete="off">
+    <input type="text" id="email" autocomplete="off" class="needsclick">
     <label for="pass">
         <b>* Contraseña</b>
     </label>
-    <input type="password" id="pass" autocomplete="off">
+    <input type="password" id="pass" autocomplete="off" class="needsclick">
     <label for="pass_conf">
         <b>* Confirmar Contraseña</b>
     </label>
-    <input type="password" id="pass_conf" autocomplete="off">
+    <input type="password" id="pass_conf" autocomplete="off" class="needsclick">
     <label for="pass_conf">
         <b>* Centro</b>
     </label>
-	<select id="id_centro"></select>
-    <input type="button" id="bot_enviar" value="Guardar" data-theme="b">
+	<select id="id_centro" class="needsclick"></select>
+    <input type="button" id="bot_enviar" value="Guardar" data-theme="b" class="needsclick">
 </form>
 	</div>
 </div>
@@ -188,10 +188,10 @@
 
 <div data-role="page" id="calendar_ap">
 	<div data-role="header">
-  <a data-rel="back" data-icon="arrow-l" data-theme="c">Volver</a>
     <img src="images/logo.png" width="200" />
 	</div>
 	<div data-role="content">
+  <a data-rel="back" class="ui-btn ui-btn-inline ui-icon-arrow-l ui-btn-icon-left">Volver</a>
 <div id="contenido_reserva">
 	<div id="servicios">
 <h3>1.- Selecciona el tratamiento:</h3>
@@ -288,10 +288,10 @@
 
 <div data-role="page" id="mi_perfil_ap">
 	<div data-role="header">
-  <a href="index.html#menu" data-icon="arrow-l" data-theme="c">Volver</a>
     <img src="images/logo.png" width="200" />
 	</div>
 	<div data-role="content">
+  <a data-rel="back" class="ui-btn ui-btn-inline ui-icon-arrow-l ui-btn-icon-left">Volver</a>
 <table>
 <tr>
 <td><img src="images/perfil_peq.png" /></td>
@@ -302,43 +302,43 @@
     <label for="centro">
         <b>* Centro seleccionado:</b>
     </label>
-	<select id="id_centro"></select>
+	<select id="id_centro" class="needsclick"></select>
     <label for="nombre">
         <b>* Nombre</b>
     </label>
-    <input type="text" id="nombre" autocomplete="off">
+    <input type="text" id="nombre" autocomplete="off" class="needsclick">
     <label for="apellidos">
         <b>* Apellidos</b>
         </label>
-    <input type="text" id="apellidos" autocomplete="off">
+    <input type="text" id="apellidos" autocomplete="off" class="needsclick">
     <label for="tel">
         <b>Teléfono</b>
         </label>
-    <input type="text" id="tel" autocomplete="off">
+    <input type="text" id="tel" autocomplete="off" class="needsclick">
     <label for="cp">
         <b>Código Postal</b>
     </label>
-    <input type="text" id="cp" autocomplete="off">
+    <input type="text" id="cp" autocomplete="off" class="needsclick">
     <label for="email">
         <b>* Email</b>
     </label>
-    <input type="text" id="email" autocomplete="off">
+    <input type="text" id="email" autocomplete="off" class="needsclick">
     <div id="pass_ocul">
     <label for="pass">
         <b>Nueva Contraseña (Dejar en blanco si no se quiere cambiar)</b>
     </label>
-    <input type="password" id="pass" autocomplete="off">
+    <input type="password" id="pass" autocomplete="off" class="needsclick">
     <label for="pass_conf">
         <b>Confirmar nueva Contraseña (Solo si se indica nueva contraseña)</b>
     </label>
-    <input type="password" id="pass_conf" autocomplete="off">
+    <input type="password" id="pass_conf" autocomplete="off" class="needsclick">
     </div>
     <label for="Prov">
         <b>Provincia</b>
         </label>
 <select id="prov_sel" onChange="sel_pob(this.value, 'form_datos');" class="needsclick"></select>
     <div id="poblacion_sel"></div>
-    <input type="button" value="Actualizar datos" id="bot_enviar" data-role="button">
+    <input type="button" value="Actualizar datos" id="bot_enviar" data-role="button" class="needsclick">
 </form>
 <p>&nbsp;</p>
 <a data-role="button" data-theme="b" id="descon">Cerrar sesión</a>
