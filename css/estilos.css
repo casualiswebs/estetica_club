@@ -118,6 +118,16 @@
 }
 
 
+/*****----- MAPA -----*****/
+#map-canvas,
+#map-ruta,
+#directionsPanel {
+	position: fixed!Important;
+	width: 100%;
+	height: 89%;
+}
+
+
 @media only screen and (min-width: 600px) {
 /*Calendario*/
 #input_fecha {

@@ -1,9 +1,9 @@
 $('#mapa').on('pageshow', function(event, data) {
-	$.mobile.loading ( 'show', { theme: "b", text: "Cargando", textonly: false, textVisible: true});
 });
 
 
 function abrirGoogleMaps_map (id_centro) {
+$.mobile.loading ( 'show', { theme: "b", text: "Cargando", textonly: false, textVisible: true});
 	ur = 'mapa.php';
 	var direccion = localStorage.getItem("direccion_centro");
 	var poblacion = localStorage.getItem("poblacion_centro");
@@ -21,25 +21,27 @@ if (status == google.maps.GeocoderStatus.OK) {
     var lat = results[0].geometry.location.lat();
     var long = results[0].geometry.location.lng();
     console.log(lat);
-	
-  var myLatlng = new google.maps.LatLng(lat,long);
-
-  var mapOptions = {
-    zoom: 18,
-    center: myLatlng,
-	streetViewControl: false,
-    mapTypeId: google.maps.MapTypeId.ROADMAP
-  };
-  map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-	  
-	var marker = new google.maps.Marker({
-	position: myLatlng,
-	map: map,
-	title: 'Marca'
-  });
+    console.log(long);
+		if (lat != undefined) {
+		  var myLatlng = new google.maps.LatLng(lat,long);
+		
+		  var mapOptions = {
+			zoom: 18,
+			center: myLatlng,
+			streetViewControl: false,
+			mapTypeId: google.maps.MapTypeId.ROADMAP
+		  };
+		  map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+			  
+			var marker = new google.maps.Marker({
+			position: myLatlng,
+			map: map,
+			title: 'Marca'
+		  });
 	$.mobile.loading( 'hide');
+		} else {
+			console.log('error');
+		}
     } 
 }); 
-
-
 }
