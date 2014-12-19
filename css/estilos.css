@@ -1,3 +1,7 @@
+a {
+	cursor:pointer;
+	text-decoration:none;
+}
 .ui-header {
 	/*background-color:#ff6804!Important;*/
 	background:url(../images/fondo6.jpg) repeat-x center;
@@ -15,6 +19,32 @@
 }
 
 
+/*Mi reserva*/
+.caducidad_ficha {
+	width: auto;
+	font-size:14px;
+	text-align:left;
+	color:#FFF;
+	background:#f7931e;
+	font-weight:normal;
+	text-shadow: none;
+	margin:0 auto;
+}
+.caducidad_ficha img {
+	display:block;
+	float:left;
+}
+.caducidad_ficha,.caducidad_ficha span,.caducidad, .caducidad span, #fullName, #fullName span {-webkit-border-radius: 10px;border-radius: 10px;padding:10px;}
+.caducidad_ficha span {
+	background:#FFF;
+	display:inline;
+	padding:5px!Important;
+	margin-left:10px;
+	text-shadow: none;
+	color:#1A439A;
+	line-height:28px;
+}
+.caducidad span {display:inline;margin-left:10px;background:#FFF;color:#333;padding:5px;}
 
 /*Calendario*/
 #calendario {
@@ -109,7 +139,7 @@
 .foto_centro,
 .desc_centro {
 	float:left;
-	width:49%;
+	width:47%;
 	margin-right:2%;
 	margin-top:40px;
 }

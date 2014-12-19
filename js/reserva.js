@@ -303,10 +303,14 @@ $.mobile.loading('hide');
 //Inserto el resultado:
 //localStorage.setItem("facebook_centro", value.facebook);
 $(div_id).html('<div class="ficha_res">' + data.respuesta);
-$(div_id).append('<div class="foto_centro"><img src="http://www.esteticaclub.com/web-tienda/images/tiendas/' + localStorage.getItem("foto_centro") + '" /></div>' +
+$(div_id).append('<div class="foto_centro caducidad_ficha"><img src="http://www.esteticaclub.com/web-tienda/images/tiendas/' + localStorage.getItem("foto_centro") + '" /></div>' +
 '<div class="desc_centro">' +
-'<h2>' + localStorage.getItem("nombre_centro") + '</h2><br />' + localStorage.getItem("subtitulo_centro") + '<br />' + localStorage.getItem("descripcion_centro") + '<br /><br /><img src="images/mapa.png" /> <a onClick="enviar_mapa(\'' + id_tienda + '\')">' + localStorage.getItem("direccion_centro") + ' - ' + localStorage.getItem("poblacion_centro") + '(' + localStorage.getItem("provincia_centro") + ')</a><br /><img src="images/llamar.png" /> <a href="tel:' + localStorage.getItem("telefono_centro") + '">' + localStorage.getItem("telefono_centro") + '</a><br /><img src="images/web.png" /> <a onClick="abrir(\'http://' + localStorage.getItem("web_centro") + '\');">' + localStorage.getItem("web_centro") + '</a><br /><img src="images/email.png" /> <a href="mailto:' + localStorage.getItem("email_centro")
-+ '">' + localStorage.getItem("email_centro") + '</a></div>' +
+'<h2>' + localStorage.getItem("nombre_centro") + '</h2><br />' + localStorage.getItem("subtitulo_centro") + '<br />' +
+localStorage.getItem("descripcion_centro") + '<br /><br />'+
+'<div class="caducidad_ficha"><img src="images/mapa.png" /> <span> <a onClick="enviar_mapa(\'' + id_tienda + '\')">' + localStorage.getItem("direccion_centro") + ' - ' + localStorage.getItem("poblacion_centro") + '(' + localStorage.getItem("provincia_centro") + ')</a></span></div><br />'+
+'<div class="caducidad_ficha"><img src="images/llamar.png" /> <span><a href="tel:' + localStorage.getItem("telefono_centro") + '">' + localStorage.getItem("telefono_centro") + '</a></span></div><br />'+
+'<div class="caducidad_ficha"><img src="images/web.png" /> <span><a onClick="abrir(\'http://' + localStorage.getItem("web_centro") + '\');">' + localStorage.getItem("web_centro") + '</a></span></div><br />'+
+'<div class="caducidad_ficha"><img src="images/email.png" /> <span> <a href="mailto:' + localStorage.getItem("email_centro") + '">' + localStorage.getItem("email_centro") + '</a></span></div></div>' +
 '</div>');
 //--
 			} else {
