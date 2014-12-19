@@ -287,6 +287,14 @@ $.mobile.loading('hide');
    function enviar_mapa(id_centro_sel) {
 	   $.mobile.pageContainer.pagecontainer("change", '#mapa', { id_centro_sel: id_centro_sel });
    }
+   function mostrar_mapa(id_sel) {
+	var direccion = localStorage.getItem("direccion_centro");
+	var poblacion = localStorage.getItem("poblacion_centro");
+	var provincia = localStorage.getItem("provincia_centro");
+	var direccion_comp = (direccion + ',' + poblacion + ',' + provincia);
+	    window.plugins.ChildBrowser.showWebPage('http://maps.google.es/maps?q=' + encodeURIComponent(direccion_comp),
+                                        { showLocationBar: true });
+   }
    
    function abrir (url) {
 	   window.plugins.ChildBrowser.showWebPage(url,
@@ -303,15 +311,15 @@ $.mobile.loading('hide');
 //Inserto el resultado:
 //localStorage.setItem("facebook_centro", value.facebook);
 $(div_id).html('<div class="ficha_res">' + data.respuesta);
-$(div_id).append('<div class="foto_centro caducidad_ficha"><img src="http://www.esteticaclub.com/web-tienda/images/tiendas/' + localStorage.getItem("foto_centro") + '" /></div>' +
-'<div class="desc_centro">' +
+$(div_id).append('<div class="desc_centro">' +
 '<h2>' + localStorage.getItem("nombre_centro") + '</h2><br />' + localStorage.getItem("subtitulo_centro") + '<br />' +
 localStorage.getItem("descripcion_centro") + '<br /><br />'+
-'<div class="caducidad_ficha"><img src="images/mapa.png" /> <span> <a onClick="enviar_mapa(\'' + id_tienda + '\')">' + localStorage.getItem("direccion_centro") + ' - ' + localStorage.getItem("poblacion_centro") + '(' + localStorage.getItem("provincia_centro") + ')</a></span></div><br />'+
+'<div class="caducidad_ficha no_redondeado"><img src="images/mapa.png" /> <span> <a onClick="mostar_mapa(\'' + id_tienda + '\')">' + localStorage.getItem("direccion_centro") + ' - ' + localStorage.getItem("poblacion_centro") + '(' + localStorage.getItem("provincia_centro") + ')</a></span></div><br />'+
 '<div class="caducidad_ficha"><img src="images/llamar.png" /> <span><a href="tel:' + localStorage.getItem("telefono_centro") + '">' + localStorage.getItem("telefono_centro") + '</a></span></div><br />'+
 '<div class="caducidad_ficha"><img src="images/web.png" /> <span><a onClick="abrir(\'http://' + localStorage.getItem("web_centro") + '\');">' + localStorage.getItem("web_centro") + '</a></span></div><br />'+
 '<div class="caducidad_ficha"><img src="images/email.png" /> <span> <a href="mailto:' + localStorage.getItem("email_centro") + '">' + localStorage.getItem("email_centro") + '</a></span></div></div>' +
 '</div>');
+$(div_id).append('<div class="foto_centro caducidad_ficha no_margen"><img src="http://www.esteticaclub.com/web-tienda/images/tiendas/' + localStorage.getItem("foto_centro") + '" /></div>');
 //--
 			} else {
 				alert (data.respuesta);

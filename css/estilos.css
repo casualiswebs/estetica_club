@@ -33,13 +33,13 @@ a {
 .caducidad_ficha img {
 	display:block;
 	float:left;
+	margin-right:10px;
 }
 .caducidad_ficha,.caducidad_ficha span,.caducidad, .caducidad span, #fullName, #fullName span {-webkit-border-radius: 10px;border-radius: 10px;padding:10px;}
 .caducidad_ficha span {
 	background:#FFF;
 	display:inline;
 	padding:5px!Important;
-	margin-left:10px;
 	text-shadow: none;
 	color:#1A439A;
 	line-height:28px;
@@ -139,8 +139,8 @@ a {
 .foto_centro,
 .desc_centro {
 	float:left;
-	width:47%;
-	margin-right:2%;
+	width:46%;
+	margin-left:2%;
 	margin-top:40px;
 }
 .desc_centro {
@@ -155,6 +155,14 @@ a {
 	position: fixed!Important;
 	width: 100%;
 	height: 89%;
+}
+.no_redondeado span {
+	-webkit-border-radius: 0;
+	border-radius: 0;
+	padding:0;
+}
+.no_margen img {
+	margin:0;
 }
 
 
@@ -174,5 +182,10 @@ a {
 .foto_centro,
 .desc_centro {
 	width:100%;
+	margin-left:0;
+	margin-right:0;
+}
+.foto_centro {
+	width:96%;
 }
 }
