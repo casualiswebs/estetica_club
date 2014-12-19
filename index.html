@@ -51,6 +51,18 @@
                     <p class="ui-li-aside">Usuario</p>
                 </a>
 	</li>
+    <li><a href="#mi_perfil_ap">
+                    <img src="images/menu/promos.jpg" class="ui-li-thumb">
+                    <h2>Promociones</h2>
+                    <p>Activas</p>
+                </a>
+	</li>
+    <li><a href="#mi_perfil_ap">
+                    <img class="ui-li-thumb" id="ini_info_centro" style="width:310px; height:310px;">
+                    <h2>Contacto</h2>
+                    <p id="ini_nombre_centro"></p>
+                </a>
+	</li>
 </ul>
 </div> <!-- Fin Menú prinicpal (menu_princ) -->
   </div>
@@ -63,7 +75,8 @@
             </ul>
         </div><!-- /navbar -->
 	</div><!-- /footer -->
-</div><!-- Fin menu (menu) -->
+</div>
+<!-- Fin menu (menu) con menu -->
 
 <div data-role="page" id="inicio">
 	<div data-role="header">
@@ -102,7 +115,7 @@
         <b>* Contraseña</b>
     </label>
     <input type="password" id="pass" autocomplete="off">
-    <input type="button" value="Conectarme" onClick="login_user()" id="Con_Re">
+<a data-role="button" data-theme="b" onClick="login_user()" id="Con_Re">Conectarme</a>
     <p>&nbsp;</p>
 <a href="#recuperar" data-role="button" data-icon="edit" data-iconshadow="false" data-theme="e" data-transition="slideup">Recuperar contraseña</a>
 	</div>
@@ -125,7 +138,7 @@
         <b>* Indica el Email con el que te registraste en Estética Club</b>
     </label>
     <input type="text" id="email_rec" autocomplete="off">
-    <input type="button" value="Recuperar" onClick="recuperar_pass()">
+<a data-role="button" data-theme="b" onClick="recuperar_pass()">Recuperar</a>
 	</div>
 </div>
 <!-- /Recuperar Usuario (recuperar) -->
@@ -231,7 +244,7 @@
         </div><!-- /navbar -->
 	</div><!-- /footer -->
 </div>
-<!-- Fin Calendario (calendar_ap) -->
+<!-- Fin Calendario (calendar_ap) con menu -->
 
 <div data-role="page" id="reservas_ap">
 	<div data-role="header">
@@ -246,13 +259,13 @@
         <div data-role="navbar">
             <ul>
                 <li><a href="#menu" data-icon="home">Inicio</a></li>
-                <li><a href="#reservas_ap" data-icon="grid" class="ui-btn-active">Mis Reservas</a></li>
+                <li><a href="#reservas_ap" data-icon="grid" class="ui-btn-active">Reservas</a></li>
                 <li><a href="#mi_perfil_ap" data-icon="lock">Mi Perfil</a></li>
             </ul>
         </div><!-- /navbar -->
 	</div><!-- /footer -->
 </div>
-<!-- Fin Calendario (reservas_ap) -->
+<!-- Fin Calendario (reservas_ap) con menu -->
 
 <div data-role="page" id="ficha_reserva">
 	<div data-role="header">
@@ -272,7 +285,7 @@
         </div><!-- /navbar -->
 	</div><!-- /footer -->
 </div>
-<!-- Fin Calendario (ficha_reserva) -->
+<!-- Fin Calendario (ficha_reserva) con menu -->
 
 <div data-role="page" id="mapa">
   <div data-role="header">
@@ -345,15 +358,6 @@
 <p>&nbsp;</p>
 <a data-role="button" data-theme="b" id="descon">Cerrar sesión</a>
 	</div>
-	 <div data-role="footer" style="overflow:hidden;">
-        <div data-role="navbar">
-            <ul>
-                <li><a href="#menu" data-icon="home">Inicio</a></li>
-                <li><a href="#reservas_ap" data-icon="grid">Reservas</a></li>
-                <li><a href="#mi_perfil_ap" data-icon="lock" class="ui-btn-active">Mi Perfil</a></li>
-            </ul>
-        </div><!-- /navbar -->
-	</div><!-- /footer -->
 </div>
 <!--FIN Modificar mi perfil: (mi_perfil_ap)-->
 <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>

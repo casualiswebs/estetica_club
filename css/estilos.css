@@ -15,7 +15,10 @@ a {
 	display:none;
 }
 #footer-menu {
-	display:none;
+	position:fixed;
+	bottom:0;
+	left:0;
+	width:100%;
 }
 
 
