@@ -287,12 +287,11 @@ $.mobile.loading('hide');
    function enviar_mapa(id_centro_sel) {
 	   $.mobile.pageContainer.pagecontainer("change", '#mapa', { id_centro_sel: id_centro_sel });
    }
-   function mostrar_mapa(id_sel) {
+   function mostar_mapa(id_sel) {
 	var direccion = localStorage.getItem("direccion_centro");
 	var poblacion = localStorage.getItem("poblacion_centro");
 	var provincia = localStorage.getItem("provincia_centro");
 	var direccion_comp = (direccion + ',' + poblacion + ',' + provincia);
-	alert (encodeURIComponent(direccion_comp));
 	    window.plugins.ChildBrowser.showWebPage('http://maps.google.es/maps?q=' + encodeURIComponent(direccion_comp),
                                         { showLocationBar: true });
    }
