@@ -143,6 +143,9 @@
 </tr>
 </table>
 <form id="datos_reg_user">
+        <b>* Centro</b>
+    </label>
+	<select id="id_centro"></select>
     <label for="nombre">
         <b>* Nombre</b>
     </label>
@@ -177,10 +180,8 @@
     </label>
     <input type="password" id="pass_conf" autocomplete="off">
     <label for="pass_conf">
-        <b>* Centro</b>
-    </label>
-	<select id="id_centro"></select>
-    <input type="button" id="bot_enviar" value="Guardar" data-theme="b">
+<p>&nbsp;</p>
+    <a id="bot_enviar" data-role="button" data-theme="b">Guardar</a>
 </form>
 	</div>
 </div>
@@ -311,6 +312,11 @@
         <b>* Apellidos</b>
         </label>
     <input type="text" id="apellidos" autocomplete="off">
+    <label for="Prov">
+        <b>Provincia</b>
+        </label>
+<select id="prov_sel" onChange="sel_pob(this.value, 'form_datos');"></select>
+    <div id="poblacion_sel"></div>
     <label for="tel">
         <b>Teléfono</b>
         </label>
@@ -333,12 +339,8 @@
     </label>
     <input type="password" id="pass_conf" autocomplete="off">
     </div>
-    <label for="Prov">
-        <b>Provincia</b>
-        </label>
-<select id="prov_sel" onChange="sel_pob(this.value, 'form_datos');"></select>
-    <div id="poblacion_sel"></div>
-    <input type="button" value="Actualizar datos" id="bot_enviar" data-role="button">
+<p>&nbsp;</p>
+    <a id="bot_enviar" data-role="button">Actualizar datos</a>
 </form>
 <p>&nbsp;</p>
 <a data-role="button" data-theme="b" id="descon">Cerrar sesión</a>

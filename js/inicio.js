@@ -12,7 +12,7 @@ document.addEventListener('deviceready', function() {
 /*---- MOSTRADO DE PÁGINAS ----*/
 //Menú:
 $('#menu').on('pageshow', function(event) {
-	 $("select").addClass("needsclick");
+	 $("select, li").addClass("needsclick");
 	 $('a').each(function() { new FastClick(this); });
 	 //new FastClick(document.body);
 	//Si el usuario está conectado, recupero sus datos:
