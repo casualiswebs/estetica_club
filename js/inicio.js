@@ -13,7 +13,8 @@ document.addEventListener('deviceready', function() {
 //Menú:
 $('#menu').on('pageshow', function(event) {
 	 $("select").addClass("needsclick");
-	 new FastClick(document.body);
+	 $('a').each(function() { new FastClick(this); });
+	 //new FastClick(document.body);
 	//Si el usuario está conectado, recupero sus datos:
 	recuperar_datos_inicio();
 	//--
@@ -288,7 +289,7 @@ id_prov: id_prov,
 $.getJSON(serviceURL + ur, venvio, function (data) {
 	if (data.resultado === true) {
 	$(form_sel + ' #poblacion_sel').html('<label for="Pob"><b>Población</b></label>' +
-	'<select id="pob_sel" class="needsclick">');
+	'<select id="pob_sel">');
     $(form_sel + ' #pob_sel').append($('<option>', {
         value: 0,
         text : 'Selecciona la población'
