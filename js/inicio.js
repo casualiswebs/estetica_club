@@ -13,7 +13,6 @@ document.addEventListener('deviceready', function() {
 //Menú:
 $('#menu').on('pageshow', function(event) {
 	 new FastClick(document.body);
-FastClick.attach(document.body);
 	//Si el usuario está conectado, recupero sus datos:
 	recuperar_datos_inicio();
 	//--

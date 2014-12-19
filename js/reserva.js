@@ -292,7 +292,7 @@ $.mobile.loading('hide');
 	var poblacion = localStorage.getItem("poblacion_centro");
 	var provincia = localStorage.getItem("provincia_centro");
 	var direccion_comp = (direccion + ',' + poblacion + ',' + provincia);
-	    window.plugins.ChildBrowser.showWebPage('http://maps.google.es/maps?q=' + encodeURIComponent(direccion_comp),
+	    window.plugins.ChildBrowser.showWebPage('http://maps.google.es/maps?q=' + encodeURIComponent(direccion_comp) + '&output=embed&z=18&sensor=true',
                                         { showLocationBar: true });
    }
    
