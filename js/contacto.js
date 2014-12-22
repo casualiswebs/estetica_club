@@ -4,7 +4,7 @@ $('#contacto').on('pageshow', function(event, data) {
 
 
    //*****----- CONTACTO -----*****
-   function contactar () {
+   function contactar() {
 	ur = 'reservas/contacto.php?callback=?';
 	var user_activo = localStorage.getItem("id_user_app_movil");
 	var id_tienda = localStorage.getItem("id_centro");
