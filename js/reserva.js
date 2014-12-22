@@ -97,6 +97,7 @@ $('#sel_fecha_j').bind('datebox', function (e, passed) {
 
 $('#calendar_ap').on('pageshow', function(event) {
 	$('#res_reserva').hide("fast");
+	$('#mostrar_cal').hide("fast");
 	$('#contenido_reserva').show("fast");
 	getListTratamientos('#list_tratamientos');
 });
