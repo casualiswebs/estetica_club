@@ -1,6 +1,17 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:700&subset=latin-ext);
+h1, h2, h3, h4, a.ui-btn-icon-left {
+	font-family: 'Open Sans', sans-serif;
+	font-weight:700;
+}
 a {
 	cursor:pointer;
 	text-decoration:none;
+}
+textarea {
+	min-height:100px;
+}
+.ui-content {
+	margin-bottom:50px;
 }
 .ui-header {
 	/*background-color:#ff6804!Important;*/
@@ -22,8 +33,9 @@ a {
 }
 
 
-/*Mi reserva*/
-.caducidad_ficha {
+/*****------ MI RESERVA -----*****/
+.caducidad_ficha,
+.titulo {
 	width: auto;
 	font-size:14px;
 	text-align:left;
@@ -33,13 +45,17 @@ a {
 	text-shadow: none;
 	margin:0 auto;
 }
+.caducidad_ficha.gris {
+	background:#737373;
+}
 .caducidad_ficha img {
 	display:block;
 	float:left;
 	margin-right:10px;
 }
-.caducidad_ficha,.caducidad_ficha span,.caducidad, .caducidad span, #fullName, #fullName span {-webkit-border-radius: 10px;border-radius: 10px;padding:10px;}
-.caducidad_ficha span {
+.caducidad_ficha,.caducidad_ficha span,.caducidad, .caducidad span, .titulo, .titulo h1 {-webkit-border-radius: 10px;border-radius: 10px;padding:10px;}
+.caducidad_ficha span,
+.titulo h1 {
 	background:#FFF;
 	display:inline;
 	padding:5px!Important;
@@ -47,17 +63,38 @@ a {
 	color:#1A439A;
 	line-height:28px;
 }
+.titulo h1 {
+	font-size:26px;
+	color:#666;
+}
+.icon-logo {
+	width:64px;
+}
 .caducidad span {display:inline;margin-left:10px;background:#FFF;color:#333;padding:5px;}
 
-/*Calendario*/
+#mis-reservas-act {
+	margin-top:30px;
+}
+
+/*****----- CONTACTO -----*****/
+#form_contact {
+	float:left;
+	clear:both;
+	width:100%;
+	margin-top:40px;
+}
+
+/*****----- CALENDARIO -----*****/
 #calendario {
 	position:relative;
 	float:left;
 	margin-right:10%;
 	width:70%;
 }
-/*----*/
-/*Horas:*/
+
+
+
+/*****----- HORAS ------*****/
 #content_ajax table {
 	text-align:center;
 }
@@ -137,7 +174,7 @@ a {
 }
 .foto_centro img {
 	width:100%;
-	max-width:100%;
+	max-width:515px;
 }
 .foto_centro,
 .desc_centro {
@@ -145,6 +182,13 @@ a {
 	width:46%;
 	margin-left:2%;
 	margin-top:40px;
+}
+.foto_centro {
+	text-align:center;
+}
+.foto_centro img {
+	float:none;
+	display: inline;
 }
 .desc_centro {
 	margin-right:0;
@@ -181,7 +225,23 @@ a {
 	width:45%;
 }
 }
+@media only screen and (max-width: 1250px) {
+.caducidad_ficha {
+	font-size:12px;
+}
+}
+@media only screen and (max-width: 1000px) {
+.caducidad_ficha {
+	font-size:11px;
+}
+#promociones img {
+	max-width:100%;
+}
+}
 @media only screen and (max-width: 750px) {
+#lista_trats li a.ui-btn {
+	font-size: 0.8em;
+}
 .foto_centro,
 .desc_centro {
 	width:100%;

@@ -51,7 +51,7 @@
                     <p class="ui-li-aside">Usuario</p>
                 </a>
 	</li>
-    <li><a href="#mi_perfil_ap">
+    <li><a href="#promociones">
                     <img src="images/menu/promos.jpg" class="ui-li-thumb">
                     <h2>Promociones</h2>
                     <p>Activas</p>
@@ -103,8 +103,8 @@
   <a data-rel="back" class="ui-btn ui-btn-inline ui-icon-arrow-l ui-btn-icon-left">Volver</a>
 <table>
 <tr>
-<td><img src="images/perfil_peq.png" /></td>
-<td><h1>Conectarme</h1></td>
+<td><img src="images/perfil_peq.png" class="icon-logo" /></td>
+<td><div class="titulo"><h1>Conectarme</h1></div></td>
 </tr>
 </table>
     <label for="email">
@@ -130,8 +130,8 @@
   <a href="#menu" class="ui-btn ui-btn-inline ui-icon-arrow-l ui-btn-icon-left">Volver</a>
 <table>
 <tr>
-<td><img src="images/perfil_peq.png" /></td>
-<td><h1>Recuperar mi contraseña</h1></td>
+<td><img src="images/perfil_peq.png" class="icon-logo" /></td>
+<td><div class="titulo"><h1>Recuperar contraseña</h1></div></td>
 </tr>
 </table>
     <label for="email">
@@ -151,8 +151,8 @@
   <a data-rel="back" class="ui-btn ui-btn-inline ui-icon-arrow-l ui-btn-icon-left">Volver</a>
 <table>
 <tr>
-<td><img src="images/perfil_peq.png" /></td>
-<td><h1>Crear perfil</h1></td>
+<td><img src="images/perfil_peq.png" class="icon-logo" /></td>
+<td><div class="titulo"><h1>Crear perfil</h1></div></td>
 </tr>
 </table>
 <form id="datos_reg_user">
@@ -208,13 +208,14 @@
   <a data-rel="back" class="ui-btn ui-btn-inline ui-icon-arrow-l ui-btn-icon-left">Volver</a>
 <div id="contenido_reserva">
 	<div id="servicios">
-<h3>1.- Selecciona el tratamiento:</h3>
+<div class="caducidad_ficha gris"><h3>1.- Selecciona el tratamiento:</h3></div>
 	<div id="list_tratamientos"></div>
 	</div>
 <!--FIN SERVICIOS-->
 <div id="mostrar_cal" style="display:none;">
 <div id="input_fecha">
-<h3>2.- Selecciona día y hora:</h3>
+<p>&nbsp;</p>
+<div class="caducidad_ficha gris"><h3>2.- Selecciona día y hora:</h3></div>
 <input type="text" data-role="datebox" id="sel_fecha_j" name="sel_fecha_j" data-options='{
 "mode":"flipbox",
 "useInlineBlind":true,
@@ -234,15 +235,6 @@
 </div>
 <div id="res_reserva"></div>
   	</div>
-	 <div data-role="footer" style="overflow:hidden;" id="footer-menu">
-        <div data-role="navbar">
-            <ul>
-                <li><a href="#menu" data-icon="home">Inicio</a></li>
-                <li><a href="#reservas_ap" data-icon="grid" class="ui-btn-active">Mis Reservas</a></li>
-                <li><a href="#mi_perfil_ap" data-icon="lock">Mi Perfil</a></li>
-            </ul>
-        </div><!-- /navbar -->
-	</div><!-- /footer -->
 </div>
 <!-- Fin Calendario (calendar_ap) con menu -->
 
@@ -252,7 +244,13 @@
 	</div>
 	<div data-role="content">
   <a data-rel="back" class="ui-btn ui-btn-inline ui-icon-arrow-l ui-btn-icon-left">Volver</a>
-<h1>Reservas Activas</h1>
+<table>
+<tr>
+<td><img src="images/reservas.png" class="icon-logo" /></td>
+<td><div class="titulo"><h1>Reservas Activas</h1></div></td>
+</tr>
+</table>
+
 <div id="mis-reservas-act"></div>
   	</div>
 	 <div data-role="footer" style="overflow:hidden;" id="footer-menu">
@@ -308,8 +306,8 @@
   <a data-rel="back" class="ui-btn ui-btn-inline ui-icon-arrow-l ui-btn-icon-left">Volver</a>
 <table>
 <tr>
-<td><img src="images/perfil_peq.png" /></td>
-<td><h1>Modificar mi perfil</h1></td>
+<td><img src="images/perfil_peq.png" class="icon-logo" /></td>
+<td><div class="titulo"><h1>Mi perfil</h1></div></td>
 </tr>
 </table>
 <form id="form_datos">
@@ -361,6 +359,23 @@
 </div>
 <!--FIN Modificar mi perfil: (mi_perfil_ap)-->
 
+<div data-role="page" id="promociones">
+	<div data-role="header">
+    <img src="images/logo.png" width="200" />
+	</div>
+	<div data-role="content">
+  <a data-rel="back" class="ui-btn ui-btn-inline ui-icon-arrow-l ui-btn-icon-left">Volver</a>
+<table>
+<tr>
+<td><img src="images/promocion.png" class="icon-logo" /></td>
+<td><div class="titulo"><h1>Promociones</h1></div></td>
+</tr>
+</table>
+<div id="promos-centro"></div>
+	</div>
+</div>
+<!-- /promociones (promociones) -->
+
 <div data-role="page" id="contacto">
 	<div data-role="header">
     <img src="images/logo.png" width="200" />
@@ -369,11 +384,12 @@
   <a data-rel="back" class="ui-btn ui-btn-inline ui-icon-arrow-l ui-btn-icon-left">Volver</a>
 <table>
 <tr>
-<td><img src="images/perfil_peq.png" /></td>
-<td><h1>Conectarme</h1></td>
+<td><img src="images/icon-contacto.png" class="icon-logo" /></td>
+<td><div class="titulo"><h1>Contacto</h1></div></td>
 </tr>
 </table>
 <div id="form_contact">
+<form method="post">
     <label for="email">
         <b>* Nombre</b>
     </label>
@@ -390,12 +406,14 @@
         <b>Mensaje</b>
     </label>
     <textarea id="mensaje" autocomplete="off"></textarea>
+</form>
 <a data-role="button" data-theme="b" onClick="contactar();">Enviar</a>
 </div>
 <div id="res_contacto"></div>
+<div id="datos_contacto_centro"></div>
 	</div>
 </div>
-<!-- /Login Usuario (login_user) -->
+<!-- /Contacto (contacto) -->
 <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
 <script type="text/javascript" src="js/Calendar.js"></script>
 <script type="text/javascript" src="js/jquery/jquery.min.js"></script>
@@ -409,5 +427,6 @@
 <script type="text/javascript" src="js/reserva.js"></script>
 <script type="text/javascript" src="js/mapa.js"></script>
 <script type="text/javascript" src="js/contacto.js"></script>
+<script type="text/javascript" src="js/promociones.js"></script>
 </body>
 </html>

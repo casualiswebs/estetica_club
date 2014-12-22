@@ -1,11 +1,14 @@
 $('#contacto').on('pageshow', function(event, data) {
+	 $('#form_contact form')[0].reset();
+	$('#res_contacto').hide();
 	$('#form_contact').show();
+datos_cont_centro('#datos_contacto_centro', 0, 1);
 });
 
 
    //*****----- CONTACTO -----*****
    function contactar() {
-	ur = 'reservas/contacto.php?callback=?';
+	ur = 'contacto.php?callback=?';
 	var user_activo = localStorage.getItem("id_user_app_movil");
 	var id_tienda = localStorage.getItem("id_centro");
 	

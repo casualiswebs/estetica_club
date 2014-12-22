@@ -143,7 +143,7 @@ function ficha_centro () {
 					localStorage.setItem("email_centro", value.email);
 					localStorage.setItem("facebook_centro", value.facebook);
 					$("#ini_info_centro").attr("src","http://www.esteticaclub.com/web-tienda/images/tiendas/" + value.foto);
-					$("#ini_nombre_centro").append(value.nombre);
+					$("#ini_nombre_centro").html(value.nombre);
 				});
 			}
 		$.mobile.loading( 'hide');
