@@ -57,7 +57,7 @@
                     <p>Activas</p>
                 </a>
 	</li>
-    <li><a href="#mi_perfil_ap">
+    <li><a href="#contacto">
                     <img class="ui-li-thumb" id="ini_info_centro" style="width:310px; height:310px;">
                     <h2>Contacto</h2>
                     <p id="ini_nombre_centro"></p>
@@ -360,6 +360,42 @@
 	</div>
 </div>
 <!--FIN Modificar mi perfil: (mi_perfil_ap)-->
+
+<div data-role="page" id="contacto">
+	<div data-role="header">
+    <img src="images/logo.png" width="200" />
+	</div>
+	<div data-role="content">
+  <a data-rel="back" class="ui-btn ui-btn-inline ui-icon-arrow-l ui-btn-icon-left">Volver</a>
+<table>
+<tr>
+<td><img src="images/perfil_peq.png" /></td>
+<td><h1>Conectarme</h1></td>
+</tr>
+</table>
+<div id="form_contact">
+    <label for="email">
+        <b>* Nombre</b>
+    </label>
+    <input type="text" id="nombre" autocomplete="off">
+    <label for="pass">
+        <b>Teléfono</b>
+    </label>
+    <input type="text" id="telefono" autocomplete="off">
+    <label for="email">
+        <b>Email</b>
+    </label>
+    <input type="email" id="email" autocomplete="off">
+    <label for="Mensaje">
+        <b>Mensaje</b>
+    </label>
+    <textarea id="mensaje" autocomplete="off"></textarea>
+<a data-role="button" data-theme="b" onClick="contactar()" id="Con_Re">Enviar</a>
+</div>
+<div id="res_contacto"></div>
+	</div>
+</div>
+<!-- /Login Usuario (login_user) -->
 <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
 <script type="text/javascript" src="js/Calendar.js"></script>
 <script type="text/javascript" src="js/jquery/jquery.min.js"></script>
