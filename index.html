@@ -19,6 +19,7 @@
     <img src="images/logo.png" width="200" />
 	</div>
   <div data-role="main" class="ui-content">
+<div class="titulo"><h1>¡Bienvenido/a!</h1></div>
 <div id="cont_inicial">
 <!-- Formulario para seleccionar centro: -->
 <div class="ui-field-contain" id="sel_ini_centro">
@@ -26,9 +27,24 @@
 </div>
 <!-- Fin Formulario para seleccionar centro: -->
 <a href="index.html#inicio" data-role="button" data-icon="alert" data-iconshadow="false" data-theme="b" data-transition="slideup" id="bot_conectar">2.- Conectarme</a>
+<p>&nbsp;</p>
+<div class="titulo gris"><h1>Ventajas:</h1></div>
+<table>
+	<tr>
+        <td align="left" valign="middle"><img src="images/calendario_inicio.png" class="alin-left" /> Comprueba la <strong>disponibilidad</strong> y <strong>reserva cita</strong> en tu centro de estética</td>
+    </tr>
+	<tr>
+    	<td align="right" valign="middle"><img src="images/ag-movil.png" class="alin-right" /> <strong>Guarda en la agenda</strong> de tu móvil / tablet tus reservas</td>
+    </tr>
+	<tr>
+    	<td align="left" valign="middle"><img src="images/promocion-inicio.png" class="alin-left" /> <strong>Promociones exclusivas</strong> desde la APP</td>
+    </tr>
+	<tr>
+    	<td align="right" valign="middle"><img src="images/icon-contacto.png" class="alin-right" /> <strong>Contacta</strong> directamente con tu centro</td>
+    </tr>
+</table>
 </div> <!-- Fin contenido inicial (cont_inicial) -->
 <div id="menu_princ">
-
 <ul data-role="listview" data-inset="true" class="inicio">
     <li><a href="#calendar_ap">
                     <img src="images/menu/cita.jpg" class="ui-li-thumb">
@@ -83,9 +99,6 @@
     <img src="images/logo.png" width="200" />
 	</div>
   <div data-role="content" style="text-align:center;">
-  
-<!--<a onClick="login_face()" data-role="button" data-theme="b" id="but_log_face">Login con Facebook</a>
-<p>&nbsp;</p>-->
 <a href="#login_user" data-role="button" id="but_log_urbis" data-transition="slide">Ya tengo cuenta</a>
 <p>&nbsp;</p>
 <a href="#reg_user" data-role="button" data-transition="slide">Crear nueva cuenta</a>
@@ -107,14 +120,8 @@
 <td><div class="titulo"><h1>Conectarme</h1></div></td>
 </tr>
 </table>
-    <label for="email">
-        <b>* Email</b>
-    </label>
-    <input type="text" id="email" autocomplete="off">
-    <label for="pass">
-        <b>* Contraseña</b>
-    </label>
-    <input type="password" id="pass" autocomplete="off">
+    <input type="text" id="email" placeholder="(*) Email" autocomplete="off">
+    <input type="password" id="pass" placeholder="(*) Contraseña" autocomplete="off">
 <a data-role="button" data-theme="b" onClick="login_user()" id="Con_Re">Conectarme</a>
     <p>&nbsp;</p>
 <a href="#recuperar" data-role="button" data-icon="edit" data-iconshadow="false" data-theme="e" data-transition="slideup">Recuperar contraseña</a>
@@ -156,43 +163,16 @@
 </tr>
 </table>
 <form id="datos_reg_user">
-        <b>* Centro</b>
-    </label>
 	<select id="id_centro"></select>
-    <label for="nombre">
-        <b>* Nombre</b>
-    </label>
-    <input type="text" id="nombre" autocomplete="off">
-    <label for="apellidos">
-        <b>* Apellidos</b>
-        </label>
-    <input type="text" id="apellidos" autocomplete="off">
-    <label for="tel">
-        <b>* Teléfono</b>
-        </label>
-    <input type="text" id="tel" autocomplete="off">
-    <label for="Prov">
-        <b>Provincia</b>
-        </label>
+    <input type="text" id="nombre" placeholder="(*) Nombre" autocomplete="off">
+    <input type="text" id="apellidos" placeholder="Apellidos" autocomplete="off">
+    <input type="text" id="tel" placeholder="(*) Teléfono" autocomplete="off">
 <select id="prov_sel" onChange="sel_pob(this.value, 'datos_reg_user');"></select>
     <div id="poblacion_sel"></div>
-    <label for="cp">
-        <b>Código Postal</b>
-    </label>
-    <input type="text" id="cp" autocomplete="off">
-    <label for="email">
-        <b>* Email</b>
-    </label>
-    <input type="text" id="email" autocomplete="off">
-    <label for="pass">
-        <b>* Contraseña</b>
-    </label>
-    <input type="password" id="pass" autocomplete="off">
-    <label for="pass_conf">
-        <b>* Confirmar Contraseña</b>
-    </label>
-    <input type="password" id="pass_conf" autocomplete="off">
-    <label for="pass_conf">
+    <input type="text" id="cp" placeholder="Código Postal" autocomplete="off">
+    <input type="text" id="email" placeholder="Email" autocomplete="off">
+    <input type="password" id="pass" placeholder="Contraseña" autocomplete="off">
+    <input type="password" id="pass_conf" placeholder="Confirma la contraseña" autocomplete="off">
 <p>&nbsp;</p>
     <a id="bot_enviar" data-role="button" data-theme="b">Guardar</a>
 </form>
@@ -315,31 +295,16 @@
         <b>* Centro seleccionado:</b>
     </label>
 	<select id="id_centro"></select>
-    <label for="nombre">
-        <b>* Nombre</b>
-    </label>
-    <input type="text" id="nombre" autocomplete="off">
-    <label for="apellidos">
-        <b>* Apellidos</b>
-        </label>
-    <input type="text" id="apellidos" autocomplete="off">
+    <input type="text" id="nombre" placeholder="(*) Nombre" autocomplete="off">
+    <input type="text" id="apellidos" placeholder="Apellidos" autocomplete="off">
     <label for="Prov">
         <b>Provincia</b>
         </label>
 <select id="prov_sel" onChange="sel_pob(this.value, 'form_datos');"></select>
     <div id="poblacion_sel"></div>
-    <label for="tel">
-        <b>Teléfono</b>
-        </label>
-    <input type="text" id="tel" autocomplete="off">
-    <label for="cp">
-        <b>Código Postal</b>
-    </label>
-    <input type="text" id="cp" autocomplete="off">
-    <label for="email">
-        <b>* Email</b>
-    </label>
-    <input type="text" id="email" autocomplete="off">
+    <input type="text" id="tel" placeholder="(*) Teléfono" autocomplete="off">
+    <input type="text" id="cp" placeholder="Código Postal" autocomplete="off">
+    <input type="text" id="email" placeholder="(*) Email" autocomplete="off">
     <div id="pass_ocul">
     <label for="pass">
         <b>Nueva Contraseña (Dejar en blanco si no se quiere cambiar)</b>
@@ -390,22 +355,10 @@
 </table>
 <div id="form_contact">
 <form method="post">
-    <label for="email">
-        <b>* Nombre</b>
-    </label>
-    <input type="text" id="nombre" autocomplete="off">
-    <label for="pass">
-        <b>Teléfono</b>
-    </label>
-    <input type="text" id="telefono" autocomplete="off">
-    <label for="email">
-        <b>Email</b>
-    </label>
-    <input type="email" id="email" autocomplete="off">
-    <label for="Mensaje">
-        <b>Mensaje</b>
-    </label>
-    <textarea id="mensaje" autocomplete="off"></textarea>
+    <input type="text" id="nombre" placeholder="Nombre" autocomplete="off">
+    <input type="text" id="telefono" placeholder="Teléfono" autocomplete="off">
+    <input type="email" id="email" placeholder="Email" autocomplete="off">
+    <textarea id="mensaje" autocomplete="off" placeholder="Mensaje"></textarea>
 </form>
 <a data-role="button" data-theme="b" onClick="contactar();">Enviar</a>
 </div>

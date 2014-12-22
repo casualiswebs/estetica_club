@@ -214,9 +214,9 @@ function getListCentros(id, id_sel, marcar_sel) {
 	//Comienzo de nuevo el select:
 	sel.empty();
 	if (id_sel == '#sel_ini_centro #id_centro') {
-		texto_sel = '1.- Selecciona un centro';
+		texto_sel = '1.- Selecciona tu centro';
 	} else {
-		texto_sel = 'Selecciona un centro';
+		texto_sel = 'Selecciona tu centro';
 	}
 	sel.append($('<option>', { 
 				value: 0,

@@ -32,6 +32,15 @@ textarea {
 	width:100%;
 }
 
+.alin-left {
+	float:left;
+	margin-right:10px;
+}
+.alin-right {
+	float:right;
+	margin-left:10px;
+}
+
 
 /*****------ MI RESERVA -----*****/
 .caducidad_ficha,
@@ -45,6 +54,7 @@ textarea {
 	text-shadow: none;
 	margin:0 auto;
 }
+.titulo.gris,
 .caducidad_ficha.gris {
 	background:#737373;
 }
@@ -239,6 +249,10 @@ textarea {
 }
 }
 @media only screen and (max-width: 750px) {
+.titulo h1 {
+	font-size:19px;
+	color:#666;
+}
 #lista_trats li a.ui-btn {
 	font-size: 0.8em;
 }
