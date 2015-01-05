@@ -23,7 +23,9 @@
 <div class="titulo"><h1>¡Bienvenido/a!</h1></div>
 <!-- Formulario para seleccionar centro: -->
 <div class="ui-field-contain" id="sel_ini_centro">
+<form>
     <select id="id_centro"></select>
+</form>
 </div>
 <!-- Fin Formulario para seleccionar centro: -->
 <a href="index.html#inicio" data-role="button" data-icon="alert" data-iconshadow="false" data-theme="b" data-transition="slideup" id="bot_conectar">2.- Conectarme</a>
@@ -121,11 +123,13 @@
 <td><div class="titulo"><h1>Conectarme</h1></div></td>
 </tr>
 </table>
+<form>
     <input type="text" id="email" placeholder="(*) Email" autocomplete="off">
     <input type="password" id="pass" placeholder="(*) Contraseña" autocomplete="off">
 <a data-role="button" data-theme="b" onClick="login_user()" id="Con_Re">Conectarme</a>
     <p>&nbsp;</p>
 <a href="#recuperar" data-role="button" data-icon="edit" data-iconshadow="false" data-theme="e" data-transition="slideup">Recuperar contraseña</a>
+</form>
 	</div>
 </div>
 <!-- /Login Usuario (login_user) -->
@@ -142,11 +146,13 @@
 <td><div class="titulo"><h1>Recuperar contraseña</h1></div></td>
 </tr>
 </table>
+<form>
     <label for="email">
         <b>* Indica el Email con el que te registraste en Estética Club</b>
     </label>
     <input type="text" id="email_rec" autocomplete="off">
 <a data-role="button" data-theme="b" onClick="recuperar_pass()">Recuperar</a>
+</form>
 	</div>
 </div>
 <!-- /Recuperar Usuario (recuperar) -->
@@ -168,7 +174,7 @@
     <input type="text" id="nombre" placeholder="(*) Nombre" autocomplete="off">
     <input type="text" id="apellidos" placeholder="Apellidos" autocomplete="off">
     <input type="text" id="tel" placeholder="(*) Teléfono" autocomplete="off">
-<select id="prov_sel" onChange="sel_pob(this.value, 'datos_reg_user');"></select>
+<select id="prov_sel" onChange="sel_pob(this.value, '#datos_reg_user');"></select>
     <div id="poblacion_sel"></div>
     <input type="text" id="cp" placeholder="Código Postal" autocomplete="off">
     <input type="text" id="email" placeholder="Email" autocomplete="off">
@@ -197,6 +203,7 @@
 <div id="input_fecha">
 <p>&nbsp;</p>
 <div class="caducidad_ficha gris"><h3>2.- Selecciona día y hora:</h3></div>
+<form>
 <input type="text" data-role="datebox" id="sel_fecha_j" name="sel_fecha_j" data-options='{
 "mode":"flipbox",
 "useInlineBlind":true,
@@ -206,6 +213,7 @@
 "useInlineBlind":false,
 "closeCallback":"escoger_hora"
 }'>
+</form>
 </div>
                 <div class="cargando">
                 	<div id="loading" style="display:none;"><img src="images/ajax.gif" /></div>
@@ -301,7 +309,7 @@
     <label for="Prov">
         <b>Provincia</b>
         </label>
-<select id="prov_sel" onChange="sel_pob(this.value, 'form_datos');"></select>
+<select id="prov_sel" onChange="sel_pob(this.value, '#form_datos');"></select>
     <div id="poblacion_sel"></div>
     <input type="text" id="tel" placeholder="(*) Teléfono" autocomplete="off">
     <input type="text" id="cp" placeholder="Código Postal" autocomplete="off">

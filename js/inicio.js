@@ -12,6 +12,9 @@ document.addEventListener('deviceready', function() {
 /*---- MOSTRADO DE PÁGINAS ----*/
 //Menú:
 $('#menu').on('pageshow', function(event) {
+	//Reseteo todos los formularios:
+	$('form').trigger("reset");
+	
 	 $("select, li").addClass("needsclick");
 	 $('a').each(function() { new FastClick(this); });
 	 //new FastClick(document.body);
@@ -153,24 +156,28 @@ function ficha_centro () {
 
 //Recuperar Pasword:
 function recuperar_pass () {
+	ur = 'recuperar_pass.php?callback=?';
 	$.mobile.loading ( 'show', { theme: "b", text: "Cargando", textonly: false, textVisible: true});
 	//Recojo todos los datos del formulario:
-	var email = $('#email_rec').val();
+	var email_recu = $('#email_rec').val();
 //Compruebo si la dirección de email es correcta:
 var filtro = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-if (filtro.test(email)) {
+if (filtro.test(email_recu)) {
    ok_email = true;
 } else {
    ok_email = false;
 }
-if (ok_email==true){
-	$.getJSON(serviceURL + "recuperar_pass.php?callback=?", { email:email }, function(data){
-		if (data.resultado==true) {
+if (ok_email === true){
+	$.getJSON(serviceURL + ur, { email_comp:email_recu }, function(data){
+		if (data.resultado === true) {
 			$.mobile.changePage( "#menu", { transition: "slideup"} );
 		}
 	$.mobile.loading( 'hide');
 	alert(data.respuesta);
 	//comentario navigator.notification.alert (data.respuesta, null, 'Estetica Club', 'Aceptar');
+	}) .fail(function(jqxhr, textStatus, error) {
+		 var err = textStatus + ", " + error;
+		console.log( "Request Failed: " + err );
 	});
 } else if (ok_email == false) {
 	$.mobile.loading( 'hide');
