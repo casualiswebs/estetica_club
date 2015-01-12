@@ -114,7 +114,7 @@ var filtro = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 			}
 		$.mobile.loading( 'hide');
 		//alert(data.respuesta);
-		navigator.notification.alert (data.respuesta, null, '¡Conectado!', 'Aceptar');
+		navigator.notification.alert (data.respuesta, null, '¡Alerta!', 'Aceptar');
 		});
 	} else if (ok_email == false) {
 		$.mobile.loading( 'hide');
@@ -319,9 +319,4 @@ $(form_sel + " #pob_sel").selectmenu({ theme: "a" });
 		//alert (data.respuesta);
 		navigator.notification.alert (data.respuesta, null, '¡Alerta!', 'Aceptar');
 	}
-}).fail(function(data) {
-		$(form_sel + ' #poblacion_sel').html('');
-		//alert ("Error en la conexión");
-		navigator.notification.alert ("Error en la conexión", null, '¡Alerta!', 'Aceptar');
-});
-}
+}).fail(function(dat
