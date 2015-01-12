@@ -2346,7 +2346,7 @@
 jQuery.extend(jQuery.mobile.datebox.prototype.options.lang, { "es-ES": {
 	"setDateButtonLabel": "Guardar Fecha",
 	"setTimeButtonLabel": "Guardar Hora",
-	"setDurationButtonLabel": "Guardar DuraciÃ³n",
+	"setDurationButtonLabel": "Guardar Duración",
 	"calTodayButtonLabel": "Hoy",
 	"titleDateDialogLabel": "Elija fecha",
 	"titleTimeDialogLabel": "Elegir Hora",
@@ -2354,10 +2354,10 @@ jQuery.extend(jQuery.mobile.datebox.prototype.options.lang, { "es-ES": {
 		"Domingo",
 		"Lunes",
 		"Martes",
-		"MiÃ©rcoles",
+		"Miércoles",
 		"Jueves",
 		"Viernes",
-		"SÃ¡bado"
+		"Sábado"
 	],
 	"daysOfWeekShort": [
 		"Do",
@@ -2397,17 +2397,17 @@ jQuery.extend(jQuery.mobile.datebox.prototype.options.lang, { "es-ES": {
 		"Dic"
 	],
 	"durationLabel": [
-		"DÃ­as",
+		"Días",
 		"Horas",
 		"Minutos",
 		"Segundos"
 	],
 	"durationDays": [
-		"DÃ­a",
-		"DÃ­as"
+		"Día",
+		"Días"
 	],
 	"tooltip": "Abrir El Calendario",
-	"nextMonth": "Mes PrÃ³ximo",
+	"nextMonth": "Mes Próximo",
 	"prevMonth": "Mes Anterior",
 	"timeFormat": 24,
 	"headerFormat": "%A, %-d %B, %Y",
@@ -2445,7 +2445,7 @@ jQuery.extend(jQuery.mobile.datebox.prototype.options.lang, { "es-ES": {
 	"durationFormat": "%Dd %DA, %Dl:%DM:%DS",
 	"calDateListLabel": "Otras fechas",
 	"calHeaderFormat": "%B %Y",
-	"calTomorrowButtonLabel": "Saltar al maÃ±ana"
+	"calTomorrowButtonLabel": "Mañana"
 }});
 jQuery.extend(jQuery.mobile.datebox.prototype.options, {
 	useLang: "es-ES"

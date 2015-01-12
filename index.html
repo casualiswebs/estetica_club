@@ -252,7 +252,7 @@
         </div><!-- /navbar -->
 	</div><!-- /footer -->
 </div>
-<!-- Fin Calendario (reservas_ap) con menu -->
+<!-- Fin Reservas (reservas_ap) con menu -->
 
 <div data-role="page" id="ficha_reserva">
 	<div data-role="header">
@@ -261,6 +261,8 @@
 	<div data-role="content">
   <a data-rel="back" class="ui-btn ui-btn-inline ui-icon-arrow-l ui-btn-icon-left">Volver</a>
 <div id="datos_reserva"></div>
+<div id="btn_anular"></div>
+<div id="datos_reserva_contacto"></div>
   	</div>
 	 <div data-role="footer" style="overflow:hidden;" id="footer-menu">
         <div data-role="navbar">
@@ -272,7 +274,7 @@
         </div><!-- /navbar -->
 	</div><!-- /footer -->
 </div>
-<!-- Fin Calendario (ficha_reserva) con menu -->
+<!-- Fin Ficha Reserva (ficha_reserva) con menu -->
 
 <div data-role="page" id="mapa">
   <div data-role="header">
@@ -285,7 +287,7 @@
 </div>
 </div>
 </div>
-<!-- /mapa -->
+<!-- Fin mapa (mapa) -->
 
 <div data-role="page" id="mi_perfil_ap">
 	<div data-role="header">
@@ -328,6 +330,12 @@
     <a id="bot_enviar" data-role="button">Actualizar datos</a>
 </form>
 <p>&nbsp;</p>
+<p>&nbsp;</p>
+<table>
+<tr>
+<td><div class="titulo"><h1>Cerrar mi sesión:</h1></div></td>
+</tr>
+</table>
 <a data-role="button" data-theme="b" id="descon">Cerrar sesión</a>
 	</div>
 </div>
@@ -364,9 +372,6 @@
 </table>
 <div id="form_contact">
 <form method="post">
-    <input type="text" id="nombre" placeholder="Nombre" autocomplete="off">
-    <input type="text" id="telefono" placeholder="Teléfono" autocomplete="off">
-    <input type="email" id="email" placeholder="Email" autocomplete="off">
     <textarea id="mensaje" autocomplete="off" placeholder="Mensaje"></textarea>
 </form>
 <a data-role="button" data-theme="b" onClick="contactar();">Enviar</a>

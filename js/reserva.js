@@ -17,10 +17,12 @@ $('#sel_fecha_j').bind('datebox', function (e, passed) {
 						id_servicio: id_servicio
 				}, function(data){
 				if (data.resultado === true) {
-					datos_deco = jQuery.parseJSON(data.datos);
+					$("#dialog-confirm").html('');
 					$("#content_ajax").html('<h3>3.-Selecciona la hora</h3>');
+					datos_deco = jQuery.parseJSON(data.datos);
 					$("#content_ajax").append(datos_deco);
 				} else {
+					$("#content_ajax").html('');
 					alert (data.respuesta);
 					//comentario navigator.notification.alert (data.respuesta, null, '¡Alerta!', 'Aceptar');
 				}
@@ -38,6 +40,8 @@ $('#sel_fecha_j').bind('datebox', function (e, passed) {
     
 }
 });
+
+
 
 /*
 	//Datepicker:
@@ -171,6 +175,7 @@ Mes_ac = fecha2.getMonth() + 1;
 Dia_ac = fecha2.getDate();
 Hora_ac = fecha2.getHours();
 Min_ac = fecha2.getMinutes();
+console.log ('Dia entrada: ' + dia_entrada);
 console.log ('Acaba: ' + fecha2);
 
 $.getJSON(serviceURL + ur, {
@@ -309,17 +314,53 @@ $.mobile.loading('hide');
 		$.getJSON(serviceURL + ur, { id_tienda:id_tienda, user_activo:user_activo, id_reserva:id_reserva }, function(data){
 			if (data.resultado === true) {
 	var div_id = '#datos_reserva';
-	//console.log (data.respuesta);
 //Inserto el resultado:
-//localStorage.setItem("facebook_centro", value.facebook);
 $(div_id).html('<div class="ficha_res">' + data.respuesta);
+
+//Anular cita:
+$('#btn_anular').html('<div id="divanular_cita" title="Anular Cita" style="display:none;"><p>¿Desea anular la cita?</p></div><a onClick="anular_cita(\'' + id_reserva + '\');" class="ui-btn ui-btn-inline ui-icon-delete ui-btn-icon-left">Anular Cita</a><br /><br />');
 //Muestro los datos del centro:
-datos_cont_centro(div_id);
+datos_cont_centro(div_id + '_contacto');
 //--
 			} else {
 				alert (data.respuesta);
 			}
 		});
+   }
+   
+   
+//-----***** Anular reserva *****-----
+   function anular_cita (id_reserva) {
+	ur = 'reservas/anular_cita.php?callback=?';
+
+//*****----- ANULAR CITA -----*****
+$( "#divanular_cita" ).dialog({
+	resizable: true,
+	modal: true,
+	buttons: {
+	"Si": function() {
+		//Cierro el mensaje
+			$(this).dialog("destroy");
+			
+			//Función:
+	var user_activo = localStorage.getItem("id_user_app_movil");
+
+		$.getJSON(serviceURL + ur, { user_activo:user_activo, id_reserva:id_reserva }, function(data){
+			if (data.resultado === true) {
+				$.mobile.changePage( "index.html#reservas_ap", { transition: "slideup"}, true, true );
+				alert (data.respuesta);
+			} else {
+				alert (data.respuesta);
+			}
+		});
+		},
+	"No": function() {
+		$(this).dialog("destroy")
+	}
+	}
+});
+//*****----- FIN ANULAR CITA -----*****
+
    }
    //*****----- FIN RESERVAS -----*****
 
