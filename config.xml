@@ -4,8 +4,8 @@
 		id        = "com.esteticaclientes"
 		versionCode="1.0"
 		version   = "1.0.0">
-		<name>Estética Citas</name>
-		<description>Club para centros de estética</description>
+		<name>Estética Cita</name>
+		<description>Reserva cita en tu centro de estética</description>
 		<author href="http://www.esteticaclub.com" email="info@casualiswebs.com">
 Casualis Webs
 		</author>
