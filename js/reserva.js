@@ -23,8 +23,8 @@ $('#sel_fecha_j').bind('datebox', function (e, passed) {
 					$("#content_ajax").append(datos_deco);
 				} else {
 					$("#content_ajax").html('');
-					alert (data.respuesta);
-					//comentario navigator.notification.alert (data.respuesta, null, '¡Alerta!', 'Aceptar');
+					//alert (data.respuesta);
+					navigator.notification.alert (data.respuesta, null, '¡Alerta!', 'Aceptar');
 				}
 				//Refresco el listado y le asigno un tema:
 				$('#lista_trats').listview({ theme:'a' });
@@ -144,14 +144,14 @@ $.getJSON(serviceURL + ur, { id_centro:localStorage.getItem("id_centro") }, func
 			$(div_id + ' ul').append('<li><a id="serv' + value.id + '" onClick="sel_servicio(\'serv' + value.id + '\');">' + value.tratamiento + ' (' + value.duracion + ' min)</a></li>');
 		});
 	} else {
-		alert (data.respuesta);
-		//comentario navigator.notification.alert (data.respuesta, null, '¡Alerta!', 'Aceptar');
+		//alert (data.respuesta);
+		navigator.notification.alert (data.respuesta, null, '¡Alerta!', 'Aceptar');
 	}
 	//Refresco el listado y le asigno un tema:
 	$('#lista_trats').listview({ theme:'a' });
 }).fail(function() {
-	alert ("No hay conexión, inténtalo de nuevo más tarde");
-	//comentario navigator.notification.alert ("No hay conexión a Internet", null, '¡Alerta!', 'Aceptar');
+	//alert ("No hay conexión, inténtalo de nuevo más tarde");
+	navigator.notification.alert ("No hay conexión a Internet", null, '¡Alerta!', 'Aceptar');
 });
 }
 
@@ -283,7 +283,8 @@ $.mobile.loading('hide');
 	//Refresco el listado y le asigno un tema:
 	$('#lista_mis_reservas').listview({ theme:'a' });
 			} else {
-				alert (data.respuesta);
+				//alert (data.respuesta);
+				navigator.notification.alert (data.respuesta, null, '¡Alerta!', 'Aceptar');
 			}
 		});
    }
@@ -323,7 +324,8 @@ $('#btn_anular').html('<div id="divanular_cita" title="Anular Cita" style="displ
 datos_cont_centro(div_id + '_contacto');
 //--
 			} else {
-				alert (data.respuesta);
+				//alert (data.respuesta);
+				navigator.notification.alert (data.respuesta, null, '¡Alerta!', 'Aceptar');
 			}
 		});
    }
@@ -348,9 +350,11 @@ $( "#divanular_cita" ).dialog({
 		$.getJSON(serviceURL + ur, { user_activo:user_activo, id_reserva:id_reserva }, function(data){
 			if (data.resultado === true) {
 				$.mobile.changePage( "index.html#reservas_ap", { transition: "slideup"}, true, true );
-				alert (data.respuesta);
+				//alert (data.respuesta);
+				navigator.notification.alert (data.respuesta, null, '¡Alerta!', 'Aceptar');
 			} else {
-				alert (data.respuesta);
+				//alert (data.respuesta);
+				navigator.notification.alert (data.respuesta, null, '¡Alerta!', 'Aceptar');
 			}
 		});
 		},

@@ -113,17 +113,17 @@ var filtro = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 					}
 			}
 		$.mobile.loading( 'hide');
-		alert(data.respuesta);
-		//comentario navigator.notification.alert (data.respuesta, null, '¡Conectado!', 'Aceptar');
+		//alert(data.respuesta);
+		navigator.notification.alert (data.respuesta, null, '¡Conectado!', 'Aceptar');
 		});
 	} else if (ok_email == false) {
 		$.mobile.loading( 'hide');
-		alert("La dirección de email no es correcta");
-		//comentario navigator.notification.alert ("La dirección de email no es correcta", null, '¡Alerta!', 'Aceptar');
+		//alert("La dirección de email no es correcta");
+		navigator.notification.alert ("La dirección de email no es correcta", null, '¡Alerta!', 'Aceptar');
 	} else {
 		$.mobile.loading( 'hide');
-		alert("Revisa tus datos");
-		//comentario navigator.notification.alert ("Revisa tus datos", null, '¡Alerta!', 'Aceptar');
+		//alert("Revisa tus datos");
+		navigator.notification.alert ("Revisa tus datos", null, '¡Alerta!', 'Aceptar');
 	}
 }
 
@@ -173,20 +173,20 @@ if (ok_email === true){
 			$.mobile.changePage( "#menu", { transition: "slideup"} );
 		}
 	$.mobile.loading( 'hide');
-	alert(data.respuesta);
-	//comentario navigator.notification.alert (data.respuesta, null, 'Estetica Club', 'Aceptar');
+	//alert(data.respuesta);
+	navigator.notification.alert (data.respuesta, null, '¡Alerta!', 'Aceptar');
 	}) .fail(function(jqxhr, textStatus, error) {
 		 var err = textStatus + ", " + error;
 		console.log( "Request Failed: " + err );
 	});
 } else if (ok_email == false) {
 	$.mobile.loading( 'hide');
-	alert("La dirección de email no es correcta");
-	//comentario navigator.notification.alert ("La dirección de email no es correcta", null, '¡Alerta!', 'Aceptar');
+	//alert("La dirección de email no es correcta");
+	navigator.notification.alert ("La dirección de email no es correcta", null, '¡Alerta!', 'Aceptar');
 } else {
 	$.mobile.loading( 'hide');
-	alert("Indica tu dirección de email");
-	//comentario navigator.notification.alert ("Indica tu dirección de email", null, '¡Alerta!', 'Aceptar');
+	//alert("Indica tu dirección de email");
+	navigator.notification.alert ("Indica tu dirección de email", null, '¡Alerta!', 'Aceptar');
 }
 }
 
@@ -194,8 +194,8 @@ if (ok_email === true){
 function logout () {
 	localStorage.clear();
 	$.mobile.changePage( "index.html#inicio" );
-	alert("¡Te has desconectado!");
-	//comentario navigator.notification.alert ("¡Te has desconectado!", null, 'Estetica Club', 'Aceptar');
+	//alert("¡Te has desconectado!");
+	navigator.notification.alert ("¡Te has desconectado!", null, '¡Alerta!', 'Aceptar');
 }
 
 function recuperar_datos_inicio() {
@@ -240,8 +240,8 @@ $.getJSON(serviceURL + ur, { id_centro:id }, function(data){
 			}));
 		});
 	} else {
-		alert (data.respuesta);
-		//comentario navigator.notification.alert (data.respuesta, null, '¡Alerta!', 'Aceptar');
+		//alert (data.respuesta);
+		navigator.notification.alert (data.respuesta, null, '¡Alerta!', 'Aceptar');
 	}
 	if (marcar_sel > 0) {
 		$(id_sel + ' option[value=' + marcar_sel + ']').attr('selected','selected').prop('selected', true);
@@ -249,8 +249,8 @@ $.getJSON(serviceURL + ur, { id_centro:id }, function(data){
 	//Refresco el select:
 	sel.selectmenu('refresh');
 }).fail(function() {
-	alert ("No hay conexión, inténtalo de nuevo más tarde");
-	//comentario navigator.notification.alert ("No hay conexión, inténtalo de nuevo más tarde", null, '¡Alerta!', 'Aceptar');
+	//alert ("No hay conexión, inténtalo de nuevo más tarde");
+	navigator.notification.alert ("No hay conexión, inténtalo de nuevo más tarde", null, '¡Alerta!', 'Aceptar');
 });
 }
 
@@ -277,14 +277,14 @@ $.getJSON(serviceURL + ur, { id_bus:id }, function(data){
 			$(id_sel + ' option[value=' + localStorage.getItem("provincia") + ']').attr('selected','selected').prop('selected', true);
 		}
 	} else {
-		alert (data.respuesta);
-		//comentario navigator.notification.alert (data.respuesta, null, '¡Alerta!', 'Aceptar');
+		//alert (data.respuesta);
+		navigator.notification.alert (data.respuesta, null, '¡Alerta!', 'Aceptar');
 	}
 	//Refresco el select:
 	sel.selectmenu('refresh');
 }).fail(function() {
-	alert ("No hay conexión, inténtalo de nuevo más tarde");
-	//comentario navigator.notification.alert ("No hay conexión, inténtalo de nuevo más tarde", null, '¡Alerta!', 'Aceptar');
+	//alert ("No hay conexión, inténtalo de nuevo más tarde");
+	navigator.notification.alert ("No hay conexión, inténtalo de nuevo más tarde", null, '¡Alerta!', 'Aceptar');
 });
 }
 
@@ -316,12 +316,12 @@ $.each(data.datos , function( key, value ) {
 $(form_sel + " #pob_sel").selectmenu({ theme: "a" });
 	} else {
 		$(form_sel + ' #poblacion_sel').html('');
-		alert (data.respuesta);
-		//comentario
+		//alert (data.respuesta);
+		navigator.notification.alert (data.respuesta, null, '¡Alerta!', 'Aceptar');
 	}
 }).fail(function(data) {
 		$(form_sel + ' #poblacion_sel').html('');
-		alert ("Error en la conexión");
-		//comentario
+		//alert ("Error en la conexión");
+		navigator.notification.alert ("Error en la conexión", null, '¡Alerta!', 'Aceptar');
 });
 }
