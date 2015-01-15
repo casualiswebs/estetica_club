@@ -319,4 +319,9 @@ $(form_sel + " #pob_sel").selectmenu({ theme: "a" });
 		//alert (data.respuesta);
 		navigator.notification.alert (data.respuesta, null, '¡Alerta!', 'Aceptar');
 	}
-}).fail(function(dat
+}).fail(function(data) {
+		$(form_sel + ' #poblacion_sel').html('');
+		//alert ("Error en la conexión");
+		navigator.notification.alert ('Error en la conexión', '¡Alerta!', 'Aceptar');
+});
+}
