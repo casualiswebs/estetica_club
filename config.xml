@@ -2,8 +2,8 @@
 	<widget xmlns = "http://www.w3.org/ns/widgets"
 		xmlns:gap = "http://phonegap.com/ns/1.0"
 		id        = "com.esteticaclientes"
-		versionCode="1.0.2"
-		version   = "1.0.2">
+		versionCode="1.0.3"
+		version   = "1.0.3">
 		<name>Estética Club</name>
 		<description>Reserva cita en tu centro de estética</description>
 		<author href="http://www.esteticaclub.com" email="info@casualiswebs.com">
