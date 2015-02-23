@@ -48,8 +48,8 @@ Casualis Webs
 		<preference name="LoadingDialog" value=","/> 
 		<preference name="LoadUrlTimeoutValue" value="50000" />
 		<preference name="disable-cursor" value="true" />
-		<gap:platform name="ios" />
-		<!--<gap:platform name="android" />-->
+		<!--<gap:platform name="ios" />-->
+		<gap:platform name="android" />
 		<feature name="http://api.phonegap.com/1.0/geolocation"/>
 		<feature name="http://api.phonegap.com/1.0/network"/>
 		<feature name="http://api.phonegap.com/1.0/notification"/>
@@ -95,6 +95,16 @@ Casualis Webs
 <icon src="images/iconos/ios/icon-72.png" gap:platform="ios" width="72" height="72" />
 <icon src="images/iconos/ios/icon-72@2x.png" gap:platform="ios" width="144" height="144" />
 
+
+<!-- ANDROID -->
+<icon src="images/iconos/android/mdpi.png" gap:platform="android" gap:qualifier="mdpi" />
+<icon src="images/iconos/android/hdpi.png" gap:platform="android" gap:qualifier="hdpi" />
+<icon src="images/iconos/android/xhdpi.png" gap:platform="android" gap:qualifier="xhdpi" />
+<icon src="images/iconos/android/xxhdpi.png" gap:platform="android" gap:qualifier="xxhdpi" />
+
+		
+		
+		
 		
 		<!-- iPhone and iPod touch -->
 <gap:splash src="images/splash/ios/Default.png" gap:platform="ios" width="320" height="480" />
@@ -115,6 +125,16 @@ Casualis Webs
 <!-- Retina iPad -->
 <gap:splash src="images/splash/ios/Default-Portrait@2x.png" gap:platform="ios" width="1536" height="2048" />
 <gap:splash src="images/splash/ios/Default-Landscape@2x.png" gap:platform="ios" width="2048" height="1536" />
+
+
+
+<!-- ANDROID -->
+<gap:splash src="images/splash/android/mdpi.png" gap:platform="android" gap:qualifier="mdpi" />
+<gap:splash src="images/splash/android/hdpi.png" gap:platform="android" gap:qualifier="hdpi" />
+<gap:splash src="images/splash/android/xhdpi.png" gap:platform="android" gap:qualifier="xhdpi" />
+<gap:splash src="images/splash/android/xxhdpi.png" gap:platform="android" gap:qualifier="port-xxhdpi" />
+<gap:splash src="images/splash/android/xxhdpi.png" gap:platform="android" gap:qualifier="land-xxhdpi" />
+
 
 		
 		<access origin="*.urbisclub.com" />
